@@ -1,0 +1,15 @@
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid green;
+  padding: 10px;
+
+  &__title {
+    font-size: 25px;
+  }
+  &__text {
+    font-size: 30px;
+  }
+}
