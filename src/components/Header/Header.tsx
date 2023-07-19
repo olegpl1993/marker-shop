@@ -7,9 +7,6 @@ function Header() {
     <header>
       <Logo />
       <div className="menu">
-        <Link href={"/"} className="menu__link">
-          Главная
-        </Link>
         <Link href={"/store"} className="menu__link">
           Магазин
         </Link>
