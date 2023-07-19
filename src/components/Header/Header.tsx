@@ -1,6 +1,8 @@
-import Logo from "../Logo/Logo";
 import "./Header.scss";
+import Logo from "../Logo/Logo";
 import Link from "next/link";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { IconButton } from "@mui/material";
 
 function Header() {
   return (
@@ -17,7 +19,11 @@ function Header() {
           О нас
         </Link>
       </div>
-      <div>Корзина</div>
+      <Link href={"/cart"}>
+        <IconButton className="cartBoxIcon">
+          <ShoppingCartIcon sx={{ color: "white", fontSize: 28 }} />
+        </IconButton>
+      </Link>
     </header>
   );
 }
