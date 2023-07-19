@@ -1,9 +1,11 @@
-import Link from "next/link";
+import Logo from "../Logo/Logo";
 import "./Header.scss";
+import Link from "next/link";
 
 function Header() {
   return (
     <header>
+      <Logo />
       <div className="menu">
         <Link href={"/"} className="menu__link">
           Главная
@@ -18,6 +20,7 @@ function Header() {
           О нас
         </Link>
       </div>
+      <div>Корзина</div>
     </header>
   );
 }
