@@ -1,9 +1,7 @@
 header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border: 1px solid rgb(255, 191, 0);
-  background-color: rgb(26, 26, 26);
+  justify-content: space-between;
   padding: 10px;
 }
 
@@ -20,5 +18,18 @@ header {
     &:hover {
       color: rgb(255, 191, 0);
     }
+  }
+}
+
+.cartBoxIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 50%;
+  padding: 10px;
+
+  &:hover {
+    background-color: rgb(64, 64, 64);
   }
 }

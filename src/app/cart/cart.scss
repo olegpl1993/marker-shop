@@ -1,13 +1,9 @@
-.home {
+.cart {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
 
   &__title {
     font-size: 25px;
-  }
-  &__text {
-    font-size: 30px;
   }
 }

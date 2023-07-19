@@ -17,10 +17,20 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className="wrapper">
-          <Header />
-          <main className="container">{children}</main>
+          <div className="headerRow">
+            <div className="container">
+              <Header />
+            </div>
+          </div>
+          <div className="container">
+            <main>{children}</main>
+          </div>
         </div>
-        <Footer />
+        <div className="footerRow">
+          <div className="container">
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   );
