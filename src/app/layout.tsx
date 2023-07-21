@@ -2,6 +2,7 @@ import "./global.scss";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import type { Metadata } from "next";
+import { Providers } from "@/redux/provider";
 
 export const metadata: Metadata = {
   title: "MARKER SHOP",
@@ -14,24 +15,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <div className="wrapper">
-          <div className="headerRow">
+    <Providers>
+      <html lang="en">
+        <body>
+          <div className="wrapper">
+            <div className="headerRow">
+              <div className="container">
+                <Header />
+              </div>
+            </div>
             <div className="container">
-              <Header />
+              <main>{children}</main>
             </div>
           </div>
-          <div className="container">
-            <main>{children}</main>
+          <div className="footerRow">
+            <div className="container">
+              <Footer />
+            </div>
           </div>
-        </div>
-        <div className="footerRow">
-          <div className="container">
-            <Footer />
-          </div>
-        </div>
-      </body>
-    </html>
+        </body>
+      </html>
+    </Providers>
   );
 }
