@@ -4,6 +4,7 @@ import "./RenderStore.scss";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { changeProducts } from "@/redux/slices/productsSlice";
 import { useEffect } from "react";
+import StoreCard from "../StoreCard/StoreCard";
 
 interface Props {
   products: Product[];
@@ -12,18 +13,18 @@ interface Props {
 function RenderStore(props: Props) {
   const { products } = props;
   const dispatch = useAppDispatch();
-  const cart = useAppSelector((state) => state.productsState.products);
+  const productsState = useAppSelector((state) => state.productsState.products);
 
   useEffect(() => {
     dispatch(changeProducts(products));
-  }, [])
+  }, []);
 
-  console.log(cart);
+  console.log(productsState);
 
   return (
     <div className="renderStore">
-      {products.map((product) => (
-        <div key={product.sku} className="renderStore__card">{product.name}</div>
+      {productsState.map((product) => (
+        <StoreCard key={product.sku} product={product} />
       ))}
     </div>
   );
