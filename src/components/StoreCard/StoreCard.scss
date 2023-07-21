@@ -1,0 +1,17 @@
+.storeCard {
+  width: 300px;
+  height: 400px;
+  padding: 10px;
+  background-color: rgb(171, 171, 171);
+  border: 1px solid rgb(57, 57, 57);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+
+  &__name {
+    font-size: 25px;
+    font-weight: 500;
+  }
+}
