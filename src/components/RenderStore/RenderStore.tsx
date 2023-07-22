@@ -1,33 +1,35 @@
 "use client";
-import { Product } from "@/types";
 import "./RenderStore.scss";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { changeProducts } from "@/redux/slices/productsSlice";
-import { useEffect } from "react";
 import StoreCard from "../StoreCard/StoreCard";
+import { useGetProductsQuery } from "@/redux/services/productsApi";
+import Spinner from "../Spinner/Spinner";
 
-interface Props {
-  products: Product[];
-}
+function RenderStore() {
+  const { isLoading, isFetching, data, error } = useGetProductsQuery(null);
 
-function RenderStore(props: Props) {
-  const { products } = props;
-  const dispatch = useAppDispatch();
-  const productsState = useAppSelector((state) => state.productsState.products);
+  console.log(data);
 
-  useEffect(() => {
-    dispatch(changeProducts(products));
-  }, []);
+  if (isLoading || isFetching) {
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
+  }
 
-  console.log(productsState);
+  if (error) {
+    return <div>Error</div>;
+  }
 
-  return (
-    <div className="renderStore">
-      {productsState.map((product) => (
-        <StoreCard key={product.sku} product={product} />
-      ))}
-    </div>
-  );
+  if (data) {
+    return (
+      <div className="renderStore">
+        {data.map((product) => (
+          <StoreCard key={product.sku} product={product} />
+        ))}
+      </div>
+    );
+  }
 }
 
 export default RenderStore;
