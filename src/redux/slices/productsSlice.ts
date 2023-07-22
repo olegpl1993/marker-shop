@@ -1,8 +1,8 @@
-import { Product } from '@/types';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Product } from "@/types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const productsSlice = createSlice({
-  name: 'products',
+  name: "products",
   initialState: {
     products: [] as Product[],
   },
