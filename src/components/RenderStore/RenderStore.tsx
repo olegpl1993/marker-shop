@@ -1,8 +1,9 @@
 "use client";
 import "./RenderStore.scss";
-import StoreCard from "../StoreCard/StoreCard";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
 import Spinner from "../Spinner/Spinner";
+import Sidebar from "../Sidebar/Sidebar";
+import Content from "../Content/Content";
 
 function RenderStore() {
   const { isLoading, isFetching, data, error } = useGetProductsQuery(null);
@@ -24,9 +25,8 @@ function RenderStore() {
   if (data) {
     return (
       <div className="renderStore">
-        {data.map((product) => (
-          <StoreCard key={product.sku} product={product} />
-        ))}
+        <Sidebar />
+        <Content />
       </div>
     );
   }
