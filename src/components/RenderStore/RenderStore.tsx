@@ -8,8 +8,6 @@ import Content from "../Content/Content";
 function RenderStore() {
   const { isLoading, isFetching, data, error } = useGetProductsQuery(null);
 
-  console.log(data);
-
   if (isLoading || isFetching) {
     return (
       <div>
