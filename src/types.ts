@@ -1,4 +1,4 @@
-interface Size {
+interface Sizes {
   amount: number,
   size: number,
 }
@@ -15,5 +15,5 @@ export interface Product {
   color: string,
   weight: string,
   country: string,
-  sizes: Size[],
+  sizes: Sizes[],
 }

@@ -35,7 +35,8 @@
   }
 
   &__name {
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: 300;
     cursor: pointer;
     &:hover {
       color: rgb(215, 18, 18);
@@ -54,6 +55,19 @@
   &__price {
     font-size: 27px;
     color: rgb(77, 77, 77);
+  }
+
+  &__available {
+    font-weight: 500;
+    font-size: 12px;
+
+    &_true {
+      color: rgb(0, 215, 0);
+    }
+
+    &_false {
+      color: rgb(138, 138, 138);
+    }
   }
 
   &__cart {
