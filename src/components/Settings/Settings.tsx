@@ -4,16 +4,14 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useState } from "react";
-import { Box, Pagination, Stack, TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
+import StorePagination from "../StorePagination/StorePagination";
 
 function Settings() {
   const [sort, setSort] = useState("cheap");
   const handleChangeSorting = (event: SelectChangeEvent) => {
     setSort(event.target.value);
   };
-
-  const [currentPage, setCurrentPage] = useState(0);
-  const [pageQty, setPageQty] = useState(5);
 
   return (
     <div className="settings">
@@ -31,17 +29,7 @@ function Settings() {
         />
       </Box>
 
-      {!!pageQty && (
-        <Stack spacing={2}>
-          <Pagination
-            count={pageQty}
-            page={currentPage}
-            onChange={(_, value) => setCurrentPage(value)}
-            variant="outlined"
-            shape="rounded"
-          />
-        </Stack>
-      )}
+      <StorePagination />
 
       <FormControl sx={{ m: 1, minWidth: 200 }} size="small">
         <Select value={sort} onChange={handleChangeSorting} displayEmpty>

@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import productsReducer from "./slices/productsSlice";
+import storePaginationReducer from "./slices/storePaginationSlice";
 import { productsApi } from "./services/productsApi";
 
 const store = configureStore({
   reducer: {
-    productsState: productsReducer,
+    storePaginationState: storePaginationReducer,
     [productsApi.reducerPath]: productsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
