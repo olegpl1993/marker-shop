@@ -6,7 +6,7 @@ import { IconButton } from "@mui/material";
 
 function Header() {
   return (
-    <header>
+    <header className="header">
       <Logo />
       <div className="menu">
         <Link href={"/store"} className="menu__link">
