@@ -3,6 +3,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+  height: 70px;
 }
 
 .menu {
@@ -30,6 +31,6 @@ header {
   padding: 10px;
 
   &:hover {
-    background-color: rgb(64, 64, 64);
+    background-color: rgb(34, 31, 31);
   }
 }
