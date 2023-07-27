@@ -11,6 +11,17 @@ const sortByAvailable = (data: Product[]) => {
   return [...availableProducts, ...notAvailableProducts];
 };
 
+const sortingProducts = (products: Product[], sortType: string) => {
+  const sortedProducts = [...products];
+  const sortTypes = {
+    cheap: (a: Product, b: Product) => a.price - b.price,
+    expensive: (a: Product, b: Product) => b.price - a.price,
+    title: (a: Product, b: Product) =>
+      a.name.trim().toLowerCase().localeCompare(b.name.trim().toLowerCase()),
+  };
+  return sortedProducts.sort(sortTypes[sortType as keyof typeof sortTypes]);
+};
+
 const paginateProducts = (
   products: Product[],
   productsOnPage: number,
@@ -25,14 +36,16 @@ function Content() {
   const { data } = useGetProductsQuery(null);
 
   const currentPage = useAppSelector(
-    (state) => state.storePaginationState.currentPage
+    (state) => state.storePaginationReducer.currentPage
   );
   const productsOnPage = useAppSelector(
-    (state) => state.storePaginationState.productsOnPage
+    (state) => state.storePaginationReducer.productsOnPage
   );
+  const sortType = useAppSelector((state) => state.sortReducer.sort);
 
   if (data) {
     let products = data;
+    products = sortingProducts(products, sortType);
     products = sortByAvailable(products);
     console.log(products);
     products = paginateProducts(products, productsOnPage, currentPage);

@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import storePaginationReducer from "./slices/storePaginationSlice";
 import { productsApi } from "./services/productsApi";
+import storePaginationReducer from "./slices/storePaginationSlice";
+import sortReducer from "./slices/sortSlice";
 
 const store = configureStore({
   reducer: {
-    storePaginationState: storePaginationReducer,
     [productsApi.reducerPath]: productsApi.reducer,
+    storePaginationReducer,
+    sortReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({}).concat([productsApi.middleware]),
