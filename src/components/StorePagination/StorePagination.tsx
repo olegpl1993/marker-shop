@@ -10,11 +10,11 @@ import { useEffect } from "react";
 function StorePagination() {
   const dispatch = useAppDispatch();
   const currentPage = useAppSelector(
-    (state) => state.storePaginationState.currentPage
+    (state) => state.storePaginationReducer.currentPage
   );
-  const pageQty = useAppSelector((state) => state.storePaginationState.pageQty);
+  const pageQty = useAppSelector((state) => state.storePaginationReducer.pageQty);
   const productsOnPage = useAppSelector(
-    (state) => state.storePaginationState.productsOnPage
+    (state) => state.storePaginationReducer.productsOnPage
   );
 
   const setCurrentPage = (value: number) => {
