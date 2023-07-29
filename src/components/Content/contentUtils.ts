@@ -1,6 +1,34 @@
 import { Product } from "@/types";
 
 export const contentUtils = {
+  processProductData: function (
+    data: Product[],
+    selectedCategories: String[],
+    search: string,
+    sortType: string
+  ): Product[] {
+    let products = [ ...data];
+    products = this.filterSelectedCategories(
+      products,
+      selectedCategories
+    );
+    products = this.searchByProducts(products, search);
+    products = this.sortingProducts(products, sortType);
+    products = this.sortByAvailable(products);
+    console.log(products);
+    return products;
+  },
+
+  filterSelectedCategories: (products: Product[], categories: String[]) => {
+    if (categories.length === 0) {
+      return products;
+    } else {
+      return products.filter((product) =>
+        categories.includes(product.category)
+      );
+    }
+  },
+
   searchByProducts: (data: Product[], input: string) => {
     const searchedProducts = data.filter((product) =>
       product.name.trim().toLowerCase().includes(input.trim().toLowerCase())

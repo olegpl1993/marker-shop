@@ -20,6 +20,10 @@ function Content() {
   );
   const sortType = useAppSelector((state) => state.sortReducer.sort);
   const search = useAppSelector((state) => state.searchReducer.search);
+  const selectedCategories = useAppSelector(
+    (state) => state.selectedCategoriesReducer.selectedCategories
+  );
+  console.log(selectedCategories);
 
   let products = [] as Product[];
   useEffect(() => {
@@ -29,10 +33,12 @@ function Content() {
   }, [data, products]);
 
   if (data) {
-    products = contentUtils.searchByProducts(data, search);
-    products = contentUtils.sortingProducts(products, sortType);
-    products = contentUtils.sortByAvailable(products);
-    console.log(products);
+    products = contentUtils.processProductData(
+      data,
+      selectedCategories,
+      search,
+      sortType
+    );
     const paginatedProducts = contentUtils.paginateProducts(
       products,
       productsOnPage,
