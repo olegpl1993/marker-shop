@@ -4,6 +4,7 @@ import storePaginationReducer from "./slices/storePaginationSlice";
 import sortReducer from "./slices/sortSlice";
 import searchReducer from "./slices/searchSlice";
 import productsReducer from "./slices/productsSlice";
+import selectedCategoriesReducer from "./slices/selectedCategoriesSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     sortReducer,
     searchReducer,
     productsReducer,
+    selectedCategoriesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({}).concat([productsApi.middleware]),

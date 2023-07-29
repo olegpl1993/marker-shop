@@ -3,6 +3,8 @@ import "./Categories.scss";
 import { Product } from "@/types";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
 import { Checkbox, FormControlLabel, FormGroup, Paper } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { changeSelectedCategories } from "@/redux/slices/selectedCategoriesSlice";
 
 const getUniqueCategories = (data: Product[]) => {
   const categories = data.map((product) => product.category);
@@ -12,6 +14,23 @@ const getUniqueCategories = (data: Product[]) => {
 
 function Categories() {
   const { data } = useGetProductsQuery(null);
+
+  const dispatch = useAppDispatch();
+  const selectedCategories = useAppSelector(
+    (state) => state.selectedCategoriesReducer.selectedCategories
+  );
+
+  const handleChangeCategories = (category: string) => {
+    if (selectedCategories.includes(category)) {
+      dispatch(
+        changeSelectedCategories(
+          selectedCategories.filter((item) => item !== category)
+        )
+      );
+    } else {
+      dispatch(changeSelectedCategories([...selectedCategories, category]));
+    }
+  };
 
   if (data) {
     const categories = getUniqueCategories(data);
@@ -25,6 +44,7 @@ function Categories() {
               className="categories__item"
               label={category}
               key={category}
+              onChange={() => handleChangeCategories(category)}
             />
           ))}
         </FormGroup>
