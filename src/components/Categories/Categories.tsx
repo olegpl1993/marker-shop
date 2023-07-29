@@ -5,6 +5,7 @@ import { useGetProductsQuery } from "@/redux/services/productsApi";
 import { Checkbox, FormControlLabel, FormGroup, Paper } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { changeSelectedCategories } from "@/redux/slices/selectedCategoriesSlice";
+import { changeCurrentPage } from "@/redux/slices/storePaginationSlice";
 
 const getUniqueCategories = (data: Product[]) => {
   const categories = data.map((product) => product.category);
@@ -30,6 +31,7 @@ function Categories() {
     } else {
       dispatch(changeSelectedCategories([...selectedCategories, category]));
     }
+    dispatch(changeCurrentPage(1));
   };
 
   if (data) {
