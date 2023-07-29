@@ -11,6 +11,13 @@ const sortByAvailable = (data: Product[]) => {
   return [...availableProducts, ...notAvailableProducts];
 };
 
+const searchByProducts = (data: Product[], input: string) => {
+  const searchedProducts = data.filter((product) =>
+    product.name.trim().toLowerCase().includes(input.trim().toLowerCase())
+  );
+  return searchedProducts;
+};
+
 const sortingProducts = (products: Product[], sortType: string) => {
   const sortedProducts = [...products];
   const sortTypes = {
@@ -42,9 +49,11 @@ function Content() {
     (state) => state.storePaginationReducer.productsOnPage
   );
   const sortType = useAppSelector((state) => state.sortReducer.sort);
+  const search = useAppSelector((state) => state.searchReducer.search);
 
   if (data) {
     let products = data;
+    products = searchByProducts(products, search);
     products = sortingProducts(products, sortType);
     products = sortByAvailable(products);
     console.log(products);

@@ -1,0 +1,11 @@
+.search {
+  position: relative;
+  display: flex;
+  gap: 3px;
+
+  &__iconButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
