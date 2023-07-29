@@ -1,0 +1,21 @@
+.categories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  padding-right: 5px;
+
+  &__title {
+    font-size: 25px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    width: 100%;
+  }
+}
