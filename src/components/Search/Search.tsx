@@ -5,6 +5,7 @@ import { changeSearch } from "@/redux/slices/searchSlice";
 import { Box, IconButton, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
+import { changeCurrentPage } from "@/redux/slices/storePaginationSlice";
 
 function Search() {
   const dispatch = useAppDispatch();
@@ -17,15 +18,16 @@ function Search() {
     setSearchInput(event.target.value);
   };
 
-  const handleOnSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      dispatch(changeSearch(searchInput));
-    }
+  const handleOnClickSearchBtn = () => {
+    dispatch(changeCurrentPage(1));
+    dispatch(changeSearch(searchInput));
   };
 
-  const handleOnClickSearchBtn = () => {
-    dispatch(changeSearch(searchInput));
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleOnClickSearchBtn();
+    }
   };
 
   return (
@@ -43,7 +45,7 @@ function Search() {
         placeholder="Поиск"
         value={searchInput}
         onChange={handleChangeSearchInput}
-        onKeyDown={handleOnSubmit}
+        onKeyDown={handleOnKeyDown}
         InputProps={{ sx: { paddingRight: "23px" } }}
         className="search__input"
       />

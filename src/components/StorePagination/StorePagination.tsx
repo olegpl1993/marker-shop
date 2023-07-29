@@ -1,5 +1,4 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useGetProductsQuery } from "@/redux/services/productsApi";
 import {
   changeCurrentPage,
   changePageQty,
@@ -12,39 +11,32 @@ function StorePagination() {
   const currentPage = useAppSelector(
     (state) => state.storePaginationReducer.currentPage
   );
-  const pageQty = useAppSelector((state) => state.storePaginationReducer.pageQty);
+  const pageQty = useAppSelector(
+    (state) => state.storePaginationReducer.pageQty
+  );
   const productsOnPage = useAppSelector(
     (state) => state.storePaginationReducer.productsOnPage
   );
-
-  const setCurrentPage = (value: number) => {
-    dispatch(changeCurrentPage(value));
-  };
-
-  const setPageQty = (value: number) => {
-    dispatch(changePageQty(value));
-  };
-
-  const { data } = useGetProductsQuery(null);
+  const products = useAppSelector((state) => state.productsReducer.products);
 
   useEffect(() => {
-    if (data) {
-      const newPageQty = Math.ceil(data.length / productsOnPage); // определяем количество страниц
-      setPageQty(newPageQty);
+    if (products) {
+      const newPageQty = Math.ceil(products.length / productsOnPage);
+      dispatch(changePageQty(newPageQty));
     }
-  }, [data, productsOnPage]);
+  }, [products, productsOnPage]);
 
-    return (
-      <Stack spacing={2}>
-        <Pagination
-          count={pageQty}
-          page={currentPage}
-          onChange={(_, value) => setCurrentPage(value)}
-          variant="outlined"
-          shape="rounded"
-        />
-      </Stack>
-    );
+  return (
+    <Stack spacing={2}>
+      <Pagination
+        count={pageQty}
+        page={currentPage}
+        onChange={(_, value) => dispatch(changeCurrentPage(value))}
+        variant="outlined"
+        shape="rounded"
+      />
+    </Stack>
+  );
 }
 
 export default StorePagination;

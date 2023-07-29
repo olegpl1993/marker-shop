@@ -3,44 +3,14 @@ import "./Content.scss";
 import StoreCard from "../StoreCard/StoreCard";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
 import { Product } from "@/types";
-import { useAppSelector } from "@/redux/hooks";
-
-const sortByAvailable = (data: Product[]) => {
-  const availableProducts = data.filter((product) => !!product.sizes.length);
-  const notAvailableProducts = data.filter((product) => !product.sizes.length);
-  return [...availableProducts, ...notAvailableProducts];
-};
-
-const searchByProducts = (data: Product[], input: string) => {
-  const searchedProducts = data.filter((product) =>
-    product.name.trim().toLowerCase().includes(input.trim().toLowerCase())
-  );
-  return searchedProducts;
-};
-
-const sortingProducts = (products: Product[], sortType: string) => {
-  const sortedProducts = [...products];
-  const sortTypes = {
-    cheap: (a: Product, b: Product) => a.price - b.price,
-    expensive: (a: Product, b: Product) => b.price - a.price,
-    title: (a: Product, b: Product) =>
-      a.name.trim().toLowerCase().localeCompare(b.name.trim().toLowerCase()),
-  };
-  return sortedProducts.sort(sortTypes[sortType as keyof typeof sortTypes]);
-};
-
-const paginateProducts = (
-  products: Product[],
-  productsOnPage: number,
-  currentPage: number
-) => {
-  const startIndex = (currentPage - 1) * productsOnPage;
-  const endIndex = startIndex + productsOnPage;
-  return products.slice(startIndex, endIndex);
-};
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { changeProducts } from "@/redux/slices/productsSlice";
+import { useEffect } from "react";
+import { contentUtils } from "./contentUtils";
 
 function Content() {
   const { data } = useGetProductsQuery(null);
+  const dispatch = useAppDispatch();
 
   const currentPage = useAppSelector(
     (state) => state.storePaginationReducer.currentPage
@@ -51,18 +21,28 @@ function Content() {
   const sortType = useAppSelector((state) => state.sortReducer.sort);
   const search = useAppSelector((state) => state.searchReducer.search);
 
+  let products = [] as Product[];
+  useEffect(() => {
+    if (data) {
+      dispatch(changeProducts(products));
+    }
+  }, [data, products]);
+
   if (data) {
-    let products = data;
-    products = searchByProducts(products, search);
-    products = sortingProducts(products, sortType);
-    products = sortByAvailable(products);
+    products = contentUtils.searchByProducts(data, search);
+    products = contentUtils.sortingProducts(products, sortType);
+    products = contentUtils.sortByAvailable(products);
     console.log(products);
-    products = paginateProducts(products, productsOnPage, currentPage);
-    console.log(products);
+    const paginatedProducts = contentUtils.paginateProducts(
+      products,
+      productsOnPage,
+      currentPage
+    );
+    console.log(paginatedProducts);
 
     return (
       <section className="content">
-        {products.map((product) => (
+        {paginatedProducts.map((product) => (
           <StoreCard key={product.sku} product={product} />
         ))}
       </section>
