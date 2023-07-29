@@ -17,7 +17,7 @@ function Search() {
     setSearchInput(event.target.value);
   };
 
-  const handleOnSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
       dispatch(changeSearch(searchInput));
@@ -43,7 +43,7 @@ function Search() {
         placeholder="Поиск"
         value={searchInput}
         onChange={handleChangeSearchInput}
-        onKeyDown={handleOnSubmit}
+        onKeyDown={handleOnKeyDown}
         InputProps={{ sx: { paddingRight: "23px" } }}
         className="search__input"
       />
