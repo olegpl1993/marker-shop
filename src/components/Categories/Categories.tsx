@@ -2,10 +2,20 @@
 import "./Categories.scss";
 import { Product } from "@/types";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
-import { Checkbox, FormControlLabel, FormGroup, Paper } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { changeSelectedCategories } from "@/redux/slices/selectedCategoriesSlice";
 import { changeCurrentPage } from "@/redux/slices/storePaginationSlice";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const getUniqueCategories = (data: Product[]) => {
   const categories = data.map((product) => product.category);
@@ -37,20 +47,28 @@ function Categories() {
   if (data) {
     const categories = getUniqueCategories(data);
     return (
-      <Paper elevation={3} className="categories">
-        <div className="categories__title">Категории</div>
-        <FormGroup className="categories__list">
-          {categories.map((category) => (
-            <FormControlLabel
-              control={<Checkbox size="small" />}
-              className="categories__item"
-              label={category}
-              key={category}
-              onChange={() => handleChangeCategories(category)}
-            />
-          ))}
-        </FormGroup>
-      </Paper>
+        <Accordion elevation={3} className="categories">
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className="categories__title">Категории</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <FormGroup className="categories__list">
+              {categories.map((category) => (
+                <FormControlLabel
+                  control={<Checkbox size="small" />}
+                  className="categories__item"
+                  label={category}
+                  key={category}
+                  onChange={() => handleChangeCategories(category)}
+                />
+              ))}
+            </FormGroup>
+          </AccordionDetails>
+        </Accordion>
     );
   }
 }

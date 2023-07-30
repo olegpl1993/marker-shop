@@ -6,4 +6,10 @@
   flex-wrap: wrap;
   width: 100%;
   height: auto;
+
+  &__selectorBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
