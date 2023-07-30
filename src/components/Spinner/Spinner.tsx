@@ -3,7 +3,7 @@ import './Spinner.scss';
 
 function Spinner() {
   return (
-    <div className="graphiql-spinner" />
+    <div className="spinner" />
   );
 }
 
