@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        <body>
+        <body className="body">
           <div className="wrapper">
             <div className="headerRow">
               <div className="container">
@@ -25,7 +25,7 @@ export default function RootLayout({
               </div>
             </div>
             <div className="container">
-              <main>{children}</main>
+              <main className="main">{children}</main>
             </div>
           </div>
           <div className="footerRow">
