@@ -1,6 +1,6 @@
 "use client";
 import "./PriceFilter.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -12,13 +12,25 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-
-function valuetext(value: number) {
-  return `${value}°C`;
-}
+import { useGetProductsQuery } from "@/redux/services/productsApi";
 
 function PriceFilter() {
-  const [value, setValue] = useState<number[]>([20, 37]);
+  const { data } = useGetProductsQuery(null);
+  const [value, setValue] = useState<number[]>([0, 0]);
+  const [minValue, setMinValue] = useState<number>(0);
+  const [maxValue, setMaxValue] = useState<number>(0);
+
+  useEffect(() => {
+    if (data) {
+      const priceArray = data.map((product) => product.price).flat();
+      const minPrice = Math.min(...priceArray);
+      const maxPrice = Math.max(...priceArray);
+      setValue([minPrice, maxPrice]);
+      setMinValue(minPrice);
+      setMaxValue(maxPrice);
+    }
+  }, [data]);
+
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
   };
@@ -69,11 +81,13 @@ function PriceFilter() {
 
         <Box className="priceFilter__box">
           <Slider
-            getAriaLabel={() => "Temperature range"}
+            getAriaLabel={() => "Price range"}
             value={value}
             onChange={handleChange}
-            valueLabelDisplay="auto"
-            getAriaValueText={valuetext}
+            valueLabelDisplay="off"
+            getAriaValueText={(value: number) => `${value}`}
+            min={minValue}
+            max={maxValue}
           />
         </Box>
       </AccordionDetails>
