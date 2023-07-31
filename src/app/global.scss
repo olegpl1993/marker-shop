@@ -104,9 +104,9 @@ h6 {
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 10px;
 
-  @media (max-width: 500px) {
+  @media (max-width: 768px) {
     padding: 0 5px;
   }
 }

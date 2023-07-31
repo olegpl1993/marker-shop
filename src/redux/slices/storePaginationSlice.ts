@@ -5,7 +5,7 @@ const storePaginationSlice = createSlice({
   initialState: {
       currentPage: 1,
       pageQty: 0,
-      productsOnPage: 50
+      productsOnPage: 20
   },
   reducers: {
     changeCurrentPage(state, action: PayloadAction<number>) {
