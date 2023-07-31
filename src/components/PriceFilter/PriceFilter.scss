@@ -8,6 +8,26 @@
     font-size: 16px;
   }
 
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__row {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  &__input {
+    width: 100%;
+  }
+
+  &__button {
+    width: 15px;
+  }
+
   &__box {
     width: 230px;
   }
