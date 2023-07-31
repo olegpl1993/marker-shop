@@ -9,7 +9,6 @@ import {
   Checkbox,
   FormControlLabel,
   FormGroup,
-  Paper,
   Typography,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
