@@ -5,6 +5,7 @@ import sortReducer from "./slices/sortSlice";
 import searchReducer from "./slices/searchSlice";
 import productsReducer from "./slices/productsSlice";
 import selectedCategoriesReducer from "./slices/selectedCategoriesSlice";
+import priceFilterReducer from "./slices/priceFilterSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     searchReducer,
     productsReducer,
     selectedCategoriesReducer,
+    priceFilterReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({}).concat([productsApi.middleware]),

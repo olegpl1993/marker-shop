@@ -13,32 +13,46 @@ import {
   Typography,
 } from "@mui/material";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
+import { useAppDispatch } from "@/redux/hooks";
+import { changePriceFilter } from "@/redux/slices/priceFilterSlice";
+import { changeCurrentPage } from "@/redux/slices/storePaginationSlice";
 
 function PriceFilter() {
+  const dispatch = useAppDispatch();
   const { data } = useGetProductsQuery(null);
-  const [value, setValue] = useState<number[]>([0, 0]);
-  const [minValue, setMinValue] = useState<number>(0);
-  const [maxValue, setMaxValue] = useState<number>(0);
+
+  const [minMaxValues, setMinMaxValues] = useState<number[]>([0, 0]);
+  const [selectedValue, setSelectedValue] = useState<number[]>([0, 0]);
 
   useEffect(() => {
     if (data) {
-      const priceArray = data.map((product) => product.price).flat();
-      const minPrice = Math.min(...priceArray);
-      const maxPrice = Math.max(...priceArray);
-      setValue([minPrice, maxPrice]);
-      setMinValue(minPrice);
-      setMaxValue(maxPrice);
+      const pricesArray = data.map((product) => product.price).flat();
+      const minPrice = Math.min(...pricesArray);
+      const maxPrice = Math.max(...pricesArray);
+      dispatch(changePriceFilter([minPrice, maxPrice]));
+      setMinMaxValues([minPrice, maxPrice]);
+      setSelectedValue([minPrice, maxPrice]);
     }
   }, [data]);
 
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    setValue(newValue as number[]);
+  const handleSetPriceFilterValues = (
+    event: Event,
+    newValue: number | number[]
+  ) => {
+    setSelectedValue(newValue as number[]);
   };
+
   const handleSetLowPrice = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue([Number(event.target.value), value[1]]);
+    setSelectedValue([Number(event.target.value), selectedValue[1]]);
   };
+
   const handleSetHighPrice = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue([value[0], Number(event.target.value)]);
+    setSelectedValue([selectedValue[0], Number(event.target.value)]);
+  };
+
+  const handleConfirmSelectedValue = () => {
+    dispatch(changePriceFilter(selectedValue));
+    dispatch(changeCurrentPage(1));
   };
 
   return (
@@ -57,7 +71,7 @@ function PriceFilter() {
             id="outlined-basic"
             variant="outlined"
             size="small"
-            value={value[0]}
+            value={selectedValue[0]}
             onChange={handleSetLowPrice}
             className="priceFilter__input"
           />
@@ -66,7 +80,7 @@ function PriceFilter() {
             id="outlined-basic"
             variant="outlined"
             size="small"
-            value={value[1]}
+            value={selectedValue[1]}
             onChange={handleSetHighPrice}
             className="priceFilter__input"
           />
@@ -74,6 +88,7 @@ function PriceFilter() {
             variant="outlined"
             className="priceFilter__button"
             size="medium"
+            onClick={handleConfirmSelectedValue}
           >
             OK
           </Button>
@@ -82,12 +97,12 @@ function PriceFilter() {
         <Box className="priceFilter__box">
           <Slider
             getAriaLabel={() => "Price range"}
-            value={value}
-            onChange={handleChange}
+            value={selectedValue}
+            onChange={handleSetPriceFilterValues}
             valueLabelDisplay="off"
             getAriaValueText={(value: number) => `${value}`}
-            min={minValue}
-            max={maxValue}
+            min={minMaxValues[0]}
+            max={minMaxValues[1]}
           />
         </Box>
       </AccordionDetails>
