@@ -5,17 +5,15 @@ export const contentUtils = {
     data: Product[],
     selectedCategories: String[],
     search: string,
-    sortType: string
+    sortType: string,
+    selectedPrice: number[]
   ): Product[] {
-    let products = [ ...data];
-    products = this.filterSelectedCategories(
-      products,
-      selectedCategories
-    );
+    let products = [...data];
+    products = this.filterSelectedCategories(products, selectedCategories);
     products = this.searchByProducts(products, search);
     products = this.sortingProducts(products, sortType);
     products = this.sortByAvailable(products);
-    console.log(products);
+    products = this.filterSelectedPrice(products, selectedPrice);
     return products;
   },
 
@@ -25,6 +23,17 @@ export const contentUtils = {
     } else {
       return products.filter((product) =>
         categories.includes(product.category)
+      );
+    }
+  },
+
+  filterSelectedPrice: (products: Product[], selectedPrice: number[]) => {
+    if (selectedPrice[0] === 0 && selectedPrice[1] === 0) {
+      return products;
+    } else {
+      return products.filter(
+        (product) =>
+          product.price >= selectedPrice[0] && product.price <= selectedPrice[1]
       );
     }
   },
