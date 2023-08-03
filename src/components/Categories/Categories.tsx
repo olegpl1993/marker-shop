@@ -43,6 +43,8 @@ function Categories() {
     dispatch(changeCurrentPage(1));
   };
 
+  const isChecked = (category: string) => selectedCategories.includes(category);
+
   if (data) {
     const categories = getUniqueCategories(data);
     return (
@@ -58,7 +60,7 @@ function Categories() {
             <FormGroup className="categories__list">
               {categories.map((category) => (
                 <FormControlLabel
-                  control={<Checkbox size="small" />}
+                  control={<Checkbox size="small" checked={isChecked(category)}/>}
                   className="categories__item"
                   label={category}
                   key={category}
