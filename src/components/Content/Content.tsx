@@ -60,18 +60,22 @@ function Content() {
     if (products.length === 0) {
       return (
         <section className="content">
-          <p className={`content__notFound ${roboto.className}`}>
-            Товаров не найдено
-          </p>
+          <div className="content__wrapper">
+            <p className={`content__notFound ${roboto.className}`}>
+              Товаров не найдено
+            </p>
+          </div>
         </section>
       );
     }
 
     return (
       <section className="content">
-        {paginatedProducts.map((product) => (
-          <StoreCard key={product.sku} product={product} />
-        ))}
+        <div className="content__wrapper">
+          {paginatedProducts.map((product) => (
+            <StoreCard key={product.sku} product={product} />
+          ))}
+        </div>
       </section>
     );
   }
