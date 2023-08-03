@@ -13,13 +13,17 @@ import {
   Typography,
 } from "@mui/material";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { changePriceFilter } from "@/redux/slices/priceFilterSlice";
 import { changeCurrentPage } from "@/redux/slices/storePaginationSlice";
 
 function PriceFilter() {
   const dispatch = useAppDispatch();
   const { data } = useGetProductsQuery(null);
+
+  const priceFilter = useAppSelector(
+    (state) => state.priceFilterReducer.priceFilter
+  );
 
   const [minMaxValues, setMinMaxValues] = useState<number[]>([0, 0]);
   const [selectedValue, setSelectedValue] = useState<number[]>([0, 0]);
@@ -29,9 +33,13 @@ function PriceFilter() {
       const pricesArray = data.map((product) => product.price).flat();
       const minPrice = Math.min(...pricesArray);
       const maxPrice = Math.max(...pricesArray);
-      dispatch(changePriceFilter([minPrice, maxPrice]));
       setMinMaxValues([minPrice, maxPrice]);
-      setSelectedValue([minPrice, maxPrice]);
+      if (priceFilter[0] === 0 && priceFilter[1] === 0) {
+        setSelectedValue([minPrice, maxPrice]);
+        dispatch(changePriceFilter([minPrice, maxPrice]));
+      } else {
+        setSelectedValue(priceFilter);
+      }
     }
   }, [data]);
 
