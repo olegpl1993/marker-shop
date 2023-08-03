@@ -4,6 +4,7 @@ import "./StoreCard.scss";
 import { IconButton, Paper } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Roboto } from "next/font/google";
+import Link from "next/link";
 
 const roboto = Roboto({
   weight: ["300", "500"],
@@ -29,17 +30,24 @@ function StoreCard(props: Props) {
         />
       </div>
       <div className="storeCard__descriptionBox">
-        <div className={`storeCard__name ${roboto.className}`}>
+        <Link
+          href={`/store/${product.sku}`}
+          className={`storeCard__name ${roboto.className}`}
+        >
           {product.name}
-        </div>
+        </Link>
         <div className="storeCard__row">
           <div className="storeCard__price">{product.price}₴</div>
           {available ? (
-            <div className={`storeCard__available storeCard__available_true ${roboto.className}`}>
+            <div
+              className={`storeCard__available storeCard__available_true ${roboto.className}`}
+            >
               Есть в наличии
             </div>
           ) : (
-            <div className={`storeCard__available storeCard__available_false ${roboto.className}`}>
+            <div
+              className={`storeCard__available storeCard__available_false ${roboto.className}`}
+            >
               Нет в наличии
             </div>
           )}
