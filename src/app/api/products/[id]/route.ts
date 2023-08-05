@@ -1,14 +1,17 @@
 import { NextResponse } from "next/server";
 import ApiService from "../../apiService";
 
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+interface Props {
+  params: {
+    id: string;
+  };
+}
+
+export async function GET(req: Request, props: Props) {
   try {
-    const { id } = params;
+    const { id } = props.params;
     const product = await ApiService.getOneProduct(id);
-    if (product){
+    if (product) {
       return NextResponse.json(product);
     } else {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
