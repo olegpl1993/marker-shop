@@ -23,16 +23,20 @@ function StoreCard(props: Props) {
 
   return (
     <Paper elevation={3} className="storeCard">
-      <div className="storeCard__imgBox">
+      <Link href={`/store/${product.sku}`} className="storeCard__imgBox">
         <img
           className="storeCard__img"
-          src={isHovered && product.gallery[1] ? product.gallery[1] : product.gallery[0]}
+          src={
+            isHovered && product.gallery[1]
+              ? product.gallery[1]
+              : product.gallery[0]
+          }
           alt={product.name}
           loading="lazy"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         />
-      </div>
+      </Link>
       <div className="storeCard__descriptionBox">
         <Link
           href={`/store/${product.sku}`}
