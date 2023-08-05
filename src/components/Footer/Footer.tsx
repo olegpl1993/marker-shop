@@ -3,7 +3,7 @@ import "./Footer.scss";
 
 function Footer() {
   return (
-    <footer>
+    <footer className="footer">
       <div className="menu">
         <Link href={"/"} className="menu__link">
           Главная
