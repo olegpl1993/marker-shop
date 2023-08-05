@@ -1,8 +1,7 @@
 "use client";
 import "./product.scss";
 import Spinner from "@/components/Spinner/Spinner";
-import { Product } from "@/types";
-import { useEffect, useState } from "react";
+import { useGetProductsQuery } from "@/redux/services/productsApi";
 
 interface Props {
   params: {
@@ -12,15 +11,10 @@ interface Props {
 
 function ProductPage(props: Props) {
   const { id } = props.params;
-  const [data, setData] = useState<Product | null>(null);
+  const { isLoading, isFetching, data, error } = useGetProductsQuery(null);
+  const productData = data?.find((product) => product.sku === id);
 
-  useEffect(() => {
-    fetch("/api/products/" + id)
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, [id]);
-
-  if (data === null) {
+  if (isLoading || isFetching) {
     return (
       <div>
         <Spinner />
@@ -28,22 +22,26 @@ function ProductPage(props: Props) {
     );
   }
 
-  if (data) {
+  if (error) {
+    return <div>Error</div>;
+  }
+
+  if (productData) {
     return (
       <div className="product">
         <div className="product__imgBox">
           <img
             className="product__img"
-            src={data.gallery[0]}
-            alt={data.name}
+            src={productData.gallery[0]}
+            alt={productData.name}
             loading="lazy"
           />
         </div>
         <div className="product__descriptionBox">
           <div>Products sku: {id}</div>
-          <div>Имя: {data?.name}</div>
-          <div>Цена: {data?.price}</div>
-          <div>Описание: {data?.description}</div>
+          <div>Имя: {productData?.name}</div>
+          <div>Цена: {productData?.price}</div>
+          <div>Описание: {productData?.description}</div>
         </div>
       </div>
     );
