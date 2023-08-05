@@ -16,14 +16,14 @@ function ProductPage(props: Props) {
 
   if (isLoading || isFetching) {
     return (
-      <div>
+      <div className="product">
         <Spinner />
       </div>
     );
   }
 
   if (error) {
-    return <div>Error</div>;
+    return <div className="product">Error</div>;
   }
 
   if (productData) {
