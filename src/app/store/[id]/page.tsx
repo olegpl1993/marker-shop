@@ -1,4 +1,5 @@
 "use client";
+import Gallery from "@/components/Gallery/Gallery";
 import "./product.scss";
 import Spinner from "@/components/Spinner/Spinner";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
@@ -35,25 +36,7 @@ function Product(props: Props) {
   if (productData) {
     return (
       <div className="product">
-        <div className="product__galery">
-          <img
-            className="product__img"
-            src={productData.gallery[0]}
-            alt={productData.name}
-            loading="lazy"
-          />
-          <div className="product__imgBox">
-            {productData.gallery.map((img) => (
-              <img
-                key={img}
-                className="product__galeryImg"
-                src={img}
-                alt={productData.name}
-                loading="lazy"
-              />
-            ))}
-          </div>
-        </div>
+        <Gallery productData={productData} />
 
         <div className={`product__descriptionBox ${roboto.className}`}>
           <div className="product__name">{productData.name}</div>
