@@ -1,5 +1,5 @@
 "use client";
-import Galery from "@/components/Galery/Galery";
+import Gallery from "@/components/Gallery/Gallery";
 import "./product.scss";
 import Spinner from "@/components/Spinner/Spinner";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
@@ -36,7 +36,7 @@ function Product(props: Props) {
   if (productData) {
     return (
       <div className="product">
-        <Galery productData={productData} />
+        <Gallery productData={productData} />
 
         <div className={`product__descriptionBox ${roboto.className}`}>
           <div className="product__name">{productData.name}</div>

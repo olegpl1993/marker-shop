@@ -1,5 +1,4 @@
-.galery {
-  border: 1px solid rgb(9, 255, 0);
+.gallery {
   padding: 5px;
   display: flex;
   flex-direction: column;
@@ -7,9 +6,24 @@
   justify-content: center;
   gap: 10px;
 
+  &__mainImgBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  &__iconButtonBefore {
+    padding: 3px;
+  }
+
+  &__iconButtonNext {
+    padding: 3px;
+  }
+
   &__mainImg {
-    height: 700px;
-    width: 800px;
+    height: 685px;
+    width: 700px;
     object-fit: contain;
   }
 
@@ -30,6 +44,7 @@
     width: 60px;
     object-fit: contain;
     cursor: pointer;
+    border-radius: 3px;
 
     &_active {
       outline: 1px solid rgb(67, 218, 53);
