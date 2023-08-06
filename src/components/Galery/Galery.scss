@@ -1,0 +1,38 @@
+.galery {
+  border: 1px solid rgb(9, 255, 0);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  &__mainImg {
+    height: 700px;
+    width: 800px;
+    object-fit: contain;
+  }
+
+  &__imgBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px;
+    gap: 12px;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 10px;
+  }
+
+  &__smallImg {
+    height: 60px;
+    width: 60px;
+    object-fit: contain;
+    cursor: pointer;
+
+    &_active {
+      outline: 1px solid rgb(67, 218, 53);
+    }
+  }
+}
