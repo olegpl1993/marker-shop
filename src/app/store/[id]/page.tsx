@@ -3,12 +3,7 @@ import Gallery from "@/components/Gallery/Gallery";
 import "./product.scss";
 import Spinner from "@/components/Spinner/Spinner";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
-import { Roboto } from "next/font/google";
-
-const roboto = Roboto({
-  weight: ["300", "500"],
-  subsets: ["cyrillic"],
-});
+import ProductDescription from "@/components/ProductDescription/ProductDescription";
 
 interface Props {
   params: {
@@ -37,33 +32,7 @@ function Product(props: Props) {
     return (
       <div className="product">
         <Gallery productData={productData} />
-
-        <div className={`product__descriptionBox ${roboto.className}`}>
-          <div className="product__name">{productData.name}</div>
-          <div className="product__descriptionRow">
-            <div className="product__category">{productData.category}</div>
-            <div className="product__sku">Код: {productData.sku}</div>
-          </div>
-          <div className="product__vendor">Бренд: {productData.vendor}</div>
-          <div className="product__price">Цена: {productData.price}₴</div>
-          <div className="product__color">Цвет: {productData.color}</div>
-          <div className="product__model">Модель: {productData.model}</div>
-          <div className="product__weight">Вес: {productData.weight}</div>
-
-          {productData.sizes && (
-            <div className="product__sizes">
-              {productData.sizes.map((item) => (
-                <div key={item.size} className="product__size">
-                  Размер: {item.size} - {item.amount} шт.
-                </div>
-              ))}
-            </div>
-          )}
-
-          <div className="product__description">
-            Описание: {productData.description}
-          </div>
-        </div>
+        <ProductDescription productData={productData} />
       </div>
     );
   }
