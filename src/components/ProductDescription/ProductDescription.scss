@@ -38,7 +38,7 @@
 
   &__priceRow {
     width: 100%;
-    border: 1px solid rgb(67, 218, 53);
+    border: 1px solid rgb(0, 144, 184);
     padding: 10px;
     border-radius: 10px;
     display: flex;
@@ -57,6 +57,21 @@
     font-weight: 400;
     font-size: 34px;
     display: inline-block;
+  }
+
+  &__button {
+    background-color: rgb(48, 184, 14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 18px;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+    &:hover {
+      background-color: rgb(67, 218, 53);
+    }
   }
 
   &__color {
