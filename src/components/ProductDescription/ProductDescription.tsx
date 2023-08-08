@@ -3,6 +3,7 @@ import { Product } from "@/types";
 import { Roboto } from "next/font/google";
 import { Alegreya } from "next/font/google";
 import { Button } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const alegreya = Alegreya({
   weight: ["400", "500"],
@@ -41,10 +42,11 @@ function ProductDescription(props: Props) {
           </p>
         </div>
         <Button
-          variant="outlined"
-          className="priceFilter__button"
+          variant="contained"
+          className="productDescription__button"
           size="large"
         >
+          <ShoppingCartIcon sx={{ color: "white", fontSize: 28 }} />
           КУПИТЬ
         </Button>
       </div>

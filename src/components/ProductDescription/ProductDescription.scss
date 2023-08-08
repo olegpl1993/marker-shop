@@ -13,6 +13,10 @@
     font-size: 26px;
     font-weight: 500;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+
+    @media (max-width: 480px) {
+      font-size: 20px;
+    }
   }
 
   &__categoryRow {
@@ -38,7 +42,7 @@
 
   &__priceRow {
     width: 100%;
-    border: 1px solid rgb(67, 218, 53);
+    border: 1px solid rgb(0, 144, 184);
     padding: 10px;
     border-radius: 10px;
     display: flex;
@@ -51,12 +55,50 @@
     font-size: 50px;
     font-weight: 500;
     color: rgb(31, 31, 31);
+
+    @media (max-width: 480px) {
+      font-size: 32px;
+    }
+    @media (max-width: 414px) {
+      font-size: 28px;
+    }
   }
 
   &__priceSymbol {
     font-weight: 400;
     font-size: 34px;
     display: inline-block;
+
+    @media (max-width: 480px) {
+      font-size: 24px;
+    }
+    @media (max-width: 414px) {
+      font-size: 20px;
+    }
+  }
+
+  &__button {
+    background-color: rgb(48, 184, 14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 18px;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
+
+    @media (max-width: 414px) {
+      font-size: 12px;
+    }
+
+    &:hover {
+      background-color: rgb(67, 218, 53);
+    }
   }
 
   &__color {
