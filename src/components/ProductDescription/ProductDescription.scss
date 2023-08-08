@@ -1,21 +1,22 @@
 .productDescription {
-  border: 1px solid rgb(0, 0, 255);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+  padding: 10px;
+  font-weight: 400;
+  line-height: 1.3;
 
   &__name {
     width: 100%;
-    font-size: 25px;
+    font-size: 26px;
     font-weight: 500;
-    border: 1px solid black;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   }
 
-  &__descriptionRow {
+  &__categoryRow {
     width: 100%;
-    border: 1px solid black;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -33,39 +34,50 @@
 
   &__vendor {
     width: 100%;
-    border: 1px solid red;
+  }
+
+  &__priceRow {
+    width: 100%;
+    border: 1px solid rgb(67, 218, 53);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
   }
 
   &__price {
-    font-size: 25px;
-    width: 100%;
-    border: 1px solid black;
+    font-size: 50px;
+    font-weight: 500;
+    color: rgb(31, 31, 31);
+  }
+
+  &__priceSymbol {
+    font-weight: 400;
+    font-size: 34px;
+    display: inline-block;
   }
 
   &__color {
     width: 100%;
-    border: 1px solid red;
   }
 
   &__model {
     width: 100%;
-    border: 1px solid rgb(0, 0, 0);
   }
 
   &__weight {
     width: 100%;
-    border: 1px solid red;
   }
 
   &__sizes {
     width: 100%;
-    border: 1px solid rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
   }
 
   &__description {
     width: 100%;
-    border: 1px solid red;
   }
 }
