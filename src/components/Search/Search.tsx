@@ -33,7 +33,7 @@ function Search() {
   return (
     <Box
       component="form"
-      sx={{ m: 1, minWidth: 200 }}
+      sx={{ m: 1, minWidth: 255 }}
       noValidate
       autoComplete="off"
       className="search"
@@ -46,7 +46,7 @@ function Search() {
         value={searchInput}
         onChange={handleChangeSearchInput}
         onKeyDown={handleOnKeyDown}
-        InputProps={{ sx: { paddingRight: "23px" } }}
+        InputProps={{ sx: { paddingRight: "55px" } }}
         className="search__input"
       />
 

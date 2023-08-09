@@ -36,10 +36,12 @@ function Gallery(props: Props) {
   return (
     <div className="gallery">
       <div className="gallery__mainImgBox">
-        <IconButton className="gallery__iconButtonBefore">
+        <IconButton
+          className="gallery__iconButtonBefore"
+          onClick={handleBeforeImg}
+        >
           <NavigateBeforeIcon
             sx={{ fontSize: 35, color: "rgb(0, 144, 184)" }}
-            onClick={handleBeforeImg}
           />
         </IconButton>
 
@@ -50,11 +52,8 @@ function Gallery(props: Props) {
           loading="lazy"
         />
 
-        <IconButton className="gallery__iconButtonNext">
-          <NavigateNextIcon
-            sx={{ fontSize: 35, color: "rgb(0, 144, 184)" }}
-            onClick={handleNextImg}
-          />
+        <IconButton className="gallery__iconButtonNext" onClick={handleNextImg}>
+          <NavigateNextIcon sx={{ fontSize: 35, color: "rgb(0, 144, 184)" }} />
         </IconButton>
       </div>
 

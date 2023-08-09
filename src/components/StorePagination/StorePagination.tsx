@@ -4,7 +4,7 @@ import {
   changePageQty,
 } from "@/redux/slices/storePaginationSlice";
 import { Pagination, Stack } from "@mui/material";
-import { useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 
 function StorePagination() {
   const dispatch = useAppDispatch();
@@ -26,14 +26,20 @@ function StorePagination() {
     }
   }, [products, productsOnPage]);
 
+  const handlePageChange = (_: ChangeEvent<unknown>, newPage: number) => {
+    dispatch(changeCurrentPage(newPage));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <Stack spacing={2}>
       <Pagination
         count={pageQty}
         page={currentPage}
-        onChange={(_, value) => dispatch(changeCurrentPage(value))}
+        onChange={handlePageChange}
         variant="outlined"
-        shape="rounded"
+        color="primary"
+        siblingCount={0}
       />
     </Stack>
   );
