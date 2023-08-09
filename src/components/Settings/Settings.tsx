@@ -9,7 +9,6 @@ function Settings() {
   return (
     <div className="settings">
       <Search />
-      <StorePagination />
       <div className="settings__selectorBox">
         <PageQtySelector />
         <SortSelector />

@@ -8,6 +8,7 @@ import { changeProducts } from "@/redux/slices/productsSlice";
 import { useEffect } from "react";
 import { contentUtils } from "./contentUtils";
 import { Roboto } from "next/font/google";
+import StorePagination from "../StorePagination/StorePagination";
 
 const roboto = Roboto({
   weight: ["300"],
@@ -76,6 +77,7 @@ function Content() {
             <StoreCard key={product.sku} product={product} />
           ))}
         </div>
+        <StorePagination />
       </section>
     );
   }
