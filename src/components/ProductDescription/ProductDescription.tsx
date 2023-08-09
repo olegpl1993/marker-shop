@@ -45,6 +45,9 @@ function ProductDescription(props: Props) {
           variant="contained"
           className="productDescription__button"
           size="large"
+          onClick={() => {
+            console.log("КУПИТЬ");
+          }}
         >
           <ShoppingCartIcon sx={{ color: "white", fontSize: 28 }} />
           КУПИТЬ
