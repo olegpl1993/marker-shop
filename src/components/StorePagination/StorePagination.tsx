@@ -33,7 +33,8 @@ function StorePagination() {
         page={currentPage}
         onChange={(_, value) => dispatch(changeCurrentPage(value))}
         variant="outlined"
-        shape="rounded"
+        color="primary"
+        siblingCount={0}
       />
     </Stack>
   );
