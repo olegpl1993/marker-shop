@@ -1,0 +1,10 @@
+.sortSelector {
+  height: 37px;
+  font-size: 14px;
+  width: 200px;
+
+  @media (max-width: 767px) {
+    height: 30px;
+    width: 142px;
+  }
+}

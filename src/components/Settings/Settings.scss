@@ -6,10 +6,51 @@
   flex-wrap: wrap;
   width: 100%;
   height: auto;
+  padding: 5px 10px;
+
+  @media (max-width: 767px) {
+    padding: 5px 7px;
+  }
+
+  &__filterButton {
+    background-color: rgb(0, 144, 184);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 37px;
+    font-size: 14px;
+    width: 140px;
+
+    &:hover {
+      background-color: rgb(0, 144, 201);
+    }
+    @media (max-width: 1023px) {
+      display: flex;
+    }
+    @media (max-width: 767px) {
+      height: 30px;
+      width: 90px;
+      font-size: 12px;
+    }
+  }
+
+  &__filterIcon {
+    color: white;
+    font-size: 20px;
+
+    @media (max-width: 767px) {
+      font-size: 14px;
+    }
+  }
 
   &__selectorBox {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
+
+    @media (max-width: 767px) {
+      gap: 5px;
+    }
   }
 }

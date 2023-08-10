@@ -98,6 +98,10 @@ h6 {
   border-left: 1px solid rgb(200, 200, 200);
   border-right: 1px solid rgb(200, 200, 200);
   min-height: calc(100vh - 120px);
+
+  @media (max-width: 413px) {
+    border: none;
+  }
 }
 
 .container {
@@ -106,7 +110,10 @@ h6 {
   margin: 0 auto;
   padding: 0 10px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     padding: 0 5px;
+  }
+  @media (max-width: 413px) {
+    padding: 0px;
   }
 }
