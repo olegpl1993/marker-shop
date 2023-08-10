@@ -1,4 +1,5 @@
 "use client";
+import "./PageQtySelector.scss";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
@@ -8,7 +9,7 @@ import {
   changeProductsOnPage,
 } from "@/redux/slices/storePaginationSlice";
 
-function ProductsOnPageSelector() {
+function PageQtySelector() {
   const dispatch = useAppDispatch();
   const productsOnPage = useAppSelector(
     (state) => state.storePaginationReducer.productsOnPage
@@ -21,8 +22,8 @@ function ProductsOnPageSelector() {
   };
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 70 }} size="small">
       <Select
+        className="pageQtySelector"
         value={String(productsOnPage)}
         onChange={handleChangeProductsOnPage}
         displayEmpty
@@ -32,8 +33,7 @@ function ProductsOnPageSelector() {
         <MenuItem value={"50"}>50</MenuItem>
         <MenuItem value={"100"}>100</MenuItem>
       </Select>
-    </FormControl>
   );
 }
 
-export default ProductsOnPageSelector;
+export default PageQtySelector;

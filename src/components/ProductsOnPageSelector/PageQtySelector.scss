@@ -1,0 +1,10 @@
+.pageQtySelector {
+  height: 37px;
+  font-size: 14px;
+  width: 70px;
+
+  @media (max-width: 767px) {
+    height: 30px;
+    width: 70px;
+  }
+}

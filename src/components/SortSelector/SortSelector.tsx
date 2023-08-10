@@ -1,4 +1,5 @@
 "use client";
+import "./SortSelector.scss";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
@@ -14,13 +15,11 @@ function SortSelector() {
   };
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 200 }} size="small">
-      <Select value={sort} onChange={handleChangeSort} displayEmpty>
+      <Select className="sortSelector" value={sort} onChange={handleChangeSort} displayEmpty>
         <MenuItem value={"title"}>По названию</MenuItem>
         <MenuItem value={"cheap"}>От дешовых к дорогим</MenuItem>
         <MenuItem value={"expensive"}>От дорогих к дешовым</MenuItem>
       </Select>
-    </FormControl>
   );
 }
 

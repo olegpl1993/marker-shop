@@ -31,13 +31,7 @@ function Search() {
   };
 
   return (
-    <Box
-      component="form"
-      sx={{ m: 1, minWidth: 255 }}
-      noValidate
-      autoComplete="off"
-      className="search"
-    >
+    <div className="search">
       <TextField
         id="outlined-basic"
         variant="outlined"
@@ -47,7 +41,6 @@ function Search() {
         onChange={handleChangeSearchInput}
         onKeyDown={handleOnKeyDown}
         InputProps={{ sx: { paddingRight: "55px" } }}
-        className="search__input"
       />
 
       <IconButton
@@ -56,7 +49,7 @@ function Search() {
       >
         <SearchIcon />
       </IconButton>
-    </Box>
+    </div>
   );
 }
 
