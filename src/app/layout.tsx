@@ -33,7 +33,7 @@ export default function RootLayout({
               <Footer />
             </div>
           </div>
-          <div id="modal"></div>
+          <div id="portal-modal"></div>
         </body>
       </html>
     </Providers>

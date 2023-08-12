@@ -8,13 +8,17 @@
   height: auto;
   padding: 5px 10px;
 
+  &__modal {
+    border: 1px solid red;
+  }
+
   @media (max-width: 767px) {
     padding: 5px 7px;
   }
 
   &__filterButton {
     background-color: rgb(0, 144, 184);
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     height: 37px;
@@ -24,9 +28,7 @@
     &:hover {
       background-color: rgb(0, 144, 201);
     }
-    @media (max-width: 1023px) {
-      display: flex;
-    }
+
     @media (max-width: 767px) {
       height: 30px;
       width: 90px;

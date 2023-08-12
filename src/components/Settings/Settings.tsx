@@ -5,31 +5,48 @@ import Search from "../Search/Search";
 import PageQtySelector from "../ProductsOnPageSelector/PageQtySelector";
 import { Button } from "@mui/material";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../Modal/Modal";
 
 function Settings() {
+  const [windowWidth, setWindowWidth] = useState<number | undefined>(undefined);
   const [isOpen, setIsOpen] = useState(false);
+  console.log(windowWidth);
 
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <div className="settings">
-      <Search />
-
-      <Button
-        variant="contained"
-        className="settings__filterButton"
-        size="large"
-        onClick={() => {
-          console.log("фильтры");
-          setIsOpen(true);
-        }}
-      >
-        <FilterAltIcon className="settings__filterIcon" />
-        фильтры
-      </Button>
+      {typeof windowWidth === "number" && windowWidth > 1023 ? (
+        <Search />
+      ) : (
+        <Button
+          variant="contained"
+          className="settings__filterButton"
+          size="large"
+          onClick={() => {
+            console.log("фильтры");
+            setIsOpen(true);
+          }}
+        >
+          <FilterAltIcon className="settings__filterIcon" />
+          фильтры
+        </Button>
+      )}
 
       <Modal isOpen={isOpen} setIsOpen={() => setIsOpen(false)}>
-        <div>Hello world</div>
+        <div className="settings__modal">
+          ПОИСК
+          <Search />
+        </div>
       </Modal>
 
       <div className="settings__selectorBox">

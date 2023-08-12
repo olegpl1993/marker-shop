@@ -1,8 +1,7 @@
+"use client";
 import "./Modal.scss";
 import { createPortal } from "react-dom";
 import React, { useEffect } from "react";
-
-const modalRootElement = document.getElementById("modal") as HTMLElement;
 
 interface Props {
   isOpen: boolean;
@@ -12,18 +11,25 @@ interface Props {
 
 function Modal(props: Props) {
   const { isOpen, setIsOpen, children } = props;
-  const element = document.createElement("div");
+
+  const element =
+    typeof document !== "undefined" ? document.createElement("div") : null;
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "auto";
-    modalRootElement?.appendChild(element);
-    return () => {
-      document.body.style.overflow = "auto";
-      modalRootElement?.removeChild(element);
-    };
-  });
+    if (element) {
+      document.body.style.overflow = isOpen ? "hidden" : "auto";
+      const modalRootElement = document.getElementById(
+        "portal-modal"
+      ) as HTMLElement;
+      modalRootElement?.appendChild(element);
+      return () => {
+        document.body.style.overflow = "auto";
+        modalRootElement?.removeChild(element);
+      };
+    }
+  }, [isOpen, element]);
 
-  if (isOpen) {
+  if (isOpen && element) {
     return createPortal(
       <div className="modal" onClick={() => setIsOpen(false)}>
         <div
