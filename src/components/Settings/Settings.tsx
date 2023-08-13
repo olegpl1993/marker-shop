@@ -7,11 +7,12 @@ import { Button } from "@mui/material";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { useEffect, useState } from "react";
 import Modal from "../Modal/Modal";
+import Categories from "../Categories/Categories";
+import PriceFilter from "../PriceFilter/PriceFilter";
 
 function Settings() {
   const [windowWidth, setWindowWidth] = useState<number | undefined>(undefined);
   const [isOpen, setIsOpen] = useState(false);
-  console.log(windowWidth);
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
@@ -23,6 +24,7 @@ function Settings() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
     <div className="settings">
       {typeof windowWidth === "number" && windowWidth > 1023 ? (
@@ -44,8 +46,9 @@ function Settings() {
 
       <Modal isOpen={isOpen} setIsOpen={() => setIsOpen(false)}>
         <div className="settings__modal">
-          ПОИСК
           <Search />
+          <Categories />
+          <PriceFilter />
         </div>
       </Modal>
 

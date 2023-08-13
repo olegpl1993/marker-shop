@@ -9,7 +9,16 @@
   padding: 5px 10px;
 
   &__modal {
-    border: 1px solid red;
+    height: 80vh;
+    width: 300px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: scroll;
+    gap: 10px;
   }
 
   @media (max-width: 767px) {

@@ -31,15 +31,15 @@ function Modal(props: Props) {
 
   if (isOpen && element) {
     return createPortal(
-      <div className="modal" onClick={() => setIsOpen(false)}>
+      <div className="modalWindow" onClick={() => setIsOpen(false)}>
         <div
-          className="modal__contentBox"
+          className="modalWindow__contentBox"
           onClick={(event) => event.stopPropagation()}
         >
           <button
             type="button"
             aria-label="Close"
-            className="modal__closeButton"
+            className="modalWindow__closeButton"
             onClick={() => setIsOpen(false)}
           />
           {children}

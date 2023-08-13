@@ -1,4 +1,4 @@
-.modal {
+.modalWindow {
   position: fixed;
   z-index: 5;
   left: 0;
@@ -25,8 +25,6 @@
   &__contentBox {
     position: relative;
     background-color: white;
-    width: 320px;
-    height: 270px;
     animation-duration: 0.5s;
     animation-name: boxAnime;
     cursor: auto;
@@ -45,6 +43,7 @@
     display: block;
     position: absolute;
     border: none;
+    z-index: 6;
     right: 10px;
     top: 10px;
     width: 20px;
