@@ -2,7 +2,7 @@
 import "./Search.scss";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { changeSearch } from "@/redux/slices/searchSlice";
-import { Box, IconButton, TextField } from "@mui/material";
+import { IconButton, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import { changeCurrentPage } from "@/redux/slices/storePaginationSlice";

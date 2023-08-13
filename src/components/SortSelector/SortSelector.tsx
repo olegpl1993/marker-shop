@@ -1,7 +1,6 @@
 "use client";
 import "./SortSelector.scss";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { changeSort } from "@/redux/slices/sortSlice";
