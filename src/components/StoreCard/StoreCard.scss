@@ -19,6 +19,9 @@
   }
   @media (max-width: 1023px) {
     width: 32%;
+    &:hover {
+      transform: none;
+    }
   }
   @media (max-width: 767px) {
     width: 49%;
