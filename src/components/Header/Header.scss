@@ -4,33 +4,22 @@
   justify-content: space-between;
   height: 70px;
   padding: 0 5px;
-}
 
-.menu {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-
-  &__link {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 14px;
-    color: white;
+  &__cartBoxIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-radius: 50%;
+    padding: 10px;
+  
     &:hover {
-      color: rgb(255, 191, 0);
+      background-color: rgb(34, 31, 31);
     }
   }
-}
 
-.cartBoxIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  border-radius: 50%;
-  padding: 10px;
-
-  &:hover {
-    background-color: rgb(34, 31, 31);
+  &__cartIcon {
+    font-size: 28px;
+    color: white;
   }
 }
