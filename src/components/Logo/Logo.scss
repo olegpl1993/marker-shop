@@ -18,7 +18,7 @@
   &__text {
     font-size: 25px;
     color: rgb(255, 255, 255);
-  
+
     @media (max-width: 767px) {
       display: none;
     }
@@ -29,5 +29,9 @@
     height: 20px;
     background-color: rgb(67, 218, 53);
     border-radius: 50%;
+  }
+
+  &:hover &__point {
+    background-color: rgb(73, 232, 59);
   }
 }

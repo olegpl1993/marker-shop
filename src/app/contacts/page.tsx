@@ -1,8 +1,14 @@
 import "./contacts.scss";
+import { Roboto } from "next/font/google";
+
+const roboto = Roboto({
+  weight: ["300", "400", "500"],
+  subsets: ["cyrillic"],
+});
 
 function Contacts() {
   return (
-    <div className="contacts">
+    <div className={`contacts ${roboto.className}`}>
       <h1 className="contacts__title">Контакты</h1>
       <div className="contacts__info-container">
         <p className="contacts__info">

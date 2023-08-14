@@ -1,0 +1,15 @@
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  &__link {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    color: white;
+    &:hover {
+      color: rgb(67, 218, 53);
+    }
+  }
+}
