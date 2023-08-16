@@ -1,5 +1,7 @@
 import "./contacts.scss";
 import { Roboto } from "next/font/google";
+import FeedbackForm from "@/components/FeedbackForm/FeedbackForm";
+import { Paper } from "@mui/material";
 
 const roboto = Roboto({
   weight: ["300", "400", "500"],
@@ -9,22 +11,28 @@ const roboto = Roboto({
 function Contacts() {
   return (
     <div className={`contacts ${roboto.className}`}>
-      <h1 className="contacts__title">Контакты</h1>
-      <div className="contacts__info-container">
-        <p className="contacts__info">
-          Адрес: г. Киев, ул. Кирилловская, дом 96, офис 456
-        </p>
-        <p className="contacts__info">Телефон: +380 (44) 123-45-67</p>
-        <p className="contacts__info">
-          Электронная почта: marker-shop@info.com
-        </p>
-        <p className="contacts__info">
-          График работы: пн-пт с 9:00 до 18:00, сб-вс - выходные
-        </p>
-        <p className="contacts__info">
-          Мы находимся в самом центре города Киева, всегда рады видеть вас!
-        </p>
+      <div className="contacts__wrapper">
+        <Paper elevation={3} className="contacts__box">
+          <div className="contacts__title">Контакты</div>
+          <div className="contacts__info-container">
+            <p className="contacts__info">
+              Адрес: г. Киев, ул. Кирилловская, дом 96, офис 456
+            </p>
+            <p className="contacts__info">Телефон: +380 (44) 123-45-67</p>
+            <p className="contacts__info">
+              Электронная почта: marker-shop@info.com
+            </p>
+            <p className="contacts__info">
+              График работы: пн-пт с 9:00 до 18:00, сб-вс - выходные
+            </p>
+            <p className="contacts__info">
+              Мы находимся в самом центре города Киева, всегда рады видеть вас!
+            </p>
+          </div>
+        </Paper>
+        <FeedbackForm />
       </div>
+
       <div className="contacts__map">
         <iframe
           title="Google Map"
