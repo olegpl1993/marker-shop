@@ -29,23 +29,33 @@
   }
 
   &__title {
-    font-size: 25px;
+    font-size: 23px;
   }
 
   &__info-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     width: 100%;
     gap: 10px;
+  }
 
-    @media (max-width: 1023px) {
-      align-items: flex-start;
-    }
+  &__info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__info-title {
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
 
   &__info {
-    font-size: 18px;
+    font-size: 16px;
     color: #666;
   }
 
@@ -56,6 +66,6 @@
   &__map {
     display: flex;
     width: 100%;
-    height: 400px;
+    height: 360px;
   }
 }

@@ -18,6 +18,7 @@ function FeedbackForm() {
   } = useForm<FormFeedback>();
   const submitForm: SubmitHandler<FormFeedback> = (form: FormFeedback) => {
     console.log(form);
+    reset();
   };
 
   return (
@@ -33,11 +34,14 @@ function FeedbackForm() {
           variant="outlined"
           className="feedbackForm__input"
           type="text"
+          helperText={
+            errors.name && "Имя должно содержать от 3 до 255 символов"
+          }
           error={!!errors.name}
-          {...(register("name"),
-          {
-            minLength: { value: 8, message: "Минимум 8 символов" },
-            maxLength: { value: 20, message: "Максимум 20 символов" },
+          {...register("name", {
+            required: true,
+            minLength: 3,
+            maxLength: 255,
           })}
         />
 
@@ -46,8 +50,10 @@ function FeedbackForm() {
           variant="outlined"
           className="feedbackForm__input"
           type="email"
+          helperText={errors.email && errors.email.message}
           error={!!errors.email}
           {...register("email", {
+            required: "Поле обязательно для заполнения",
             pattern: {
               value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
               message: "Введите корректный email",
@@ -60,7 +66,15 @@ function FeedbackForm() {
           label="Ваше сообщение"
           multiline
           rows={4}
-          {...register("message")}
+          helperText={
+            errors.message && "Сообщение должно содержать от 1 до 999 символов"
+          }
+          error={!!errors.message}
+          {...register("message", {
+            required: true,
+            minLength: 1,
+            maxLength: 999,
+          })}
         />
 
         <Button

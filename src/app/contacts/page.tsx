@@ -2,6 +2,10 @@ import "./contacts.scss";
 import { Roboto } from "next/font/google";
 import FeedbackForm from "@/components/FeedbackForm/FeedbackForm";
 import { Paper } from "@mui/material";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import EmailIcon from "@mui/icons-material/Email";
+import PlaceIcon from "@mui/icons-material/Place";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 const roboto = Roboto({
   weight: ["300", "400", "500"],
@@ -14,18 +18,43 @@ function Contacts() {
       <div className="contacts__wrapper">
         <Paper elevation={3} className="contacts__box">
           <div className="contacts__title">Контакты</div>
+
           <div className="contacts__info-container">
-            <p className="contacts__info">
-              Адрес: г. Киев, ул. Кирилловская, дом 96, офис 456
-            </p>
-            <p className="contacts__info">Телефон: +380 (44) 123-45-67</p>
-            <p className="contacts__info">
-              Электронная почта: marker-shop@info.com
-            </p>
-            <p className="contacts__info">
-              График работы: пн-пт с 9:00 до 18:00, сб-вс - выходные
-            </p>
-            <p className="contacts__info">
+            <div className="contacts__info-row">
+              <div className="contacts__info-title">
+                <LocalPhoneIcon color="primary" /> <p>Телефон</p>
+              </div>
+              <p className="contacts__info">+380 (44) 123-45-67</p>
+            </div>
+
+            <div className="contacts__info-row">
+              <div className="contacts__info-title">
+                <EmailIcon color="primary" /> <p>Электронная почта</p>
+              </div>
+              <p className="contacts__info">marker-shop@info.com</p>
+            </div>
+
+            <div className="contacts__info-row">
+              <div className="contacts__info-title">
+                <CalendarMonthIcon color="primary" />
+                <p>График работы</p>
+              </div>
+              <p className="contacts__info">
+                Онлайн поддержка: понедельник - пятница с 9:00 до 17:30 суббота,
+                воскресенье - выходной
+              </p>
+            </div>
+
+            <div className="contacts__info-row">
+              <div className="contacts__info-title">
+                <PlaceIcon color="primary" /> <p>Адрес</p>
+              </div>
+              <p className="contacts__info">
+                г. Киев, ул. Кирилловская, дом 96, офис 456
+              </p>
+            </div>
+
+            <p className="contacts__info-title">
               Мы находимся в самом центре города Киева, всегда рады видеть вас!
             </p>
           </div>
