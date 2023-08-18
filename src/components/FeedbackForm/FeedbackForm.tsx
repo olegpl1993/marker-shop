@@ -16,8 +16,14 @@ function FeedbackForm() {
     formState: { errors },
     reset,
   } = useForm<FormFeedback>();
-  const submitForm: SubmitHandler<FormFeedback> = (form: FormFeedback) => {
-    console.log(form);
+  const submitForm: SubmitHandler<FormFeedback> = async (
+    form: FormFeedback
+  ) => {
+    const response = await fetch("/api/feedback", {
+      method: "POST",
+      body: JSON.stringify(form),
+    });
+    const data = await response.json();
     reset();
   };
 
