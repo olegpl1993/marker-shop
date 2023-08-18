@@ -34,6 +34,13 @@
     width: 100%;
   }
 
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
   &__button {
     background-color: rgb(48, 184, 14);
     transition:
@@ -43,5 +50,19 @@
     &:hover {
       background-color: rgb(67, 218, 53);
     }
+  }
+
+  &__successText {
+    font-size: 16px;
+    color: green;
+  }
+
+  &__errorText {
+    font-size: 16px;
+    color: red;
+  }
+
+  &__processText {
+    font-size: 16px;
   }
 }

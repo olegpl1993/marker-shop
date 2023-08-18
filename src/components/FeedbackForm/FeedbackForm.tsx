@@ -1,7 +1,9 @@
 "use client";
 import "./FeedbackForm.scss";
 import { Button, Paper, TextField } from "@mui/material";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import Ellipsis from "../Ellipsis/Ellipsis";
 
 interface FormFeedback {
   name: string;
@@ -16,15 +18,32 @@ function FeedbackForm() {
     formState: { errors },
     reset,
   } = useForm<FormFeedback>();
+
+  const [isSending, setIsSending] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isDisabledBTN, setIsDisabledBTN] = useState(false);
+
   const submitForm: SubmitHandler<FormFeedback> = async (
     form: FormFeedback
   ) => {
+    setIsDisabledBTN(true);
     const response = await fetch("/api/feedback", {
       method: "POST",
       body: JSON.stringify(form),
     });
-    const data = await response.json();
-    reset();
+    if (response.status === 200) {
+      setIsSending(true);
+      setIsError(false);
+      reset();
+    } else {
+      setIsError(true);
+      setIsSending(false);
+    }
+    setTimeout(() => {
+      setIsSending(false);
+      setIsError(false);
+    }, 3000);
+    setIsDisabledBTN(false);
   };
 
   return (
@@ -83,14 +102,24 @@ function FeedbackForm() {
           })}
         />
 
-        <Button
-          type="submit"
-          variant="contained"
-          className="feedbackForm__button"
-          size="large"
-        >
-          ОТПРАВИТЬ
-        </Button>
+        <div className="feedbackForm__row">
+          <Button
+            type="submit"
+            variant="contained"
+            className="feedbackForm__button"
+            size="large"
+            disabled={isDisabledBTN}
+          >
+            ОТПРАВИТЬ
+          </Button>
+          {isSending && (
+            <p className="feedbackForm__successText">Письмо отправлено</p>
+          )}
+          {isError && (
+            <p className="feedbackForm__errorText">Ошибка отправки</p>
+          )}
+          {isDisabledBTN && <Ellipsis />}
+        </div>
       </form>
     </Paper>
   );
