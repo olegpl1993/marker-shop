@@ -1,31 +1,24 @@
 "use client";
+import CartCard from "@/components/CartCard/CartCard";
 import "./cart.scss";
 import { useAppSelector } from "@/redux/hooks";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
-import { Product } from "@/types";
-
-interface RenderProductInCart {
-  product: Product;
-  qty: number;
-}
+import { CartProduct } from "@/types";
 
 function Cart() {
   const { data } = useGetProductsQuery(null);
   const cart = useAppSelector((state) => state.cartReducer.cart);
 
-  const renderProductsInCart = cart.reduce(
-    (acc: RenderProductInCart[], item) => {
-      const product = data?.find((product) => product.sku === item.id);
-      if (product) {
-        acc.push({ product, qty: item.qty });
-      }
-      return acc;
-    },
-    []
-  );
-  console.log(renderProductsInCart);
+  const cartProducts = cart.reduce((acc: CartProduct[], item) => {
+    const product = data?.find((product) => product.sku === item.id);
+    if (product) {
+      acc.push({ product, qty: item.qty });
+    }
+    return acc;
+  }, []);
+  console.log(cartProducts);
 
-  if (renderProductsInCart.length === 0) {
+  if (cartProducts.length === 0) {
     return (
       <div className="cart">
         <h1 className="cart__empty">Корзина пустая</h1>
@@ -39,10 +32,8 @@ function Cart() {
         <h1 className="cart__title">Корзина</h1>
       </div>
       <section className="cart__content">
-        {renderProductsInCart.map(({ product, qty }) => (
-          <div className="cart__cartCard" key={product.sku}>
-            {product.name} - {qty}
-          </div>
+        {cartProducts.map((cartProduct) => (
+          <CartCard key={cartProduct.product.sku} cartProduct={cartProduct} />
         ))}
       </section>
     </div>

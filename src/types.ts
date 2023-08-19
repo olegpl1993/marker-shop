@@ -17,3 +17,8 @@ export interface Product {
   country: string,
   sizes: Sizes[],
 }
+
+export interface CartProduct {
+  product: Product;
+  qty: number;
+}
