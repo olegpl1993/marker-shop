@@ -4,16 +4,10 @@ import "./StoreCard.scss";
 import { IconButton, Paper } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
-import { Roboto } from "next/font/google";
 import Link from "next/link";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart, deleteFromCart } from "@/redux/slices/cartSlice";
-
-const roboto = Roboto({
-  weight: ["300", "500"],
-  subsets: ["cyrillic"],
-});
 
 interface Props {
   product: Product;
@@ -55,7 +49,7 @@ function StoreCard(props: Props) {
       <div className="storeCard__descriptionBox">
         <Link
           href={`/store/${product.sku}`}
-          className={`storeCard__name ${roboto.className}`}
+          className="storeCard__name"
         >
           {product.name}
         </Link>
@@ -63,13 +57,13 @@ function StoreCard(props: Props) {
           <div className="storeCard__price">{product.price}₴</div>
           {available ? (
             <div
-              className={`storeCard__available storeCard__available_true ${roboto.className}`}
+              className="storeCard__available storeCard__available_true"
             >
               Есть в наличии
             </div>
           ) : (
             <div
-              className={`storeCard__available storeCard__available_false ${roboto.className}`}
+              className="storeCard__available storeCard__available_false"
             >
               Нет в наличии
             </div>

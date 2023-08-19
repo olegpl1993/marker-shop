@@ -3,6 +3,12 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import type { Metadata } from "next";
 import { Providers } from "@/redux/provider";
+import { Roboto } from "next/font/google";
+
+const roboto = Roboto({
+  weight: ["300"],
+  subsets: ["cyrillic"],
+});
 
 export const metadata: Metadata = {
   title: "MARKER SHOP",
@@ -17,7 +23,7 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        <body className="body">
+        <body className={`body ${roboto.className}`}>
           <div className="wrapper">
             <div className="headerRow">
               <div className="container">
