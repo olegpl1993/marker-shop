@@ -3,9 +3,12 @@ import { Product } from "@/types";
 import "./StoreCard.scss";
 import { IconButton, Paper } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import { Roboto } from "next/font/google";
 import Link from "next/link";
 import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addToCart, deleteFromCart } from "@/redux/slices/cartSlice";
 
 const roboto = Roboto({
   weight: ["300", "500"],
@@ -18,8 +21,20 @@ interface Props {
 
 function StoreCard(props: Props) {
   const { product } = props;
+  const dispatch = useAppDispatch();
   const available = !!product.sizes.length;
   const [isHovered, setIsHovered] = useState(false);
+
+  const cart = useAppSelector((state) => state.cartReducer.cart);
+  const isProductInCart = cart.find((item) => item.id === product.sku)!!;
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product.sku));
+  };
+
+  const handleDeleteFromCart = () => {
+    dispatch(deleteFromCart(product.sku));
+  };
 
   return (
     <Paper elevation={3} className="storeCard">
@@ -59,11 +74,22 @@ function StoreCard(props: Props) {
               Нет в наличии
             </div>
           )}
-          <IconButton className="storeCard__cart">
-            <ShoppingCartIcon
-              sx={{ color: "rgb(0, 144, 184)", fontSize: 28 }}
-            />
-          </IconButton>
+          {isProductInCart ? (
+            <IconButton
+              className="storeCard__cart"
+              onClick={handleDeleteFromCart}
+            >
+              <ShoppingCartCheckoutIcon
+                sx={{ color: "rgb(0, 144, 184)", fontSize: 28 }}
+              />
+            </IconButton>
+          ) : (
+            <IconButton className="storeCard__cart" onClick={handleAddToCart}>
+              <ShoppingCartIcon
+                sx={{ color: "rgb(0, 144, 184)", fontSize: 28 }}
+              />
+            </IconButton>
+          )}
         </div>
       </div>
     </Paper>

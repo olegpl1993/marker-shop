@@ -6,6 +6,7 @@
   padding: 0 5px;
 
   &__cartBoxIcon {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,5 +22,20 @@
   &__cartIcon {
     font-size: 28px;
     color: white;
+  }
+
+  &__productsQty {
+    position: absolute;
+    height: 23px;
+    width: 23px;
+    border-radius: 50%;
+    background-color: rgb(0, 144, 184);
+    color: white;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
   }
 }
