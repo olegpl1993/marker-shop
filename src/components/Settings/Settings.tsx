@@ -27,21 +27,19 @@ function Settings() {
 
   return (
     <div className="settings">
-      {typeof windowWidth === "number" && windowWidth > 1023 ? (
-        <Search />
-      ) : (
-        <Button
-          variant="contained"
-          className="settings__filterButton"
-          size="large"
-          onClick={() => {
-            setIsOpen(true);
-          }}
-        >
-          <FilterAltIcon className="settings__filterIcon" />
-          фильтры
-        </Button>
-      )}
+      {typeof windowWidth === "number" && windowWidth > 1023 && <Search />}
+
+      <Button
+        variant="contained"
+        className="settings__filterButton"
+        size="large"
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        <FilterAltIcon className="settings__filterIcon" />
+        фильтры
+      </Button>
 
       <Modal isOpen={isOpen} setIsOpen={() => setIsOpen(false)}>
         <div className="settings__modal">
