@@ -6,8 +6,8 @@ import { Providers } from "@/redux/provider";
 import { Roboto } from "next/font/google";
 
 const roboto = Roboto({
-  weight: ["300"],
-  subsets: ["cyrillic"],
+  weight: ["300", "400", "500", "700"],
+  subsets: ["cyrillic", "latin"],
 });
 
 export const metadata: Metadata = {
