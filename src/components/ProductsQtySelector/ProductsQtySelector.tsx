@@ -17,7 +17,6 @@ function ProductsQtySelector() {
   const handleChangeProductsOnPage = (event: SelectChangeEvent) => {
     dispatch(changeCurrentPage(1));
     dispatch(changeProductsOnPage(Number(event.target.value)));
-    console.log(event.target.value);
   };
 
   return (

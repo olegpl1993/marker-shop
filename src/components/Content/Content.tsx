@@ -12,9 +12,7 @@ import StorePagination from "../StorePagination/StorePagination";
 function Content() {
   const { data } = useGetProductsQuery(null);
   const dispatch = useAppDispatch();
-  console.log(data);
   const cart = useAppSelector((state) => state.cartReducer.cart);
-  console.log(cart);
 
   const priceFilter = useAppSelector(
     (state) => state.priceFilterReducer.priceFilter
@@ -30,7 +28,6 @@ function Content() {
   const selectedCategories = useAppSelector(
     (state) => state.selectedCategoriesReducer.selectedCategories
   );
-  console.log(selectedCategories);
 
   let products = [] as Product[];
   useEffect(() => {
@@ -52,7 +49,6 @@ function Content() {
       productsOnPage,
       currentPage
     );
-    console.log(paginatedProducts);
 
     if (products.length === 0) {
       return (
