@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart, deleteFromCart } from "@/redux/slices/cartSlice";
+import { useRouter } from "next/navigation";
 
 interface Props {
   product: Product;
@@ -16,6 +17,8 @@ interface Props {
 function StoreCard(props: Props) {
   const { product } = props;
   const dispatch = useAppDispatch();
+  const router = useRouter();
+
   const available = !!product.sizes.length;
   const [isHovered, setIsHovered] = useState(false);
 
@@ -26,8 +29,8 @@ function StoreCard(props: Props) {
     dispatch(addToCart(product.sku));
   };
 
-  const handleDeleteFromCart = () => {
-    dispatch(deleteFromCart(product.sku));
+  const handleRedirectToCart = () => {
+    router.push("/cart");
   };
 
   return (
@@ -47,41 +50,30 @@ function StoreCard(props: Props) {
         />
       </Link>
       <div className="storeCard__descriptionBox">
-        <Link
-          href={`/store/${product.sku}`}
-          className="storeCard__name"
-        >
+        <Link href={`/store/${product.sku}`} className="storeCard__name">
           {product.name}
         </Link>
         <div className="storeCard__row">
           <div className="storeCard__price">{product.price}₴</div>
           {available ? (
-            <div
-              className="storeCard__available storeCard__available_true"
-            >
+            <div className="storeCard__available storeCard__available_true">
               Есть в наличии
             </div>
           ) : (
-            <div
-              className="storeCard__available storeCard__available_false"
-            >
+            <div className="storeCard__available storeCard__available_false">
               Нет в наличии
             </div>
           )}
           {isProductInCart ? (
             <IconButton
               className="storeCard__cart"
-              onClick={handleDeleteFromCart}
+              onClick={handleRedirectToCart}
             >
-              <ShoppingCartCheckoutIcon
-                sx={{ color: "rgb(0, 144, 184)", fontSize: 28 }}
-              />
+              <ShoppingCartCheckoutIcon className="storeCard__cartIcon" />
             </IconButton>
           ) : (
             <IconButton className="storeCard__cart" onClick={handleAddToCart}>
-              <ShoppingCartIcon
-                sx={{ color: "rgb(0, 144, 184)", fontSize: 28 }}
-              />
+              <ShoppingCartIcon className="storeCard__cartIcon" />
             </IconButton>
           )}
         </div>

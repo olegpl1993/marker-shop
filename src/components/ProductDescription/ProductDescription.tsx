@@ -1,8 +1,12 @@
+"use client";
 import "./ProductDescription.scss";
 import { Product } from "@/types";
 import { Alegreya } from "next/font/google";
 import { Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useAppDispatch } from "@/redux/hooks";
+import { addToCart } from "@/redux/slices/cartSlice";
+import { useRouter } from "next/navigation";
 
 const alegreya = Alegreya({
   weight: ["400", "500"],
@@ -15,6 +19,14 @@ interface Props {
 
 function ProductDescription(props: Props) {
   const { productData } = props;
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  const handleBuyProduct = () => {
+    dispatch(addToCart(productData.sku));
+    router.push("/cart");
+  };
+
   return (
     <div className="productDescription">
       <div className="productDescription__name">{productData.name}</div>
@@ -39,11 +51,9 @@ function ProductDescription(props: Props) {
           variant="contained"
           className="productDescription__button"
           size="large"
-          onClick={() => {
-            console.log("КУПИТЬ");
-          }}
+          onClick={handleBuyProduct}
         >
-          <ShoppingCartIcon sx={{ color: "white", fontSize: 28 }} />
+          <ShoppingCartIcon className="productDescription__shoppingCartIcon" />
           КУПИТЬ
         </Button>
       </div>
