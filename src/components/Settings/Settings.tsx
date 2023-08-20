@@ -2,7 +2,7 @@
 import "./Settings.scss";
 import SortSelector from "../SortSelector/SortSelector";
 import Search from "../Search/Search";
-import PageQtySelector from "../ProductsOnPageSelector/PageQtySelector";
+import ProductsQtySelector from "../ProductsQtySelector/ProductsQtySelector";
 import { Button } from "@mui/material";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { useEffect, useState } from "react";
@@ -35,7 +35,6 @@ function Settings() {
           className="settings__filterButton"
           size="large"
           onClick={() => {
-            console.log("фильтры");
             setIsOpen(true);
           }}
         >
@@ -53,7 +52,7 @@ function Settings() {
       </Modal>
 
       <div className="settings__selectorBox">
-        <PageQtySelector />
+        <ProductsQtySelector />
         <SortSelector />
       </div>
     </div>

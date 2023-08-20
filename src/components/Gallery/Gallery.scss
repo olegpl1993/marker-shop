@@ -13,12 +13,14 @@
     flex-direction: row;
   }
 
-  &__iconButtonBefore {
+  &__iconButtonBefore,
+  &__iconButtonNext {
     padding: 3px;
   }
 
-  &__iconButtonNext {
-    padding: 3px;
+  &__navigateBeforeIcon {
+    font-size: 35px;
+    color: rgb(0, 144, 184);
   }
 
   &__mainImg {
