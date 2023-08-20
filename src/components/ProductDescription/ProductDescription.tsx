@@ -1,6 +1,5 @@
 import "./ProductDescription.scss";
 import { Product } from "@/types";
-import { Roboto } from "next/font/google";
 import { Alegreya } from "next/font/google";
 import { Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -10,11 +9,6 @@ const alegreya = Alegreya({
   subsets: ["latin"],
 });
 
-const roboto = Roboto({
-  weight: ["300", "400", "500"],
-  subsets: ["cyrillic"],
-});
-
 interface Props {
   productData: Product;
 }
@@ -22,7 +16,7 @@ interface Props {
 function ProductDescription(props: Props) {
   const { productData } = props;
   return (
-    <div className={`productDescription ${roboto.className}`}>
+    <div className="productDescription">
       <div className="productDescription__name">{productData.name}</div>
 
       <div className="productDescription__categoryRow">

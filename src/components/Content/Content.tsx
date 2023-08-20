@@ -7,18 +7,14 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { changeProducts } from "@/redux/slices/productsSlice";
 import { useEffect } from "react";
 import { contentUtils } from "./contentUtils";
-import { Roboto } from "next/font/google";
 import StorePagination from "../StorePagination/StorePagination";
-
-const roboto = Roboto({
-  weight: ["300"],
-  subsets: ["cyrillic"],
-});
 
 function Content() {
   const { data } = useGetProductsQuery(null);
   const dispatch = useAppDispatch();
   console.log(data);
+  const cart = useAppSelector((state) => state.cartReducer.cart);
+  console.log(cart);
 
   const priceFilter = useAppSelector(
     (state) => state.priceFilterReducer.priceFilter
@@ -62,9 +58,7 @@ function Content() {
       return (
         <section className="content">
           <div className="content__wrapper">
-            <p className={`content__notFound ${roboto.className}`}>
-              Товаров не найдено
-            </p>
+            <p className="content__notFound">Товаров не найдено</p>
           </div>
         </section>
       );

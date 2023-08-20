@@ -1,5 +1,4 @@
 import "./contacts.scss";
-import { Roboto } from "next/font/google";
 import FeedbackForm from "@/components/FeedbackForm/FeedbackForm";
 import { Paper } from "@mui/material";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
@@ -7,14 +6,9 @@ import EmailIcon from "@mui/icons-material/Email";
 import PlaceIcon from "@mui/icons-material/Place";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
-const roboto = Roboto({
-  weight: ["300", "400", "500"],
-  subsets: ["cyrillic"],
-});
-
 function Contacts() {
   return (
-    <div className={`contacts ${roboto.className}`}>
+    <div className="contacts">
       <div className="contacts__wrapper">
         <Paper elevation={3} className="contacts__box">
           <div className="contacts__title">Контакты</div>
