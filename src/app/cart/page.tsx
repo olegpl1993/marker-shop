@@ -4,6 +4,8 @@ import "./cart.scss";
 import { useAppSelector } from "@/redux/hooks";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
 import { CartProduct } from "@/types";
+import { CacheProvider } from "@emotion/react";
+import cache from "../emotionSetup";
 
 function Cart() {
   const { data } = useGetProductsQuery(null);
@@ -19,9 +21,11 @@ function Cart() {
 
   if (cartProducts.length === 0) {
     return (
-      <div className="cart">
-        <h1 className="cart__empty">Корзина пустая</h1>
-      </div>
+      <CacheProvider value={cache}>
+        <div className="cart">
+          <h1 className="cart__empty">Корзина пустая</h1>
+        </div>
+      </CacheProvider>
     );
   }
 

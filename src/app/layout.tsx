@@ -5,8 +5,6 @@ import Footer from "@/components/Footer/Footer";
 import type { Metadata } from "next";
 import { Providers } from "@/redux/provider";
 import { Roboto } from "next/font/google";
-import { CacheProvider } from "@emotion/react";
-import cache from "./emotionSetup";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -25,7 +23,6 @@ export default function RootLayout({
 }) {
   return (
     <Providers>
-      <CacheProvider value={cache}>
         <html lang="en">
           <body className={`body ${roboto.className}`}>
             <div className="wrapper">
@@ -46,7 +43,6 @@ export default function RootLayout({
             <div id="portal-modal"></div>
           </body>
         </html>
-      </CacheProvider>
     </Providers>
   );
 }
