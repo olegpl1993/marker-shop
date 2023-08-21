@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  background-color: rgb(0, 144, 184);
+  background-color: var(--primary-color);
   border-radius: 20px;
   padding-left: 10px;
   padding-right: 10px;
@@ -17,7 +17,7 @@
 
   &__text {
     font-size: 25px;
-    color: rgb(255, 255, 255);
+    color: white;
 
     @media (max-width: 767px) {
       display: none;
@@ -27,11 +27,11 @@
   &__point {
     width: 20px;
     height: 20px;
-    background-color: rgb(67, 218, 53);
+    background-color: var(--secondary-color);
     border-radius: 50%;
   }
 
   &:hover &__point {
-    background-color: rgb(73, 232, 59);
+    background-color: var(--secondary-color-active);
   }
 }

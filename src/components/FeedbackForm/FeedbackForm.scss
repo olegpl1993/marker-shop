@@ -42,13 +42,13 @@
   }
 
   &__button {
-    background-color: rgb(48, 184, 14);
+    background-color: var(--secondary-color);
     transition:
       background-color 0.3s,
       color 0.3s;
 
     &:hover {
-      background-color: rgb(67, 218, 53);
+      background-color: var(--secondary-color-active);
     }
   }
 

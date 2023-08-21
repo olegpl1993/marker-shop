@@ -10,7 +10,6 @@ function SortSelector() {
   const sort = useAppSelector((state) => state.sortReducer.sort);
   const handleChangeSort = (event: SelectChangeEvent) => {
     dispatch(changeSort(event.target.value));
-    console.log(event.target.value);
   };
 
   return (

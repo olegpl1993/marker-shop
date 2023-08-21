@@ -41,7 +41,7 @@ function Gallery(props: Props) {
           onClick={handleBeforeImg}
         >
           <NavigateBeforeIcon
-            sx={{ fontSize: 35, color: "rgb(0, 144, 184)" }}
+            className="gallery__navigateIcon"
           />
         </IconButton>
 
@@ -53,7 +53,7 @@ function Gallery(props: Props) {
         />
 
         <IconButton className="gallery__iconButtonNext" onClick={handleNextImg}>
-          <NavigateNextIcon sx={{ fontSize: 35, color: "rgb(0, 144, 184)" }} />
+          <NavigateNextIcon className="gallery__navigateIcon" />
         </IconButton>
       </div>
 

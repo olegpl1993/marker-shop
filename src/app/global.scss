@@ -1,3 +1,17 @@
+:root {
+  --primary-color: rgb(0, 144, 184);
+  --secondary-color: rgb(67, 218, 53);
+  --secondary-color-active: rgb(73, 232, 59);
+
+  --primary-background-color: rgb(245, 245, 245);
+  --secondary-background-color: rgb(26, 26, 26);
+
+  --primary-text-color: rgb(55, 55, 55);
+  --secondary-text-color: rgb(130, 130, 130);
+
+  --border-color: rgb(200, 200, 200);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -76,7 +90,8 @@ h6 {
 }
 
 .body {
-  background-color: rgb(245, 245, 245);
+  background-color: var(--primary-background-color);
+  color: var(--primary-text-color);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -88,16 +103,16 @@ h6 {
 }
 
 .headerRow {
-  background-color: rgb(26, 26, 26);
+  background-color: var(--secondary-background-color);
 }
 
 .footerRow {
-  background-color: rgb(26, 26, 26);
+  background-color: var(--secondary-background-color);
 }
 
 .main {
-  border-left: 1px solid rgb(200, 200, 200);
-  border-right: 1px solid rgb(200, 200, 200);
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
   min-height: calc(100vh - 120px);
 
   @media (max-width: 413px) {

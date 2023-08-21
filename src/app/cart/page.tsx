@@ -16,7 +16,6 @@ function Cart() {
     }
     return acc;
   }, []);
-  console.log(cartProducts);
 
   if (cartProducts.length === 0) {
     return (
