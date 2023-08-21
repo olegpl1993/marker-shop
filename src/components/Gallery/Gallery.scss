@@ -18,9 +18,9 @@
     padding: 3px;
   }
 
-  &__navigateBeforeIcon {
+  &__navigateIcon {
     font-size: 35px;
-    color: rgb(0, 144, 184);
+    color: var(--primary-color);
   }
 
   &__mainImg {
@@ -63,7 +63,7 @@
     width: 100%;
     padding: 10px;
     gap: 12px;
-    border: 1px solid rgb(200, 200, 200);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
   }
 
@@ -80,7 +80,7 @@
     }
 
     &_active {
-      outline: 1px solid rgb(67, 218, 53);
+      outline: 1px solid var(--secondary-color);
     }
   }
 }

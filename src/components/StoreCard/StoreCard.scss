@@ -57,10 +57,9 @@
   &__name {
     font-size: 15px;
     font-weight: 300;
-    color: rgb(0, 144, 184);
+    color: var(--primary-color);
     cursor: pointer;
     &:hover {
-      color: rgb(215, 18, 18);
       text-decoration: underline;
     }
   }
@@ -75,7 +74,7 @@
 
   &__price {
     font-size: 20px;
-    color: rgb(77, 77, 77);
+
   }
 
   &__available {
@@ -83,11 +82,11 @@
     font-size: 12px;
 
     &_true {
-      color: rgb(0, 215, 0);
+      color: var(--secondary-color);
     }
 
     &_false {
-      color: rgb(138, 138, 138);
+      color: var(--secondary-text-color);
     }
   }
 
@@ -106,6 +105,6 @@
 
   &__cartIcon {
     font-size: 28px;
-    color: rgb(0, 144, 184);
+    color: var(--primary-color);
   }
 }
