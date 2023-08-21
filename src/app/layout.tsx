@@ -1,4 +1,3 @@
-"use client";
 import "./global.scss";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
@@ -23,26 +22,26 @@ export default function RootLayout({
 }) {
   return (
     <Providers>
-        <html lang="en">
-          <body className={`body ${roboto.className}`}>
-            <div className="wrapper">
-              <div className="headerRow">
-                <div className="container">
-                  <Header />
-                </div>
-              </div>
+      <html lang="en">
+        <body className={`body ${roboto.className}`}>
+          <div className="wrapper">
+            <div className="headerRow">
               <div className="container">
-                <main className="main">{children}</main>
+                <Header />
               </div>
             </div>
-            <div className="footerRow">
-              <div className="container">
-                <Footer />
-              </div>
+            <div className="container">
+              <main className="main">{children}</main>
             </div>
-            <div id="portal-modal"></div>
-          </body>
-        </html>
+          </div>
+          <div className="footerRow">
+            <div className="container">
+              <Footer />
+            </div>
+          </div>
+          <div id="portal-modal"></div>
+        </body>
+      </html>
     </Providers>
   );
 }
