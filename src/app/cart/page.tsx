@@ -26,16 +26,16 @@ function Cart() {
   }
 
   return (
-    <div className="cart">
-      <div className="cart__titleRow">
-        <h1 className="cart__title">Корзина</h1>
+      <div className="cart">
+        <div className="cart__titleRow">
+          <h1 className="cart__title">Корзина</h1>
+        </div>
+        <section className="cart__content">
+          {cartProducts.map((cartProduct) => (
+            <CartCard key={cartProduct.product.sku} cartProduct={cartProduct} />
+          ))}
+        </section>
       </div>
-      <section className="cart__content">
-        {cartProducts.map((cartProduct) => (
-          <CartCard key={cartProduct.product.sku} cartProduct={cartProduct} />
-        ))}
-      </section>
-    </div>
   );
 }
 
