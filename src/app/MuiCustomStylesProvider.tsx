@@ -4,15 +4,14 @@ import { useServerInsertedHTML } from "next/navigation";
 import { CacheProvider } from "@emotion/react";
 import React from "react";
 
-export default function ThemeRegistry(props: any) {
-  const { options, children } = props;
-  const myOption = {
-    key: 'mui',
-    prepend: true,
-  }
+export default function MuiCustomStylesProvider(props: any) {
+  const { children } = props;
 
   const [{ cache, flush }] = React.useState(() => {
-    const cache = createCache(myOption);
+    const cache = createCache({
+      key: "mui-custom-styles",
+      prepend: true,
+    });
     cache.compat = true;
     const prevInsert = cache.insert;
     let inserted: string[] = [];
@@ -45,7 +44,7 @@ export default function ThemeRegistry(props: any) {
         key={cache.key}
         data-emotion={`${cache.key} ${names.join(" ")}`}
         dangerouslySetInnerHTML={{
-          __html: options.prepend ? `@layer emotion {${styles}}` : styles,
+          __html: styles,
         }}
       />
     );

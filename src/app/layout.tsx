@@ -4,7 +4,7 @@ import Footer from "@/components/Footer/Footer";
 import type { Metadata } from "next";
 import { Providers } from "@/redux/provider";
 import { Roboto } from "next/font/google";
-import ThemeRegistry from "./ThemeRegistry";
+import MuiCustomStylesProvider from "./MuiCustomStylesProvider";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        <ThemeRegistry options={{ key: "mui" }}>
+        <MuiCustomStylesProvider>
           <body className={`body ${roboto.className}`}>
             <div className="wrapper">
               <div className="headerRow">
@@ -43,7 +43,7 @@ export default function RootLayout({
             </div>
             <div id="portal-modal"></div>
           </body>
-        </ThemeRegistry>
+        </MuiCustomStylesProvider>
       </html>
     </Providers>
   );
