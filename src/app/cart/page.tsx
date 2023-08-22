@@ -4,8 +4,6 @@ import "./cart.scss";
 import { useAppSelector } from "@/redux/hooks";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
 import { CartProduct } from "@/types";
-import { CacheProvider } from "@emotion/react";
-import cache from "../emotionSetup";
 
 function Cart() {
   const { data } = useGetProductsQuery(null);
@@ -28,7 +26,6 @@ function Cart() {
   }
 
   return (
-    <CacheProvider value={cache}>
       <div className="cart">
         <div className="cart__titleRow">
           <h1 className="cart__title">Корзина</h1>
@@ -39,7 +36,6 @@ function Cart() {
           ))}
         </section>
       </div>
-    </CacheProvider>
   );
 }
 
