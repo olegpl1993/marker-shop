@@ -7,7 +7,7 @@ import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import Link from "next/link";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { addToCart, deleteFromCart } from "@/redux/slices/cartSlice";
+import { addToCart } from "@/redux/slices/cartSlice";
 import { useRouter } from "next/navigation";
 
 interface Props {
