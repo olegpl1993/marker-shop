@@ -9,6 +9,12 @@ import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart } from "@/redux/slices/cartSlice";
 import { useRouter } from "next/navigation";
+import { Alegreya } from "next/font/google";
+
+const alegreya = Alegreya({
+  weight: ["400", "500"],
+  subsets: ["latin"],
+});
 
 interface Props {
   product: Product;
@@ -54,7 +60,10 @@ function StoreCard(props: Props) {
           {product.name}
         </Link>
         <div className="storeCard__row">
-          <div className="storeCard__price">{product.price}₴</div>
+          <div className="storeCard__price">
+          {product.price}
+                <p className={`storeCard__priceSymbol ${alegreya.className}`}>₴</p>
+              </div>
           {available ? (
             <div className="storeCard__available storeCard__available_true">
               Есть в наличии
