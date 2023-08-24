@@ -100,9 +100,17 @@
     }
   }
 
-  .shoppingCartIcon {
+  &__shoppingCartIcon {
     color: white;
     font-size: 28px;
+
+    @media (max-width: 480px) {
+      font-size: 20px;
+    }
+  }
+
+  &__notAvailable {
+    color: var(--secondary-text-color);
   }
 
   &__color {

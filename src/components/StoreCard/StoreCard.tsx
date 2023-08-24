@@ -61,9 +61,9 @@ function StoreCard(props: Props) {
         </Link>
         <div className="storeCard__row">
           <div className="storeCard__price">
-          {product.price}
-                <p className={`storeCard__priceSymbol ${alegreya.className}`}>₴</p>
-              </div>
+            {product.price}
+            <p className={`storeCard__priceSymbol ${alegreya.className}`}>₴</p>
+          </div>
           {available ? (
             <div className="storeCard__available storeCard__available_true">
               Есть в наличии
@@ -77,12 +77,25 @@ function StoreCard(props: Props) {
             <IconButton
               className="storeCard__cart"
               onClick={handleRedirectToCart}
+              disabled={!available}
             >
-              <ShoppingCartCheckoutIcon className="storeCard__cartIcon" />
+              <ShoppingCartCheckoutIcon
+                className={`storeCard__cartIcon ${
+                  !available ? "storeCard__cartIcon_disabled" : ""
+                }`}
+              />
             </IconButton>
           ) : (
-            <IconButton className="storeCard__cart" onClick={handleAddToCart}>
-              <ShoppingCartIcon className="storeCard__cartIcon" />
+            <IconButton
+              className="storeCard__cart"
+              onClick={handleAddToCart}
+              disabled={!available}
+            >
+              <ShoppingCartIcon
+                className={`storeCard__cartIcon ${
+                  !available ? "storeCard__cartIcon_disabled" : ""
+                }`}
+              />
             </IconButton>
           )}
         </div>

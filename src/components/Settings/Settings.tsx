@@ -44,8 +44,10 @@ function Settings() {
       <Modal isOpen={isOpen} setIsOpen={() => setIsOpen(false)}>
         <div className="settings__modal">
           <Search />
-          <Categories />
-          <PriceFilter />
+          <div className="settings__filtersCol">
+            <Categories />
+            <PriceFilter />
+          </div>
         </div>
       </Modal>
 

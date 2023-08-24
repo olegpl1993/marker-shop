@@ -22,6 +22,8 @@ function ProductDescription(props: Props) {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
+  const available = !!productData.sizes.length;
+
   const handleBuyProduct = () => {
     dispatch(addToCart(productData.sku));
     router.push("/cart");
@@ -47,15 +49,19 @@ function ProductDescription(props: Props) {
             ₴
           </p>
         </div>
-        <Button
-          variant="contained"
-          className="productDescription__button"
-          size="large"
-          onClick={handleBuyProduct}
-        >
-          <ShoppingCartIcon className="productDescription__shoppingCartIcon" />
-          КУПИТЬ
-        </Button>
+        {available ? (
+          <Button
+            variant="contained"
+            className="productDescription__button"
+            size="large"
+            onClick={handleBuyProduct}
+          >
+            <ShoppingCartIcon className="productDescription__shoppingCartIcon" />
+            КУПИТЬ
+          </Button>
+        ): (
+          <div className="productDescription__notAvailable">Нет в наличии</div>
+        )}
       </div>
 
       {productData.sizes && (
