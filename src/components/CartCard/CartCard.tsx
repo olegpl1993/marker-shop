@@ -21,6 +21,8 @@ function CartCard(props: Props) {
   const { product, qty } = props.cartProduct;
   const dispatch = useAppDispatch();
 
+  const qtyInStock = product.sizes.reduce((acc, item) => acc + item.amount, 0);
+
   const handleRemoveFromCart = () => {
     dispatch(deleteFromCart(product.sku));
   };
@@ -30,7 +32,9 @@ function CartCard(props: Props) {
   };
 
   const handlePlusQty = () => {
-    dispatch(addToCart(product.sku));
+    if (qty < qtyInStock) {
+      dispatch(addToCart(product.sku));
+    }
   };
 
   return (
@@ -57,7 +61,6 @@ function CartCard(props: Props) {
             </IconButton>
           </div>
           <div className="cartCard__row">
-            <div className="cartCard__category">{product.category}</div>
             <div className="cartCard__sku">Код: {product.sku}</div>
           </div>
         </div>
@@ -65,11 +68,19 @@ function CartCard(props: Props) {
 
       <div className="cartCard__row">
         <div className="cartCard__qtyBox">
-          <IconButton className="cartCard__icon" onClick={handleMinusQty}>
+          <IconButton
+            className="cartCard__icon"
+            disabled={qty <= 1}
+            onClick={handleMinusQty}
+          >
             -
           </IconButton>
           <div className="cartCard__qty">{qty}</div>
-          <IconButton className="cartCard__icon" onClick={handlePlusQty}>
+          <IconButton
+            className="cartCard__icon"
+            disabled={qty >= qtyInStock}
+            onClick={handlePlusQty}
+          >
             +
           </IconButton>
         </div>

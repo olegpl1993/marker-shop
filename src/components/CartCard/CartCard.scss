@@ -71,12 +71,7 @@
 
   &__removeIcon {
     font-size: 25px;
-    color: var(--secondary-text-color);
-  }
-
-  &__category {
-    font-size: 12px;
-    color: var(--secondary-text-color);
+    color: var(--primary-color);
   }
 
   &__sku {
@@ -99,18 +94,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 120px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
   }
 
   &__qty {
     font-size: 25px;
     font-weight: 500;
+    width: 50px;
+    text-align: center;
   }
 
   &__icon {
     font-size: 30px;
     color: var(--primary-color);
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
   }
 }
