@@ -5,7 +5,7 @@
   justify-content: space-between;
   flex-direction: column;
   padding: 10px;
-  gap: 10px;
+  gap: 5px;
 
   &__box {
     width: 100%;
@@ -14,8 +14,8 @@
   }
 
   &__imgBox {
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
   }
 
   &__img {
@@ -31,8 +31,16 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 5px;
+  }
+
+  &__topRow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
   }
 
   &__row {
@@ -44,8 +52,21 @@
   }
 
   &__name {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
+    color: var(--primary-color);
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 18px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 16px;
+    }
   }
 
   &__removeIcon {
@@ -66,6 +87,12 @@
   &__price {
     font-size: 25px;
     font-weight: 500;
+  }
+
+  &__priceSymbol {
+    font-weight: 400;
+    font-size: 30px;
+    display: inline-block;
   }
 
   &__qtyBox {

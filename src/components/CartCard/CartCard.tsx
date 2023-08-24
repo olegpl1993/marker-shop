@@ -1,11 +1,17 @@
 "use client";
 import "./CartCard.scss";
 import { CartProduct } from "@/types";
-import { IconButton, Paper, TextField } from "@mui/material";
+import { IconButton, Paper } from "@mui/material";
 import Link from "next/link";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import { useAppDispatch } from "@/redux/hooks";
 import { addToCart, deleteFromCart, minusQty } from "@/redux/slices/cartSlice";
+import { Alegreya } from "next/font/google";
+
+const alegreya = Alegreya({
+  weight: ["400", "500"],
+  subsets: ["latin"],
+});
 
 interface Props {
   cartProduct: CartProduct;
@@ -39,8 +45,10 @@ function CartCard(props: Props) {
           />
         </Link>
         <div className="cartCard__description">
-          <div className="cartCard__row">
-            <div className="cartCard__name"> {product.name}</div>
+          <div className="cartCard__topRow">
+            <Link href={`/store/${product.sku}`} className="cartCard__name">
+              {product.name}
+            </Link>
             <IconButton
               className="cartCard__remove"
               onClick={handleRemoveFromCart}
@@ -65,7 +73,10 @@ function CartCard(props: Props) {
             +
           </IconButton>
         </div>
-        <div className="cartCard__price">{product.price}₴</div>
+        <div className="cartCard__price">
+          {product.price * qty}
+          <p className={`cartCard__priceSymbol ${alegreya.className}`}>₴</p>
+        </div>
       </div>
     </Paper>
   );
