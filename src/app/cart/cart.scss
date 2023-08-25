@@ -24,6 +24,35 @@
     font-size: 25px;
   }
 
+  &__modal {
+    height: 70vh;
+    width: 50vw;
+    margin-top: 50px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: scroll;
+    gap: 10px;
+
+    @media (max-width: 1279px) {
+      width: 60vw;
+    }
+
+    @media (max-width: 1023px) {
+      width: 70vw;
+    }
+
+    @media (max-width: 767px) {
+      width: 80vw;
+    }
+
+    @media (max-width: 413px) {
+      width: 95vw;
+    }
+  }
+
   &__box {
     display: flex;
     justify-content: flex-start;
