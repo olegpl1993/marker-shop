@@ -1,9 +1,10 @@
 "use client";
 import "./Checkout.scss";
 import { Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Ellipsis from "../Ellipsis/Ellipsis";
+import PostOfficeSelect from "../PostOfficeSelect/PostOfficeSelect";
 
 interface FormCheckout {
   name: string;
@@ -11,8 +12,6 @@ interface FormCheckout {
   phone: string;
   email: string;
   message: string;
-  city: string;
-  postOffice: string;
 }
 
 function Checkout() {
@@ -32,6 +31,9 @@ function Checkout() {
   ) => {
     console.log(form);
   };
+
+  const [city, setCity] = useState("");
+  const [postOffice, setPostOffice] = useState("");
 
   return (
     <div className="checkout">
@@ -103,6 +105,10 @@ function Checkout() {
           })}
         />
 
+        <div className="checkout__title">Доставка</div>
+
+        <PostOfficeSelect city={city} setCity={setCity} postOffice={postOffice} setPostOffice={setPostOffice} />
+
         <TextField
           className="checkout__textarea"
           label="Ваше сообщение"
@@ -116,42 +122,6 @@ function Checkout() {
             required: false,
             minLength: 1,
             maxLength: 999,
-          })}
-        />
-
-        <div className="checkout__title">Доставка</div>
-
-        <TextField
-          label="Город"
-          variant="outlined"
-          className="checkout__input"
-          type="text"
-          helperText={
-            errors.city &&
-            "Нозвание города должно содержать от 1 до 50 символов"
-          }
-          error={!!errors.city}
-          {...register("city", {
-            required: true,
-            minLength: 1,
-            maxLength: 50,
-          })}
-        />
-
-        <TextField
-          label="Отделение новой почты"
-          variant="outlined"
-          className="checkout__input"
-          type="text"
-          helperText={
-            errors.postOffice &&
-            "Номер отделения новой почты должен содержать от 1 до 5 символов"
-          }
-          error={!!errors.postOffice}
-          {...register("postOffice", {
-            required: true,
-            minLength: 1,
-            maxLength: 5,
           })}
         />
 

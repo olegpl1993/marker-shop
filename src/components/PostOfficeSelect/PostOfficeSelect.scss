@@ -1,0 +1,14 @@
+.postOfficeSelect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgb(35, 140, 0);
+  width: 100%;
+
+  &__autocomplete {
+    width: 100%;
+    margin: 0px;
+  }
+}
