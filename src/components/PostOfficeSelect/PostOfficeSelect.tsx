@@ -1,5 +1,5 @@
 "use client";
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, Chip, TextField } from "@mui/material";
 import "./PostOfficeSelect.scss";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
@@ -20,13 +20,15 @@ const getCities = async (input: string) => {
     }),
   });
   const data = await response.json();
-  const citiesArray = data.data.map((city: any) => city.DescriptionRu);
+  const citiesArray = data.data.map((city: any) =>
+    city.DescriptionRu ? city.DescriptionRu : city.Description
+  );
   return citiesArray;
 };
 
 interface Props {
-  city: string;
-  setCity: Dispatch<SetStateAction<string>>;
+  city: null;
+  setCity: Dispatch<SetStateAction<null>>;
   postOffice: string;
   setPostOffice: Dispatch<SetStateAction<string>>;
 }
@@ -34,15 +36,25 @@ interface Props {
 function PostOfficeSelect(props: Props) {
   const { city, setCity, postOffice, setPostOffice } = props;
 
+  const [inputCity, setInputCity] = useState("");
   const [cities, setCities] = useState([]);
+  console.log(city);
 
   useEffect(() => {
     const getData = async () => {
-      const cities = await getCities(city);
+      const cities = await getCities(inputCity);
       setCities(cities);
     };
     getData();
-  }, [city]);
+  }, [inputCity]);
+
+  const handleCityChange = (_event: any, newValue: SetStateAction<null>) => {
+    setCity(newValue);
+  };
+
+  const handleCityInput = (event: any) => {
+    setInputCity(event.target.value);
+  };
 
   return (
     <div className="postOfficeSelect">
@@ -50,10 +62,24 @@ function PostOfficeSelect(props: Props) {
         className="postOfficeSelect__autocomplete"
         disablePortal
         options={cities}
+        value={city}
+        onChange={handleCityChange}
+        renderOption={(props, option) => {
+          return (
+            <li {...props} key={option}>
+              {option}
+            </li>
+          );
+        }}
+        renderTags={(tagValue, getTagProps) => {
+          return tagValue.map((option, index) => (
+            <Chip {...getTagProps({ index })} key={option} label={option} />
+          ));
+        }}
         renderInput={(params) => (
           <TextField
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
+            value={inputCity}
+            onChange={handleCityInput}
             {...params}
             label="Город"
           />
