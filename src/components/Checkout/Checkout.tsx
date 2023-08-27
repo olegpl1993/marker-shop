@@ -32,7 +32,7 @@ function Checkout() {
     console.log(form);
   };
 
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState(null);
   const [postOffice, setPostOffice] = useState("");
 
   return (
@@ -107,7 +107,12 @@ function Checkout() {
 
         <div className="checkout__title">Доставка</div>
 
-        <PostOfficeSelect city={city} setCity={setCity} postOffice={postOffice} setPostOffice={setPostOffice} />
+        <PostOfficeSelect
+          city={city}
+          setCity={setCity}
+          postOffice={postOffice}
+          setPostOffice={setPostOffice}
+        />
 
         <TextField
           className="checkout__textarea"
