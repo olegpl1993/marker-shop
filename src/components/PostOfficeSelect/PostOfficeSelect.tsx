@@ -26,11 +26,34 @@ const getCities = async (input: string) => {
   return citiesArray;
 };
 
+const getPostOffices = async (input: string) => {
+  const response = await fetch("https://api.novaposhta.ua/v2.0/json/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      apiKey: "3be575a17e86b2cc3677024d2e1a4a49",
+      modelName: "Address",
+      calledMethod: "getWarehouses",
+      methodProperties: {
+        CityName: input,
+        Language: "RU",
+      },
+    }),
+  });
+  const data = await response.json();
+  const postOfficesArray = data.data.map((postOffice: any) =>
+    postOffice.DescriptionRu ? postOffice.DescriptionRu : postOffice.Description
+  );
+  return postOfficesArray;
+};
+
 interface Props {
   city: null;
   setCity: Dispatch<SetStateAction<null>>;
-  postOffice: string;
-  setPostOffice: Dispatch<SetStateAction<string>>;
+  postOffice: null;
+  setPostOffice: Dispatch<SetStateAction<null>>;
 }
 
 function PostOfficeSelect(props: Props) {
@@ -38,12 +61,22 @@ function PostOfficeSelect(props: Props) {
 
   const [inputCity, setInputCity] = useState("");
   const [cities, setCities] = useState([]);
-  console.log(city);
+
+  const [inputPostOffice, setInputPostOffice] = useState("");
+  const [postOffices, setPostOffices] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
       const cities = await getCities(inputCity);
       setCities(cities);
+    };
+    getData();
+  }, [inputCity]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const cities = await getPostOffices(inputCity);
+      setPostOffices(cities);
     };
     getData();
   }, [inputCity]);
@@ -54,6 +87,17 @@ function PostOfficeSelect(props: Props) {
 
   const handleCityInput = (event: any) => {
     setInputCity(event.target.value);
+  };
+
+  const handlePostOfficeChange = (
+    _event: any,
+    newValue: SetStateAction<null>
+  ) => {
+    setPostOffice(newValue);
+  };
+
+  const handlePostOfficeInput = (event: any) => {
+    setInputPostOffice(event.target.value);
   };
 
   return (
@@ -82,6 +126,34 @@ function PostOfficeSelect(props: Props) {
             onChange={handleCityInput}
             {...params}
             label="Город"
+          />
+        )}
+      />
+
+      <Autocomplete
+        className="postOfficeSelect__autocomplete"
+        disablePortal
+        options={postOffices}
+        value={postOffice}
+        onChange={handlePostOfficeChange}
+        renderOption={(props, option) => {
+          return (
+            <li {...props} key={option}>
+              {option}
+            </li>
+          );
+        }}
+        renderTags={(tagValue, getTagProps) => {
+          return tagValue.map((option, index) => (
+            <Chip {...getTagProps({ index })} key={option} label={option} />
+          ));
+        }}
+        renderInput={(params) => (
+          <TextField
+            value={inputCity}
+            onChange={handlePostOfficeInput}
+            {...params}
+            label="Почтовое отделение"
           />
         )}
       />

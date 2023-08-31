@@ -1,7 +1,7 @@
 "use client";
 import "./Checkout.scss";
 import { Button, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Ellipsis from "../Ellipsis/Ellipsis";
 import PostOfficeSelect from "../PostOfficeSelect/PostOfficeSelect";
@@ -33,7 +33,10 @@ function Checkout() {
   };
 
   const [city, setCity] = useState(null);
-  const [postOffice, setPostOffice] = useState("");
+  const [postOffice, setPostOffice] = useState(null);
+
+  console.log(city);
+  console.log(postOffice);
 
   return (
     <div className="checkout">
