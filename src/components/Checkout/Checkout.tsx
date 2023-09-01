@@ -3,6 +3,7 @@ import "./Checkout.scss";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { CartProduct } from "@/types";
 import Ellipsis from "../Ellipsis/Ellipsis";
 import PostOfficeSelect from "../PostOfficeSelect/PostOfficeSelect";
 
@@ -14,7 +15,13 @@ interface FormCheckout {
   message: string;
 }
 
-function Checkout() {
+interface Props {
+  cartProducts: CartProduct[];
+  summary: number;
+}
+
+function Checkout(props: Props) {
+  const { cartProducts, summary } = props;
   const {
     register,
     handleSubmit,
@@ -26,17 +33,32 @@ function Checkout() {
   const [isError, setIsError] = useState(false);
   const [isDisabledBTN, setIsDisabledBTN] = useState(false);
 
-  const submitForm: SubmitHandler<FormCheckout> = async (
-    form: FormCheckout
-  ) => {
-    console.log(form);
-  };
-
   const [city, setCity] = useState(null);
   const [postOffice, setPostOffice] = useState(null);
 
   console.log(city);
   console.log(postOffice);
+  console.log(cartProducts);
+
+  const submitForm: SubmitHandler<FormCheckout> = async (
+    form: FormCheckout
+  ) => {
+    const fullForm = {
+      name: form.name,
+      surname: form.surname,
+      phone: form.phone,
+      email: form.email,
+      message: form.message,
+      city,
+      postOffice,
+      cartProducts,
+      summary,
+    };
+    console.log(fullForm);
+    reset();
+    setCity(null);
+    setPostOffice(null);
+  };
 
   return (
     <div className="checkout">
@@ -117,9 +139,20 @@ function Checkout() {
           setPostOffice={setPostOffice}
         />
 
+        <div className="checkout__title">Ваш заказ</div>
+
+        <div className="checkout__list">
+          {cartProducts.map((cartProduct) => (
+            <div key={cartProduct.product.sku} className="checkout__item">
+              {cartProduct.product.name} - {cartProduct.qty}шт
+            </div>
+          ))}
+          <div className="checkout__total">Сумма: {summary}₴</div>
+        </div>
+
         <TextField
           className="checkout__textarea"
-          label="Ваше сообщение"
+          label="Комментарий к заказу"
           multiline
           rows={4}
           helperText={

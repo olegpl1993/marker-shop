@@ -75,11 +75,11 @@ function PostOfficeSelect(props: Props) {
 
   useEffect(() => {
     const getData = async () => {
-      const cities = await getPostOffices(inputCity);
-      setPostOffices(cities);
+      const postOffices = await getPostOffices(String(city));
+      setPostOffices(postOffices);
     };
-    getData();
-  }, [inputCity]);
+    if (city) getData();
+  }, [city, inputPostOffice]);
 
   const handleCityChange = (_event: any, newValue: SetStateAction<null>) => {
     setCity(newValue);

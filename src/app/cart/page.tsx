@@ -50,7 +50,7 @@ function Cart() {
 
       <Modal isOpen={isOpen} setIsOpen={() => setIsOpen(false)}>
         <div className="cart__modal">
-          <Checkout />
+          <Checkout cartProducts={cartProducts} summary={summary} />
         </div>
       </Modal>
 
