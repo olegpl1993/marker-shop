@@ -1,11 +1,13 @@
 "use client";
 import "./Checkout.scss";
 import { Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CartProduct } from "@/types";
 import Ellipsis from "../Ellipsis/Ellipsis";
 import PostOfficeSelect from "../PostOfficeSelect/PostOfficeSelect";
+import { useAppDispatch } from "@/redux/hooks";
+import { clearCart } from "@/redux/slices/cartSlice";
 
 interface FormCheckout {
   name: string;
@@ -22,6 +24,7 @@ interface Props {
 
 function Checkout(props: Props) {
   const { cartProducts, summary } = props;
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -29,12 +32,17 @@ function Checkout(props: Props) {
     reset,
   } = useForm<FormCheckout>();
 
-  const [isSending, setIsSending] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [city, setCity] = useState(null);
+  const [postOffice, setPostOffice] = useState("");
   const [isDisabledBTN, setIsDisabledBTN] = useState(false);
 
-  const [city, setCity] = useState(null);
-  const [postOffice, setPostOffice] = useState(null);
+  useEffect(() => {
+    if (postOffice) {
+      setIsDisabledBTN(false);
+    } else {
+      setIsDisabledBTN(true);
+    }
+  }, [postOffice]);
 
   console.log(city);
   console.log(postOffice);
@@ -56,8 +64,9 @@ function Checkout(props: Props) {
     };
     console.log(fullForm);
     reset();
+    dispatch(clearCart());
     setCity(null);
-    setPostOffice(null);
+    setPostOffice("");
   };
 
   return (
@@ -147,8 +156,8 @@ function Checkout(props: Props) {
               {cartProduct.product.name} - {cartProduct.qty}шт
             </div>
           ))}
-          <div className="checkout__total">Сумма: {summary}₴</div>
         </div>
+        <div className="checkout__total">Сумма: {summary}₴</div>
 
         <TextField
           className="checkout__textarea"
@@ -176,13 +185,6 @@ function Checkout(props: Props) {
           >
             ЗАКАЗ ПОДТВЕРЖДАЮ
           </Button>
-          {isSending && (
-            <p className="checkout__successText">Заказ в обработке</p>
-          )}
-          {isError && (
-            <p className="checkout__errorText">Ошибка подтверждения заказа</p>
-          )}
-          {isDisabledBTN && <Ellipsis />}
         </div>
       </form>
     </div>
