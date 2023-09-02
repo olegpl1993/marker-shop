@@ -4,10 +4,10 @@ import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CartProduct } from "@/types";
-import Ellipsis from "../Ellipsis/Ellipsis";
 import PostOfficeSelect from "../PostOfficeSelect/PostOfficeSelect";
 import { useAppDispatch } from "@/redux/hooks";
 import { clearCart } from "@/redux/slices/cartSlice";
+import Ellipsis from "../Ellipsis/Ellipsis";
 
 interface FormCheckout {
   name: string;
@@ -35,23 +35,28 @@ function Checkout(props: Props) {
   const [city, setCity] = useState(null);
   const [postOffice, setPostOffice] = useState("");
   const [isDisabledBTN, setIsDisabledBTN] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [isSended, setIsSended] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    if (postOffice) {
+    if (postOffice && city) {
       setIsDisabledBTN(false);
     } else {
       setIsDisabledBTN(true);
     }
   }, [postOffice]);
 
-  console.log(city);
-  console.log(postOffice);
-  console.log(cartProducts);
+  const sendProducts = `${cartProducts.map(
+    (product) =>
+      `\n${product.product.sku} ${product.product.name} - ${product.qty} шт.`
+  )}`;
 
   const submitForm: SubmitHandler<FormCheckout> = async (
     form: FormCheckout
   ) => {
     const fullForm = {
+      checkoutNumber: Math.floor(Math.random() * 1000000),
       name: form.name,
       surname: form.surname,
       phone: form.phone,
@@ -59,14 +64,39 @@ function Checkout(props: Props) {
       message: form.message,
       city,
       postOffice,
-      cartProducts,
+      sendProducts,
       summary,
     };
     console.log(fullForm);
-    reset();
-    dispatch(clearCart());
-    setCity(null);
-    setPostOffice("");
+
+    setIsDisabledBTN(true);
+    setIsSending(true);
+    const response = await fetch("/api/checkout", {
+      method: "POST",
+      body: JSON.stringify(fullForm),
+    });
+
+    console.log(response);
+
+    if (response.status === 200) {
+      setIsSended(true);
+      setIsSending(false);
+      setTimeout(() => {
+        setIsSended(false);
+        reset();
+        dispatch(clearCart());
+        setCity(null);
+        setPostOffice("");
+        setIsDisabledBTN(false);
+      }, 3000);
+    } else {
+      setIsError(true);
+      setIsSending(false);
+      setTimeout(() => {
+        setIsError(false);
+        setIsDisabledBTN(false);
+      }, 3000);
+    }
   };
 
   return (
@@ -123,22 +153,6 @@ function Checkout(props: Props) {
           })}
         />
 
-        <TextField
-          label="E-mail"
-          variant="outlined"
-          className="checkout__input"
-          type="email"
-          helperText={errors.email && errors.email.message}
-          error={!!errors.email}
-          {...register("email", {
-            required: "Поле обязательно для заполнения",
-            pattern: {
-              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-              message: "Введите корректный email",
-            },
-          })}
-        />
-
         <div className="checkout__title">Доставка</div>
 
         <PostOfficeSelect
@@ -159,6 +173,41 @@ function Checkout(props: Props) {
         </div>
         <div className="checkout__total">Сумма: {summary}₴</div>
 
+        <div className="checkout__row">
+          <Button
+            type="submit"
+            variant="contained"
+            className="checkout__button"
+            size="large"
+            disabled={isDisabledBTN}
+          >
+            ЗАКАЗ ПОДТВЕРЖДАЮ
+          </Button>
+          {isSended && (
+            <p className="checkout__successText">Письмо отправлено</p>
+          )}
+          {isError && <p className="checkout__errorText">Ошибка отправки</p>}
+          {isSending && <Ellipsis />}
+        </div>
+
+        <div className="checkout__title">Дополнительные поля</div>
+
+        <TextField
+          label="E-mail"
+          variant="outlined"
+          className="checkout__input"
+          type="email"
+          helperText={errors.email && errors.email.message}
+          error={!!errors.email}
+          {...register("email", {
+            required: false,
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+              message: "Введите корректный email",
+            },
+          })}
+        />
+
         <TextField
           className="checkout__textarea"
           label="Комментарий к заказу"
@@ -174,18 +223,6 @@ function Checkout(props: Props) {
             maxLength: 999,
           })}
         />
-
-        <div className="checkout__row">
-          <Button
-            type="submit"
-            variant="contained"
-            className="checkout__button"
-            size="large"
-            disabled={isDisabledBTN}
-          >
-            ЗАКАЗ ПОДТВЕРЖДАЮ
-          </Button>
-        </div>
       </form>
     </div>
   );
