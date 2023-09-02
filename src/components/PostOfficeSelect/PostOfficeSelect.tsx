@@ -1,5 +1,14 @@
 "use client";
-import { Autocomplete, Chip, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  Chip,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  TextField,
+} from "@mui/material";
 import "./PostOfficeSelect.scss";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
@@ -15,7 +24,7 @@ const getCities = async (input: string) => {
       calledMethod: "getCities",
       methodProperties: {
         FindByString: input,
-        Limit: "5",
+        Limit: "4",
       },
     }),
   });
@@ -52,8 +61,8 @@ const getPostOffices = async (input: string) => {
 interface Props {
   city: null;
   setCity: Dispatch<SetStateAction<null>>;
-  postOffice: null;
-  setPostOffice: Dispatch<SetStateAction<null>>;
+  postOffice: string;
+  setPostOffice: Dispatch<SetStateAction<string>>;
 }
 
 function PostOfficeSelect(props: Props) {
@@ -61,8 +70,6 @@ function PostOfficeSelect(props: Props) {
 
   const [inputCity, setInputCity] = useState("");
   const [cities, setCities] = useState([]);
-
-  const [inputPostOffice, setInputPostOffice] = useState("");
   const [postOffices, setPostOffices] = useState([]);
 
   useEffect(() => {
@@ -79,7 +86,7 @@ function PostOfficeSelect(props: Props) {
       setPostOffices(postOffices);
     };
     if (city) getData();
-  }, [city, inputPostOffice]);
+  }, [city]);
 
   const handleCityChange = (_event: any, newValue: SetStateAction<null>) => {
     setCity(newValue);
@@ -89,15 +96,8 @@ function PostOfficeSelect(props: Props) {
     setInputCity(event.target.value);
   };
 
-  const handlePostOfficeChange = (
-    _event: any,
-    newValue: SetStateAction<null>
-  ) => {
-    setPostOffice(newValue);
-  };
-
-  const handlePostOfficeInput = (event: any) => {
-    setInputPostOffice(event.target.value);
+  const handlePostOfficeChange = (event: SelectChangeEvent) => {
+    setPostOffice(event.target.value as string);
   };
 
   return (
@@ -130,33 +130,22 @@ function PostOfficeSelect(props: Props) {
         )}
       />
 
-      <Autocomplete
-        className="postOfficeSelect__autocomplete"
-        disablePortal
-        options={postOffices}
-        value={postOffice}
-        onChange={handlePostOfficeChange}
-        renderOption={(props, option) => {
-          return (
-            <li {...props} key={option}>
-              {option}
-            </li>
-          );
-        }}
-        renderTags={(tagValue, getTagProps) => {
-          return tagValue.map((option, index) => (
-            <Chip {...getTagProps({ index })} key={option} label={option} />
-          ));
-        }}
-        renderInput={(params) => (
-          <TextField
-            value={inputCity}
-            onChange={handlePostOfficeInput}
-            {...params}
+      {city && (
+        <FormControl fullWidth>
+          <InputLabel>Почтовое отделение</InputLabel>
+          <Select
+            value={postOffice}
             label="Почтовое отделение"
-          />
-        )}
-      />
+            onChange={handlePostOfficeChange}
+          >
+            {postOffices.map((postOffice) => (
+              <MenuItem key={postOffice} value={postOffice}>
+                {postOffice}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      )}
     </div>
   );
 }
