@@ -13,49 +13,29 @@ import "./PostOfficeSelect.scss";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 const getCities = async (input: string) => {
-  const response = await fetch("https://api.novaposhta.ua/v2.0/json/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      apiKey: "3be575a17e86b2cc3677024d2e1a4a49",
-      modelName: "Address",
-      calledMethod: "getCities",
-      methodProperties: {
-        FindByString: input,
-        Limit: "4",
-      },
-    }),
-  });
-  const data = await response.json();
-  const citiesArray = data.data.map((city: any) =>
-    city.DescriptionRu ? city.DescriptionRu : city.Description
-  );
-  return citiesArray;
+  try {
+    const response = await fetch("/api/cities", {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+    const { citiesArray } = await response.json();
+    return citiesArray;
+  } catch {
+    return [];
+  }
 };
 
 const getPostOffices = async (input: string) => {
-  const response = await fetch("https://api.novaposhta.ua/v2.0/json/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      apiKey: "3be575a17e86b2cc3677024d2e1a4a49",
-      modelName: "Address",
-      calledMethod: "getWarehouses",
-      methodProperties: {
-        CityName: input,
-        Language: "RU",
-      },
-    }),
-  });
-  const data = await response.json();
-  const postOfficesArray = data.data.map((postOffice: any) =>
-    postOffice.DescriptionRu ? postOffice.DescriptionRu : postOffice.Description
-  );
-  return postOfficesArray;
+  try {
+    const response = await fetch("/api/postOffices", {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+    const { postOfficesArray } = await response.json();
+    return postOfficesArray;
+  } catch {
+    return [];
+  }
 };
 
 interface Props {
