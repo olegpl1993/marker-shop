@@ -83,11 +83,11 @@ function Checkout(props: Props) {
       setIsSending(false);
       setTimeout(() => {
         setIsSended(false);
+        setIsDisabledBTN(false);
         reset();
         dispatch(clearCart());
         setCity(null);
         setPostOffice("");
-        setIsDisabledBTN(false);
       }, 3000);
     } else {
       setIsError(true);

@@ -20,30 +20,35 @@ function FeedbackForm() {
   } = useForm<FormFeedback>();
 
   const [isSending, setIsSending] = useState(false);
+  const [isSended, setIsSended] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isDisabledBTN, setIsDisabledBTN] = useState(false);
 
   const submitForm: SubmitHandler<FormFeedback> = async (
     form: FormFeedback
   ) => {
+    setIsSending(true);
     setIsDisabledBTN(true);
     const response = await fetch("/api/feedback", {
       method: "POST",
       body: JSON.stringify(form),
     });
     if (response.status === 200) {
-      setIsSending(true);
-      setIsError(false);
-      reset();
+      setIsSended(true);
+      setIsSending(false);
+      setTimeout(() => {
+        setIsSended(false);
+        setIsDisabledBTN(false);
+        reset();
+      }, 3000);
     } else {
       setIsError(true);
       setIsSending(false);
+      setTimeout(() => {
+        setIsError(false);
+        setIsDisabledBTN(false);
+      }, 3000);
     }
-    setTimeout(() => {
-      setIsSending(false);
-      setIsError(false);
-    }, 3000);
-    setIsDisabledBTN(false);
   };
 
   return (
@@ -112,13 +117,13 @@ function FeedbackForm() {
           >
             ОТПРАВИТЬ
           </Button>
-          {isSending && (
+          {isSended && (
             <p className="feedbackForm__successText">Письмо отправлено</p>
           )}
           {isError && (
             <p className="feedbackForm__errorText">Ошибка отправки</p>
           )}
-          {isDisabledBTN && <Ellipsis />}
+          {isSending && <Ellipsis />}
         </div>
       </form>
     </Paper>
