@@ -5,11 +5,22 @@ import Link from "next/link";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { IconButton } from "@mui/material";
 import Menu from "../Menu/Menu";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useEffect } from "react";
+import { changeCart } from "@/redux/slices/cartSlice";
 
 function Header() {
   const cart = useAppSelector((state) => state.cartReducer.cart);
   const qtyProductsInCart = cart.reduce((acc, item) => acc + item.qty, 0);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart") || "[]")
+      : [];
+    console.log(storedCart);
+    dispatch(changeCart(storedCart));
+  }, []);
 
   return (
     <header className="header">
