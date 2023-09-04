@@ -20,9 +20,11 @@ const cartSlice = createSlice({
       } else {
         state.cart.push({ id: action.payload, qty: 1 });
       }
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     deleteFromCart(state, action: PayloadAction<string>) {
       state.cart = state.cart.filter((item) => item.id !== action.payload);
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     minusQty(state, action: PayloadAction<string>) {
       const existingItem = state.cart.find(
@@ -33,13 +35,19 @@ const cartSlice = createSlice({
       } else {
         state.cart = state.cart.filter((item) => item.id !== action.payload);
       }
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     clearCart(state) {
       state.cart = [];
+      localStorage.setItem("cart", JSON.stringify(state.cart));
+    },
+    changeCart(state, action: PayloadAction<ProductInCart[]>) {
+      state.cart = action.payload;
+      localStorage.setItem("cart", JSON.stringify(state.cart));
     },
   },
 });
 
-export const { addToCart, deleteFromCart, minusQty, clearCart } =
+export const { addToCart, deleteFromCart, minusQty, clearCart, changeCart } =
   cartSlice.actions;
 export default cartSlice.reducer;
