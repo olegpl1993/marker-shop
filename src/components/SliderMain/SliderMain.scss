@@ -1,0 +1,22 @@
+.sliderMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid red;
+  width: 800px;
+  height: 200px;
+
+  &__swiper {
+    border: 1px solid green;
+    padding: 10px;
+  }
+
+  &__slide {
+    border: 1px solid blue;
+  }
+
+  &__img {
+    height: 150px;
+    width: 150px;
+  }
+}
