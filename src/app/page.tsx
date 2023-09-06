@@ -1,9 +1,11 @@
+import SliderMain from "@/components/SliderMain/SliderMain";
 import "./home.scss";
 
 function Home() {
   return (
     <div className="home">
       <h1 className="home__title">Home page</h1>
+      <SliderMain />
       <div className="home__text">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum nihil odit
         illum ducimus voluptas dicta possimus error mollitia aspernatur, sunt
