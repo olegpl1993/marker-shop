@@ -3,8 +3,8 @@
   align-items: center;
   justify-content: center;
   border: 1px solid red;
-  width: 800px;
-  height: 200px;
+  width: 100%;
+  padding: 10px;
 
   &__swiper {
     border: 1px solid green;
@@ -13,10 +13,16 @@
 
   &__slide {
     border: 1px solid blue;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
 
   &__img {
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
   }
 }
