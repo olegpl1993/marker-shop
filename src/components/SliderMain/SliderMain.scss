@@ -2,17 +2,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid red;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   width: 100%;
-  padding: 10px;
 
-  &__swiper {
-    border: 1px solid green;
-    padding: 10px;
+  .sliderMain__swiper {
+    padding: 20px 55px;
   }
 
   &__slide {
-    border: 1px solid blue;
     padding: 10px;
     display: flex;
     flex-direction: column;
