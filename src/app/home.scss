@@ -4,11 +4,9 @@
   justify-content: center;
   flex-direction: column;
   gap: 10px;
+  padding-top: 10px;
 
   &__title {
     font-size: 25px;
-  }
-  &__text {
-    font-size: 30px;
   }
 }
