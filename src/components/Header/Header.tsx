@@ -18,7 +18,6 @@ function Header() {
     const storedCart = localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart") || "[]")
       : [];
-    console.log(storedCart);
     dispatch(changeCart(storedCart));
   }, []);
 
