@@ -12,7 +12,6 @@ import StorePagination from "../StorePagination/StorePagination";
 function Content() {
   const { data } = useGetProductsQuery(null);
   const dispatch = useAppDispatch();
-  const cart = useAppSelector((state) => state.cartReducer.cart);
 
   const priceFilter = useAppSelector(
     (state) => state.priceFilterReducer.priceFilter
