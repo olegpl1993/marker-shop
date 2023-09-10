@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks";
 import { changeSelectedCategories } from "@/redux/slices/selectedCategoriesSlice";
 import { changeCurrentPage } from "@/redux/slices/storePaginationSlice";
+import Spinner from "../Spinner/Spinner";
 
 const getUniqueProducts = (data: Product[]) => {
   const uniqueProducts: Product[] = [];
@@ -110,6 +111,7 @@ function SliderMain() {
       </div>
     );
   }
+  return <Spinner />;
 }
 
 export default SliderMain;
