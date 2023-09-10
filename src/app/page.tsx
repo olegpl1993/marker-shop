@@ -1,6 +1,7 @@
 import "./home.scss";
 import SliderMain from "@/components/SliderMain/SliderMain";
 import RecommendedProducts from "@/components/RecommendedProducts/RecommendedProducts";
+import ScrollToTopButton from "@/components/ScrollToTopButton/ScrollToTopButton";
 
 function Home() {
   return (
@@ -9,6 +10,7 @@ function Home() {
       <SliderMain />
       <p className="home__title">Рекомендуем товары</p>
       <RecommendedProducts />
+      <ScrollToTopButton />
     </div>
   );
 }
