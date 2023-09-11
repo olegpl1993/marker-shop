@@ -27,12 +27,21 @@ function RecommendedProducts() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight
-      )
-        return;
-      setIsLoading(true);
+      const windowHeight = window.innerHeight;
+      const scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      const totalHeight = document.documentElement.offsetHeight;
+      console.log(
+        "windowHeight = ",
+        windowHeight,
+        "scrollTop = ",
+        scrollTop,
+        "totalHeight = ",
+        totalHeight
+      );
+      if (totalHeight - scrollTop <= windowHeight + 10) {
+        setIsLoading(true);
+      }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
