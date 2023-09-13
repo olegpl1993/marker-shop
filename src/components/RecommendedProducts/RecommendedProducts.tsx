@@ -31,7 +31,7 @@ function RecommendedProducts() {
       const scrollTop = document.documentElement.scrollTop;
       const totalHeight = document.documentElement.offsetHeight;
       const currentScrollHeight = totalHeight - scrollTop;
-      const hightToLoad = windowHeight + 20;
+      const hightToLoad = windowHeight + 30;
       if (currentScrollHeight <= hightToLoad) {
         setIsLoading(true);
       }
