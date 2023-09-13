@@ -28,10 +28,11 @@ function RecommendedProducts() {
   useEffect(() => {
     const handleScroll = () => {
       const windowHeight = window.innerHeight;
-      const scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollTop = document.documentElement.scrollTop;
       const totalHeight = document.documentElement.offsetHeight;
-      if (totalHeight - scrollTop <= windowHeight + 10) {
+      const currentScrollHeight = totalHeight - scrollTop;
+      const hightToLoad = windowHeight + 20;
+      if (currentScrollHeight <= hightToLoad) {
         setIsLoading(true);
       }
     };
