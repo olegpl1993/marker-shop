@@ -4,6 +4,10 @@
   justify-content: center;
   gap: 15px;
 
+  @media (max-width: 767px) {
+    display: none;
+  }
+
   &__link {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14px;

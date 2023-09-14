@@ -1,0 +1,29 @@
+.burgerMenu {
+  display: none;
+  color: white;
+
+  @media (max-width: 767px) {
+    display: block;
+  }
+
+  &__modal {
+    height: 50vh;
+    width: 50vw;
+    margin-top: 50px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: scroll;
+    gap: 10px;
+
+    @media (max-width: 413px) {
+      width: 60vw;
+    }
+  }
+
+  &__cartBoxIcon {
+    border: 1px solid red;
+  }
+}
