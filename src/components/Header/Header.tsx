@@ -8,6 +8,7 @@ import Menu from "../Menu/Menu";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useEffect } from "react";
 import { changeCart } from "@/redux/slices/cartSlice";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 function Header() {
   const cart = useAppSelector((state) => state.cartReducer.cart);
@@ -25,7 +26,7 @@ function Header() {
     <header className="header">
       <Logo />
       <Menu />
-      <Link href={"/cart"}>
+      <Link href={"/cart"} className="header__cartLink">
         <IconButton className="header__cartBoxIcon">
           {qtyProductsInCart > 0 && (
             <div className="header__productsQty">{qtyProductsInCart}</div>
@@ -33,6 +34,7 @@ function Header() {
           <ShoppingCartIcon className="header__cartIcon" />
         </IconButton>
       </Link>
+      <BurgerMenu />
     </header>
   );
 }
