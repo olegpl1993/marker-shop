@@ -7,7 +7,6 @@
   }
 
   &__modal {
-    height: 50vh;
     width: 50vw;
     margin-top: 50px;
     padding-bottom: 20px;
@@ -15,15 +14,46 @@
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    overflow-y: scroll;
-    gap: 10px;
+    gap: 15px;
 
     @media (max-width: 413px) {
       width: 60vw;
     }
   }
 
-  &__cartBoxIcon {
-    border: 1px solid red;
+  &__link {
+    color: var(--primary-color);
+    font-size: 23px;
+    &:hover {
+      color: var(--secondary-color);
+    }
+  }
+
+  &__cartIcon {
+    font-size: 90px;
+    color: var(--primary-color);
+    &:hover {
+      color: var(--secondary-color);
+      ~ .burgerMenu__productsQty {
+        border: 2px solid var(--secondary-color);
+        color: var(--secondary-color);
+      }
+    }
+  }
+
+  &__productsQty {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    left: 35%;
+    top: 10%;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    background-color: white;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
   }
 }
