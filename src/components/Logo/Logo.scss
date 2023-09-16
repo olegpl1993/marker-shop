@@ -10,7 +10,7 @@
   padding-top: 5px;
   padding-bottom: 5px;
 
-  @media (max-width: 767px) {
+  @media (max-width: 413px) {
     border-radius: 50%;
     padding: 7px;
   }
@@ -19,7 +19,7 @@
     font-size: 25px;
     color: white;
 
-    @media (max-width: 767px) {
+    @media (max-width: 413px) {
       display: none;
     }
   }

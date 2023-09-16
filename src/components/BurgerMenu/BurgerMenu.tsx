@@ -49,14 +49,14 @@ function BurgerMenu() {
           <IconButton
             className="burgerMenu__cartBoxIcon"
             onClick={() => {
-              router.push("/store");
+              router.push("/cart");
               setIsOpen(false);
             }}
           >
+            <ShoppingCartIcon className="burgerMenu__cartIcon" />
             {qtyProductsInCart > 0 && (
               <div className="burgerMenu__productsQty">{qtyProductsInCart}</div>
             )}
-            <ShoppingCartIcon className="burgerMenu__cartIcon" />
           </IconButton>
         </div>
       </Modal>
