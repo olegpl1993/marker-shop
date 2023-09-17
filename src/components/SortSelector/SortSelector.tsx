@@ -5,17 +5,17 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { changeSort } from "@/redux/slices/sortSlice";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 function SortSelector() {
   const dispatch = useAppDispatch();
   const sort = useAppSelector((state) => state.sortReducer.sort);
-
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
+    const url = new URL(window.location.href);
+    const searchParams = new URLSearchParams(url.search);
     const sortParam = searchParams.get("sort");
     const sortParams = ["title", "cheap", "expensive"];
     const currentSort = sortParams.find((param) => param === sortParam);
@@ -24,18 +24,17 @@ function SortSelector() {
     }
   }, []);
 
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-      return params.toString();
-    },
-    [searchParams]
-  );
+  const createQueryString = (name: string, value: string) => {
+    const url = new URL(window.location.href);
+    const searchParams = new URLSearchParams(url.search);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(name, value);
+    return params.toString();
+  };
 
   const handleChangeSort = (event: SelectChangeEvent) => {
-    router.push(pathname + "?" + createQueryString("sort", event.target.value));
     dispatch(changeSort(event.target.value));
+    router.push(pathname + "?" + createQueryString("sort", event.target.value));
   };
 
   return (
