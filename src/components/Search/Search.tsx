@@ -21,6 +21,7 @@ function Search() {
     const searchParam = searchParams.get("search");
     if (searchParam) {
       dispatch(changeSearch(searchParam));
+      setSearchInput(searchParam);
     }
   }, []);
 
