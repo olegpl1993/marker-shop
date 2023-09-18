@@ -4,12 +4,13 @@ import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { changeSort } from "@/redux/slices/sortSlice";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useRef } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 function SortSelector() {
   const dispatch = useAppDispatch();
   const sort = useAppSelector((state) => state.sortReducer.sort);
+
   const router = useRouter();
   const pathname = usePathname();
 
@@ -28,7 +29,11 @@ function SortSelector() {
     const url = new URL(window.location.href);
     const searchParams = new URLSearchParams(url.search);
     const params = new URLSearchParams(searchParams.toString());
-    params.set(name, value);
+    if (value === "") {
+      params.delete(name);
+    } else {
+      params.set(name, value);
+    }
     return params.toString();
   };
 
