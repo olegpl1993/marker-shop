@@ -29,7 +29,11 @@ function SortSelector() {
     const url = new URL(window.location.href);
     const searchParams = new URLSearchParams(url.search);
     const params = new URLSearchParams(searchParams.toString());
-    params.set(name, value);
+    if (value === "") {
+      params.delete(name);
+    } else {
+      params.set(name, value);
+    }
     return params.toString();
   };
 
