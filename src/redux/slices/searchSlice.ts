@@ -8,8 +8,8 @@ const searchSlice = createSlice({
   },
   reducers: {
     initializeSelectedSearch(state) {
-      const search = getDataUrl("search");
-      if (search) state.search = JSON.parse(search);
+      const initialParams = getDataUrl("search");
+      if (initialParams) state.search = JSON.parse(initialParams);
     },
     changeSearch(state, action: PayloadAction<string>) {
       state.search = action.payload;
