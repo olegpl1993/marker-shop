@@ -9,9 +9,7 @@ const selectedCategoriesSlice = createSlice({
   reducers: {
     initializeSelectedCategories(state) {
       const categories = getDataUrl("categories");
-      if (categories) {
-        state.selectedCategories = JSON.parse(categories);
-      }
+      if (categories) state.selectedCategories = JSON.parse(categories);
     },
     changeSelectedCategories(state, action: PayloadAction<String[]>) {
       state.selectedCategories = action.payload;
