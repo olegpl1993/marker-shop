@@ -6,7 +6,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { useEffect } from "react";
 import { initializeSelectedSearch } from "@/redux/slices/searchSlice";
 import { initializeSelectedCategories } from "@/redux/slices/selectedCategoriesSlice";
-import { initializeProductsOnPage } from "@/redux/slices/storePaginationSlice";
+import { initializeStorePagination } from "@/redux/slices/storePaginationSlice";
 import { initializeSort } from "@/redux/slices/sortSlice";
 
 function Store() {
@@ -15,7 +15,7 @@ function Store() {
   useEffect(() => {
     dispatch(initializeSelectedSearch());
     dispatch(initializeSelectedCategories());
-    dispatch(initializeProductsOnPage());
+    dispatch(initializeStorePagination());
     dispatch(initializeSort());
   }, []);
 

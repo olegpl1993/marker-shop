@@ -9,12 +9,15 @@ const storePaginationSlice = createSlice({
     productsOnPage: 20,
   },
   reducers: {
-    initializeProductsOnPage(state) {
-      const initialParams = getDataUrl("productsOnPage");
-      if (initialParams) state.productsOnPage = JSON.parse(initialParams);
+    initializeStorePagination(state) {
+      const currentPage = getDataUrl("currentPage");
+      if (currentPage) state.currentPage = JSON.parse(currentPage);
+      const productsOnPage = getDataUrl("productsOnPage");
+      if (productsOnPage) state.productsOnPage = JSON.parse(productsOnPage);
     },
     changeCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
+      setDataUrl("currentPage", JSON.stringify(action.payload));
     },
     changePageQty(state, action: PayloadAction<number>) {
       state.pageQty = action.payload;
@@ -30,6 +33,6 @@ export const {
   changeCurrentPage,
   changePageQty,
   changeProductsOnPage,
-  initializeProductsOnPage,
+  initializeStorePagination,
 } = storePaginationSlice.actions;
 export default storePaginationSlice.reducer;
