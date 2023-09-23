@@ -4,17 +4,19 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, A11y } from "swiper/modules";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { A11y } from "swiper/modules";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
 import { Product } from "@/types";
-import { Paper } from "@mui/material";
+import { IconButton, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks";
 import { changeSelectedCategories } from "@/redux/slices/selectedCategoriesSlice";
 import { changeCurrentPage } from "@/redux/slices/storePaginationSlice";
 import Spinner from "../Spinner/Spinner";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
 const getUniqueProducts = (data: Product[]) => {
   const uniqueProducts: Product[] = [];
@@ -30,6 +32,12 @@ function SliderMain() {
   const { data } = useGetProductsQuery(null);
   const router = useRouter();
   const dispatch = useAppDispatch();
+
+  const handleRedirectToStore = (category: string) => {
+    dispatch(changeCurrentPage(1));
+    dispatch(changeSelectedCategories([category]));
+    router.push("/store");
+  };
 
   const [swiperParams, setSwiperParams] = useState({
     slidesPerView: 5,
@@ -73,23 +81,41 @@ function SliderMain() {
     };
   }, []);
 
-  const handleRedirectToStore = (category: string) => {
-    dispatch(changeCurrentPage(1));
-    dispatch(changeSelectedCategories([category]));
-    router.push("/store");
+  const SwiperButtonPrev = () => {
+    const swiper = useSwiper();
+    return (
+      <IconButton
+        className="sliderMain__iconButtonBefore"
+        onClick={() => swiper.slidePrev()}
+      >
+        <NavigateBeforeIcon className="sliderMain__navigateIcon" />
+      </IconButton>
+    );
+  };
+
+  const SwiperButtonNext = () => {
+    const swiper = useSwiper();
+    return (
+      <IconButton
+        className="sliderMain__iconButtonNext"
+        onClick={() => swiper.slideNext()}
+      >
+        <NavigateNextIcon className="sliderMain__navigateIcon" />
+      </IconButton>
+    );
   };
 
   if (data) {
     const uniqueProducts = getUniqueProducts(data);
-
     return (
       <div className="sliderMain">
         <Swiper
-          modules={[Navigation, A11y]}
+          modules={[A11y]}
           className="sliderMain__swiper"
-          navigation
           {...swiperParams}
         >
+          <SwiperButtonPrev />
+          <SwiperButtonNext />
           {uniqueProducts.map((product) => (
             <SwiperSlide key={product.sku}>
               <Paper
