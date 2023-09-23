@@ -4,7 +4,13 @@ import { Product } from "@/types";
 import { useState } from "react";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import { IconButton } from "@mui/material";
+import { IconButton, Paper } from "@mui/material";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { A11y } from "swiper/modules";
 
 interface Props {
   productData: Product;
@@ -13,64 +19,76 @@ interface Props {
 function Gallery(props: Props) {
   const { productData } = props;
   const { gallery } = productData;
-  const [mainImg, setMainImg] = useState(productData.gallery[0]);
 
-  const handleBeforeImg = () => {
-    const currentImgNumber = gallery.indexOf(mainImg);
-    if (currentImgNumber === 0) {
-      setMainImg(gallery[gallery.length - 1]);
-    } else {
-      setMainImg(gallery[currentImgNumber - 1]);
-    }
+  const SwiperButtonPrev = () => {
+    const swiper = useSwiper();
+    return (
+      <IconButton
+        className="gallery__iconButtonBefore"
+        onClick={() => {
+          swiper.slidePrev();
+        }}
+      >
+        <NavigateBeforeIcon className="gallery__navigateIcon" />
+      </IconButton>
+    );
   };
 
-  const handleNextImg = () => {
-    const currentImgNumber = gallery.indexOf(mainImg);
-    if (currentImgNumber === gallery.length - 1) {
-      setMainImg(gallery[0]);
-    } else {
-      setMainImg(gallery[currentImgNumber + 1]);
-    }
+  const SwiperButtonNext = () => {
+    const swiper = useSwiper();
+    return (
+      <IconButton
+        className="gallery__iconButtonNext"
+        onClick={() => {
+          swiper.slideNext();
+        }}
+      >
+        <NavigateNextIcon className="gallery__navigateIcon" />
+      </IconButton>
+    );
+  };
+
+  const SwiperSlideSelector = () => {
+    const swiper = useSwiper();
+    return (
+      <div className="gallery__imgBox">
+        {productData.gallery.map((img, index) => (
+          <img
+            key={img}
+            className={"gallery__smallImg"}
+            src={img}
+            alt={productData.name}
+            loading="lazy"
+            onClick={() => {
+              swiper.slideTo(index);
+            }}
+          />
+        ))}
+      </div>
+    );
   };
 
   return (
     <div className="gallery">
-      <div className="gallery__mainImgBox">
-        <IconButton
-          className="gallery__iconButtonBefore"
-          onClick={handleBeforeImg}
-        >
-          <NavigateBeforeIcon
-            className="gallery__navigateIcon"
-          />
-        </IconButton>
+      <Swiper
+        modules={[A11y]}
+        className="gallery__swiper"
+        slidesPerView={1}
+        spaceBetween={"50px"}
+      >
+        <SwiperButtonPrev />
+        <SwiperButtonNext />
 
-        <img
-          className="gallery__mainImg"
-          src={mainImg}
-          alt={productData.name}
-          loading="lazy"
-        />
-
-        <IconButton className="gallery__iconButtonNext" onClick={handleNextImg}>
-          <NavigateNextIcon className="gallery__navigateIcon" />
-        </IconButton>
-      </div>
-
-      <div className="gallery__imgBox">
-        {productData.gallery.map((img) => (
-          <img
-            key={img}
-            className={`gallery__smallImg ${
-              mainImg === img ? "gallery__smallImg_active" : ""
-            }`}
-            src={img}
-            alt={productData.name}
-            loading="lazy"
-            onClick={() => setMainImg(img)}
-          />
+        {gallery.map((productImg) => (
+          <SwiperSlide key={productImg} className="gallery__slide">
+            <Paper elevation={3} className="gallery__paper">
+              <img src={productImg} alt={productImg} className="gallery__img" />
+            </Paper>
+          </SwiperSlide>
         ))}
-      </div>
+
+        <SwiperSlideSelector />
+      </Swiper>
     </div>
   );
 }
