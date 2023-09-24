@@ -36,6 +36,8 @@ function Gallery(props: Props) {
 
   const SwiperButtonNext = () => {
     const swiper = useSwiper();
+    let activeIndex = swiper.activeIndex;
+    console.log(activeIndex);
     return (
       <IconButton
         className="gallery__iconButtonNext"
@@ -49,13 +51,20 @@ function Gallery(props: Props) {
   };
 
   const SwiperSlideSelector = () => {
+    const [activeIndex, setActiveIndex] = useState(0);
     const swiper = useSwiper();
+    swiper.on("slideChange", () => {
+      setActiveIndex(swiper.activeIndex);
+    });
     return (
       <div className="gallery__imgBox">
         {productData.gallery.map((img, index) => (
           <img
             key={img}
-            className={"gallery__smallImg"}
+            className={
+              "gallery__smallImg " +
+              (activeIndex === index ? "gallery__smallImg_active" : "")
+            }
             src={img}
             alt={productData.name}
             loading="lazy"

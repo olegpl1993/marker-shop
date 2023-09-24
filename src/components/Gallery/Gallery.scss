@@ -103,5 +103,9 @@
       height: 40px;
       width: 40px;
     }
+
+    &_active {
+      outline: 1px solid var(--secondary-color);
+    }
   }
 }
