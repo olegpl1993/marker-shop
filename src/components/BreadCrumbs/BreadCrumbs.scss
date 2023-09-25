@@ -1,0 +1,25 @@
+.breadCrumbs {
+  width: 100%;
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+
+  &__item {
+    display: flex;
+    align-items: center;
+  }
+
+  &__link {
+    cursor: pointer;
+    color: var(--primary-text-color);
+    &:hover {
+      color: var(--secondary-color);
+      text-decoration: underline;
+    }
+  }
+
+  &__separator {
+    margin: 0 5px;
+  }
+}
