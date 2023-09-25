@@ -4,6 +4,9 @@ import "./product.scss";
 import Spinner from "@/components/Spinner/Spinner";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
 import ProductDescription from "@/components/ProductDescription/ProductDescription";
+import Link from "next/link";
+import HomeIcon from "@mui/icons-material/Home";
+import BreadCrumbs from "@/components/BreadCrumbs/BreadCrumbs";
 
 interface Props {
   params: {
@@ -31,8 +34,11 @@ function Product(props: Props) {
   if (productData) {
     return (
       <div className="product">
-        <Gallery productData={productData} />
-        <ProductDescription productData={productData} />
+        <BreadCrumbs productData={productData} />
+        <div className="product__section">
+          <Gallery productData={productData} />
+          <ProductDescription productData={productData} />
+        </div>
       </div>
     );
   }

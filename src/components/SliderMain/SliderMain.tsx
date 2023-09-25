@@ -31,12 +31,9 @@ const getUniqueProducts = (data: Product[]) => {
 function SliderMain() {
   const { data } = useGetProductsQuery(null);
   const router = useRouter();
-  const dispatch = useAppDispatch();
 
   const handleRedirectToStore = (category: string) => {
-    dispatch(changeCurrentPage(1));
-    dispatch(changeSelectedCategories([category]));
-    router.push("/store");
+    router.push(`/store?categories=%5B"${category}"%5D&currentPage=1`);
   };
 
   const [swiperParams, setSwiperParams] = useState({
