@@ -1,9 +1,9 @@
 "use client";
 import "./RenderStore.scss";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
-import Spinner from "../Spinner/Spinner";
 import Sidebar from "../Sidebar/Sidebar";
 import Content from "../Content/Content";
+import CubeSpinner from "../CubeSpinner/CubeSpinner";
 
 function RenderStore() {
   const { isLoading, isFetching, data, error } = useGetProductsQuery(null);
@@ -11,7 +11,7 @@ function RenderStore() {
   if (isLoading || isFetching) {
     return (
       <div>
-        <Spinner />
+        <CubeSpinner />
       </div>
     );
   }

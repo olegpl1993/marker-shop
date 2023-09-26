@@ -1,12 +1,10 @@
 "use client";
 import Gallery from "@/components/Gallery/Gallery";
 import "./product.scss";
-import Spinner from "@/components/Spinner/Spinner";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
 import ProductDescription from "@/components/ProductDescription/ProductDescription";
-import Link from "next/link";
-import HomeIcon from "@mui/icons-material/Home";
 import BreadCrumbs from "@/components/BreadCrumbs/BreadCrumbs";
+import CubeSpinner from "@/components/CubeSpinner/CubeSpinner";
 
 interface Props {
   params: {
@@ -22,7 +20,7 @@ function Product(props: Props) {
   if (isLoading || isFetching) {
     return (
       <div className="product">
-        <Spinner />
+        <CubeSpinner />
       </div>
     );
   }

@@ -11,10 +11,6 @@ import { Product } from "@/types";
 import { IconButton, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/redux/hooks";
-import { changeSelectedCategories } from "@/redux/slices/selectedCategoriesSlice";
-import { changeCurrentPage } from "@/redux/slices/storePaginationSlice";
-import Spinner from "../Spinner/Spinner";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
@@ -134,7 +130,6 @@ function SliderMain() {
       </div>
     );
   }
-  return <Spinner />;
 }
 
 export default SliderMain;
