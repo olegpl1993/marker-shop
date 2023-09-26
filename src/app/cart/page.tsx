@@ -1,6 +1,6 @@
 "use client";
-import CartCard from "@/components/CartCard/CartCard";
 import "./cart.scss";
+import CartCard from "@/components/CartCard/CartCard";
 import { useAppSelector } from "@/redux/hooks";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
 import { CartProduct } from "@/types";
@@ -9,6 +9,7 @@ import { Alegreya } from "next/font/google";
 import { useState } from "react";
 import Modal from "@/components/Modal/Modal";
 import Checkout from "@/components/Checkout/Checkout";
+import CubeSpinner from "@/components/CubeSpinner/CubeSpinner";
 
 const alegreya = Alegreya({
   weight: ["400", "500"],
@@ -34,6 +35,14 @@ function Cart() {
     0
   );
 
+  if (!data) {
+    return (
+      <div className="cart">
+        <CubeSpinner />
+      </div>
+    );
+  }
+
   if (cartProducts.length === 0) {
     return (
       <div className="cart">
@@ -42,50 +51,55 @@ function Cart() {
     );
   }
 
-  return (
-    <div className="cart">
-      <div className="cart__titleRow">
-        <h1 className="cart__title">Корзина</h1>
-      </div>
-
-      <Modal isOpen={isOpen} setIsOpen={() => setIsOpen(false)}>
-        <div className="cart__modal">
-          <Checkout cartProducts={cartProducts} summary={summary} />
-        </div>
-      </Modal>
-
-      <div className="cart__box">
-        <div className="cart__content">
-          {cartProducts.map((cartProduct) => (
-            <CartCard key={cartProduct.product.sku} cartProduct={cartProduct} />
-          ))}
+  if (data) {
+    return (
+      <div className="cart">
+        <div className="cart__titleRow">
+          <h1 className="cart__title">Корзина</h1>
         </div>
 
-        <div className="cart__checkout">
-          <div className="cart__checkoutCol">
-            <div className="cart__priceRow">
-              <p className="cart__summary">Итого</p>
-              <div className="cart__price">
-                {summary}
-                <p className={`cart__priceSymbol ${alegreya.className}`}>₴</p>
+        <Modal isOpen={isOpen} setIsOpen={() => setIsOpen(false)}>
+          <div className="cart__modal">
+            <Checkout cartProducts={cartProducts} summary={summary} />
+          </div>
+        </Modal>
+
+        <div className="cart__box">
+          <div className="cart__content">
+            {cartProducts.map((cartProduct) => (
+              <CartCard
+                key={cartProduct.product.sku}
+                cartProduct={cartProduct}
+              />
+            ))}
+          </div>
+
+          <div className="cart__checkout">
+            <div className="cart__checkoutCol">
+              <div className="cart__priceRow">
+                <p className="cart__summary">Итого</p>
+                <div className="cart__price">
+                  {summary}
+                  <p className={`cart__priceSymbol ${alegreya.className}`}>₴</p>
+                </div>
               </div>
+              <Button
+                type="button"
+                variant="contained"
+                className="cart__button"
+                size="large"
+                onClick={() => {
+                  setIsOpen(true);
+                }}
+              >
+                Оформить заказ
+              </Button>
             </div>
-            <Button
-              type="button"
-              variant="contained"
-              className="cart__button"
-              size="large"
-              onClick={() => {
-                setIsOpen(true);
-              }}
-            >
-              Оформить заказ
-            </Button>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Cart;

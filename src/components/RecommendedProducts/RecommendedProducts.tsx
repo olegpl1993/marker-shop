@@ -1,10 +1,10 @@
 "use client";
 import "./RecommendedProducts.scss";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
-import Spinner from "../Spinner/Spinner";
 import { Product } from "@/types";
 import StoreCard from "../StoreCard/StoreCard";
 import { useEffect, useState } from "react";
+import Spinner from "../Spinner/Spinner";
 
 const getRandomProducts = (products: Product[], numberOfProducts: number) => {
   const randomProducts = [];
@@ -59,8 +59,6 @@ function RecommendedProducts() {
       </div>
     );
   }
-
-  return <Spinner />;
 }
 
 export default RecommendedProducts;
