@@ -19,7 +19,7 @@ function Product(props: Props) {
 
   if (isLoading || isFetching) {
     return (
-      <div className="product">
+      <div className="cubeSpinnerContainer">
         <CubeSpinner />
       </div>
     );

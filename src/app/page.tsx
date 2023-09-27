@@ -25,10 +25,8 @@ function Home() {
   }
 
   return (
-    <div className="container">
-      <div className="home">
-        <CubeSpinner />
-      </div>
+    <div className="cubeSpinnerContainer">
+      <CubeSpinner />
     </div>
   );
 }
