@@ -10,7 +10,7 @@ function RenderStore() {
 
   if (isLoading || isFetching) {
     return (
-      <div>
+      <div className="cubeSpinnerContainer">
         <CubeSpinner />
       </div>
     );

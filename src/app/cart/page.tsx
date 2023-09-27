@@ -37,7 +37,7 @@ function Cart() {
 
   if (!data) {
     return (
-      <div className="cart">
+      <div className="cubeSpinnerContainer">
         <CubeSpinner />
       </div>
     );
