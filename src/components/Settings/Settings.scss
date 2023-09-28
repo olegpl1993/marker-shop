@@ -10,6 +10,18 @@
   min-height: 50px;
   gap: 5px;
 
+  @media (max-width: 767px) {
+    padding: 5px 7px;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 5px;
+  }
+
   &__modal {
     height: 70vh;
     width: 300px;
@@ -21,10 +33,6 @@
     flex-direction: column;
     overflow-y: scroll;
     gap: 10px;
-  }
-
-  @media (max-width: 767px) {
-    padding: 5px 7px;
   }
 
   &__filterButton {
@@ -46,7 +54,7 @@
 
     @media (max-width: 767px) {
       height: 30px;
-      width: 90px;
+      width: 85px;
       font-size: 12px;
     }
   }
