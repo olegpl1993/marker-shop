@@ -12,6 +12,11 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: "Интернет-магазин MARKER SHOP",
+  keywords: "MARKER SHOP, онлайн-магазин, товары для всей семьи",
+  openGraph: {
+    title: "Интернет-магазин MARKER SHOP",
+    images: "https://xl-static.rozetka.com.ua/assets/img/main/rozetka.png",
+  },
   description: `Интернет-магазин MARKER SHOP: 
     ✓ Электроника, одежда и обувь, бытовая техника, товары для дома и бизнеса 
     ✓ Официальная гарантия 
