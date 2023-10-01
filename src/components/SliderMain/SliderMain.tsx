@@ -37,33 +37,23 @@ function SliderMain() {
     spaceBetween: 60,
   });
 
+  const mediaQueries = [
+    { query: "(max-width: 767px)", slidesPerView: 1, spaceBetween: 20 },
+    { query: "(max-width: 1023px)", slidesPerView: 2, spaceBetween: 60 },
+    { query: "(max-width: 1279px)", slidesPerView: 3, spaceBetween: 60 },
+    { query: "(max-width: 1599px)", slidesPerView: 4, spaceBetween: 60 },
+    { query: "(min-width: 1600px)", slidesPerView: 5, spaceBetween: 60 },
+  ];
+
   const updateSwiperParams = () => {
-    if (window.matchMedia("(max-width: 767px)").matches) {
+    const matchedQuery = mediaQueries.find(
+      (query) => window.matchMedia(query.query).matches
+    );
+    if (matchedQuery)
       setSwiperParams({
-        slidesPerView: 1,
-        spaceBetween: 20,
+        slidesPerView: matchedQuery.slidesPerView,
+        spaceBetween: matchedQuery.spaceBetween,
       });
-    } else if (window.matchMedia("(max-width: 1023px)").matches) {
-      setSwiperParams({
-        slidesPerView: 2,
-        spaceBetween: 60,
-      });
-    } else if (window.matchMedia("(max-width: 1279px)").matches) {
-      setSwiperParams({
-        slidesPerView: 3,
-        spaceBetween: 60,
-      });
-    } else if (window.matchMedia("(max-width: 1599px)").matches) {
-      setSwiperParams({
-        slidesPerView: 4,
-        spaceBetween: 60,
-      });
-    } else {
-      setSwiperParams({
-        slidesPerView: 5,
-        spaceBetween: 60,
-      });
-    }
   };
 
   useEffect(() => {
