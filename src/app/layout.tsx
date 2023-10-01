@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   keywords: "MARKER SHOP, онлайн-магазин, товары для всей семьи",
   openGraph: {
     title: "Интернет-магазин MARKER SHOP",
-    images: "../../public/logo.png",
+    images: "./logo.png",
     description: `Интернет-магазин MARKER SHOP: 
     ✓ Электроника, одежда и обувь, бытовая техника, товары для дома и бизнеса 
     ✓ Официальная гарантия 
