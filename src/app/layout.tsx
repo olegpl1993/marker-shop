@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <Providers>
-      <html lang="en">
+      <html lang="ru">
         <MuiCustomStylesProvider>
           <body className={`body ${roboto.className}`}>
             <div className="wrapper">
