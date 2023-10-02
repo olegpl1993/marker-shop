@@ -1,4 +1,4 @@
-"use cliet";
+"use client";
 import "./Gallery.scss";
 import { Product } from "@/types";
 import { useState } from "react";
@@ -36,8 +36,6 @@ function Gallery(props: Props) {
 
   const SwiperButtonNext = () => {
     const swiper = useSwiper();
-    let activeIndex = swiper.activeIndex;
-    console.log(activeIndex);
     return (
       <IconButton
         className="gallery__iconButtonNext"
