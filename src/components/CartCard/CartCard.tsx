@@ -7,6 +7,7 @@ import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import { useAppDispatch } from "@/redux/hooks";
 import { addToCart, deleteFromCart, minusQty } from "@/redux/slices/cartSlice";
 import { Alegreya } from "next/font/google";
+import { useEffect, useState } from "react";
 
 const alegreya = Alegreya({
   weight: ["400", "500"],
@@ -37,35 +38,28 @@ function CartCard(props: Props) {
     }
   };
 
-  return (
-    <Paper elevation={3} className="cartCard">
-      <div className="cartCard__box">
-        <Link href={`/store/${product.sku}`} className="cartCard__imgBox">
-          <img
-            className="cartCard__img"
-            src={product.gallery[0]}
-            alt={product.name}
-            loading="lazy"
-          />
-        </Link>
-        <div className="cartCard__description">
-          <div className="cartCard__topRow">
-            <Link href={`/store/${product.sku}`} className="cartCard__name">
-              {product.name}
-            </Link>
-            <IconButton
-              className="cartCard__remove"
-              onClick={handleRemoveFromCart}
-            >
-              <RemoveShoppingCartIcon className="cartCard__removeIcon" />
-            </IconButton>
-          </div>
-          <div className="cartCard__row">
-            <div className="cartCard__sku">Код: {product.sku}</div>
-          </div>
-        </div>
-      </div>
+  const [isMobile, setIsMobile] = useState(false);
+  const msq = window.matchMedia("(max-width: 767px)");
 
+  const changeWidth = () => {
+    if (msq.matches) {
+      console.log("mobile");
+      setIsMobile(true);
+    } else {
+      console.log("desktop");
+      setIsMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    msq.addEventListener("change", changeWidth);
+    return () => {
+      msq.removeEventListener("change", changeWidth);
+    };
+  }, []);
+
+  const QtyPriceRow = () => {
+    return (
       <div className="cartCard__row">
         <div className="cartCard__qtyBox">
           <IconButton
@@ -89,6 +83,43 @@ function CartCard(props: Props) {
           <p className={`cartCard__priceSymbol ${alegreya.className}`}>₴</p>
         </div>
       </div>
+    );
+  };
+
+  return (
+    <Paper elevation={3} className="cartCard">
+      <div className="cartCard__box">
+        <Link href={`/store/${product.sku}`} className="cartCard__imgBox">
+          <img
+            className="cartCard__img"
+            src={product.gallery[0]}
+            alt={product.name}
+            loading="lazy"
+          />
+        </Link>
+
+        <div className="cartCard__description">
+          <div className="cartCard__topCol">
+            <div className="cartCard__topRow">
+              <Link href={`/store/${product.sku}`} className="cartCard__name">
+                {product.name}
+              </Link>
+              <IconButton
+                className="cartCard__remove"
+                onClick={handleRemoveFromCart}
+              >
+                <RemoveShoppingCartIcon className="cartCard__removeIcon" />
+              </IconButton>
+            </div>
+            <div className="cartCard__row">
+              <div className="cartCard__sku">Код: {product.sku}</div>
+            </div>
+          </div>
+
+          {!isMobile && <QtyPriceRow />}
+        </div>
+      </div>
+      {isMobile && <QtyPriceRow />}
     </Paper>
   );
 }
