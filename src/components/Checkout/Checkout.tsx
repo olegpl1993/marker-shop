@@ -67,7 +67,6 @@ function Checkout(props: Props) {
       sendProducts,
       summary,
     };
-    console.log(fullForm);
 
     setIsDisabledBTN(true);
     setIsSending(true);
@@ -75,8 +74,6 @@ function Checkout(props: Props) {
       method: "POST",
       body: JSON.stringify(fullForm),
     });
-
-    console.log(response);
 
     if (response.status === 200) {
       setIsSended(true);

@@ -1,10 +1,6 @@
-"use client";
-import Gallery from "@/components/Gallery/Gallery";
 import "./product.scss";
-import { useGetProductsQuery } from "@/redux/services/productsApi";
-import ProductDescription from "@/components/ProductDescription/ProductDescription";
-import BreadCrumbs from "@/components/BreadCrumbs/BreadCrumbs";
-import CubeSpinner from "@/components/CubeSpinner/CubeSpinner";
+import ApiService from "@/app/api/apiService";
+import RenderProduct from "@/components/RenderProduct/RenderProduct";
 
 interface Props {
   params: {
@@ -12,34 +8,30 @@ interface Props {
   };
 }
 
-function Product(props: Props) {
+export async function generateMetadata(props: Props) {
   const { id } = props.params;
-  const { isLoading, isFetching, data, error } = useGetProductsQuery(null);
-  const productData = data?.find((product) => product.sku === id);
-
-  if (isLoading || isFetching) {
-    return (
-      <div className="cubeSpinnerContainer">
-        <CubeSpinner />
-      </div>
-    );
+  const product = await ApiService.getOneProduct(id);
+  if (product) {
+    return {
+      title: product.name,
+      keywords: product.description,
+      description: product.description,
+      openGraph: {
+        title: product.name,
+        images: product.gallery[0],
+        description: product.description,
+      },
+    };
   }
+}
 
-  if (error) {
-    return <div className="product">Error</div>;
-  }
-
-  if (productData) {
-    return (
-      <div className="product">
-        <BreadCrumbs productData={productData} />
-        <div className="product__section">
-          <Gallery productData={productData} />
-          <ProductDescription productData={productData} />
-        </div>
-      </div>
-    );
-  }
+async function Product(props: Props) {
+  const { id } = props.params;
+  return (
+    <div className="product">
+      <RenderProduct id={id} />
+    </div>
+  );
 }
 
 export default Product;
