@@ -9,19 +9,17 @@
   padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
+  cursor: pointer;
+  transition: 0.1s;
 
-  @media (max-width: 413px) {
-    border-radius: 50%;
-    padding: 7px;
+  &:hover {
+    padding-top: 7px;
+    padding-bottom: 7px;
   }
 
   &__text {
     font-size: 25px;
     color: white;
-
-    @media (max-width: 413px) {
-      display: none;
-    }
   }
 
   &__point {

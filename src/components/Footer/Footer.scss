@@ -1,11 +1,48 @@
 .footer {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 50px;
 
-  &__content {
-    text-align: center;
+  @media (max-width: 767px) {
+    height: 90px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__social {
+    position: absolute;
+    right: 0px;
+    display: flex;
+    gap: 5px;
+
+    @media (max-width: 767px) {
+      position: static;
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--secondary-color);
+    }
+  }
+
+  &__icon {
+    font-size: 20px;
+    color: var(--secondary-text-color);
+  }
+
+  &__link:hover &__icon {
+    color: white;
   }
 
   &__info {
