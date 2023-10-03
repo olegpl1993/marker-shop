@@ -1,6 +1,11 @@
 .burgerMenu {
   display: none;
   color: white;
+  transition: 0.3s;
+
+  &:hover {
+    color: var(--secondary-color);
+  }
 
   @media (max-width: 767px) {
     display: block;
@@ -29,16 +34,19 @@
     }
   }
 
+  &__cartBoxIcon:hover &__cartIcon {
+    color: var(--secondary-color);
+  }
+
+  &__cartBoxIcon:hover &__productsQty {
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+  }
+
   &__cartIcon {
     font-size: 90px;
     color: var(--primary-color);
-    &:hover {
-      color: var(--secondary-color);
-      ~ .burgerMenu__productsQty {
-        border: 2px solid var(--secondary-color);
-        color: var(--secondary-color);
-      }
-    }
+    transition: 0.3s;
   }
 
   &__productsQty {
@@ -55,5 +63,6 @@
     align-items: center;
     justify-content: center;
     font-size: 17px;
+    transition: 0.3s;
   }
 }

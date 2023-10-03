@@ -28,6 +28,7 @@
     animation-duration: 0.5s;
     animation-name: boxAnime;
     cursor: auto;
+    border-radius: 4px;
   }
 
   @keyframes boxAnime {
@@ -50,7 +51,7 @@
     height: 20px;
     --weight: 0.5px;
     --aa: 1px;
-    --color: black;
+    --color: gray;
     cursor: pointer;
     background: linear-gradient(
         45deg,
@@ -66,5 +67,11 @@
         var(--color) calc(50% + var(--weight)),
         transparent calc(50% + var(--weight) + var(--aa))
       );
+    transition: 0.1s;
+
+    &:hover {
+      transform: scale(1.05);
+      --color: black;
+    }
   }
 }
