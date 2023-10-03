@@ -27,8 +27,13 @@
   }
 
   &__cartIcon {
-    font-size: 28px;
+    font-size: 30px;
     color: white;
+    transition: 0.3s;
+  }
+
+  &__cartBoxIcon:hover &__cartIcon {
+    color: var(--secondary-color);
   }
 
   &__productsQty {

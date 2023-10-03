@@ -30,6 +30,7 @@
     width: 38px;
     border-radius: 50%;
     cursor: pointer;
+    transition: 0.3s;
 
     &:hover {
       background-color: var(--secondary-color);
