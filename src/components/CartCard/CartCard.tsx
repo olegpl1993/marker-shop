@@ -38,15 +38,13 @@ function CartCard(props: Props) {
     }
   };
 
-  const [isMobile, setIsMobile] = useState(false);
   const msq = window.matchMedia("(max-width: 767px)");
+  const [isMobile, setIsMobile] = useState(msq.matches);
 
   const changeWidth = () => {
     if (msq.matches) {
-      console.log("mobile");
       setIsMobile(true);
     } else {
-      console.log("desktop");
       setIsMobile(false);
     }
   };
