@@ -6,6 +6,7 @@ import RecommendedProducts from "@/components/RecommendedProducts/RecommendedPro
 import ScrollToTopButton from "@/components/ScrollToTopButton/ScrollToTopButton";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
 import CubeSpinner from "@/components/CubeSpinner/CubeSpinner";
+import Principles from "@/components/Principles/Principles";
 
 function Home() {
   const { data } = useGetProductsQuery(null);
@@ -16,6 +17,7 @@ function Home() {
         <div className="home">
           <p className="home__title">Категории товаров</p>
           <SliderMain />
+          <Principles />
           <p className="home__title">Рекомендуем товары</p>
           <RecommendedProducts />
           <ScrollToTopButton />

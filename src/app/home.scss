@@ -3,10 +3,9 @@
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
-  gap: 10px;
-  padding-top: 10px;
 
   &__title {
+    padding: 10px;
     font-size: 25px;
   }
 }
