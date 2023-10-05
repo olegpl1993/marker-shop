@@ -10,6 +10,7 @@ import { useState } from "react";
 import Modal from "@/components/Modal/Modal";
 import Checkout from "@/components/Checkout/Checkout";
 import CubeSpinner from "@/components/CubeSpinner/CubeSpinner";
+import Delivery from "@/components/Delivery/Delivery";
 
 const alegreya = Alegreya({
   weight: ["400", "500"],
@@ -97,6 +98,8 @@ function Cart() {
             </div>
           </div>
         </div>
+
+        <Delivery />
       </div>
     );
   }
