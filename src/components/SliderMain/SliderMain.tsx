@@ -9,7 +9,6 @@ import { A11y } from "swiper/modules";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
 import { Product } from "@/types";
 import { IconButton, Paper } from "@mui/material";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
@@ -31,38 +30,6 @@ function SliderMain() {
   const handleRedirectToStore = (category: string) => {
     router.push(`/store?categories=%5B"${category}"%5D&currentPage=1`);
   };
-
-  const [swiperParams, setSwiperParams] = useState({
-    slidesPerView: 5,
-    spaceBetween: 60,
-  });
-
-  const mediaQueries = [
-    { query: "(max-width: 767px)", slidesPerView: 1, spaceBetween: 20 },
-    { query: "(max-width: 1023px)", slidesPerView: 2, spaceBetween: 60 },
-    { query: "(max-width: 1279px)", slidesPerView: 3, spaceBetween: 60 },
-    { query: "(max-width: 1599px)", slidesPerView: 4, spaceBetween: 60 },
-    { query: "(min-width: 1600px)", slidesPerView: 5, spaceBetween: 60 },
-  ];
-
-  const updateSwiperParams = () => {
-    const matchedQuery = mediaQueries.find(
-      (query) => window.matchMedia(query.query).matches
-    );
-    if (matchedQuery)
-      setSwiperParams({
-        slidesPerView: matchedQuery.slidesPerView,
-        spaceBetween: matchedQuery.spaceBetween,
-      });
-  };
-
-  useEffect(() => {
-    updateSwiperParams();
-    window.addEventListener("resize", updateSwiperParams);
-    return () => {
-      window.removeEventListener("resize", updateSwiperParams);
-    };
-  }, []);
 
   const SwiperButtonPrev = () => {
     const swiper = useSwiper();
@@ -95,7 +62,26 @@ function SliderMain() {
         <Swiper
           modules={[A11y]}
           className="sliderMain__swiper"
-          {...swiperParams}
+          slidesPerView={1}
+          spaceBetween={"20px"}
+          breakpoints={{
+            767: {
+              slidesPerView: 2,
+              spaceBetween: 60,
+            },
+            1023: {
+              slidesPerView: 3,
+              spaceBetween: 60,
+            },
+            1279: {
+              slidesPerView: 4,
+              spaceBetween: 60,
+            },
+            1599: {
+              slidesPerView: 5,
+              spaceBetween: 60,
+            },
+          }}
         >
           <SwiperButtonPrev />
           <SwiperButtonNext />
