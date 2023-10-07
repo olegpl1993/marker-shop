@@ -10,18 +10,22 @@ interface Props {
 
 export async function generateMetadata(props: Props) {
   const { id } = props.params;
-  const product = await ApiService.getOneProduct(id);
-  if (product) {
-    return {
-      title: product.name,
-      keywords: product.description,
-      description: product.description,
-      openGraph: {
+  try {
+    const product = await ApiService.getOneProduct(id);
+    if (product) {
+      return {
         title: product.name,
-        images: product.gallery[0],
+        keywords: product.description,
         description: product.description,
-      },
-    };
+        openGraph: {
+          title: product.name,
+          images: product.gallery[0],
+          description: product.description,
+        },
+      };
+    }
+  } catch (error) {
+    console.error(error);
   }
 }
 
