@@ -11,6 +11,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://marker-shop.vercel.app/"),
   title: "Интернет-магазин MARKER",
   keywords: "MARKER, онлайн-магазин, товары для всей семьи",
   description: `Интернет-магазин MARKER: 
