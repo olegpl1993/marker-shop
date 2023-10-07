@@ -22,7 +22,9 @@ function CartCard(props: Props) {
   const { product, qty } = props.cartProduct;
   const dispatch = useAppDispatch();
 
-  const qtyInStock = product.sizes.reduce((acc, item) => acc + item.amount, 0);
+  const qtyInStock = Number(
+    product.sizes.reduce((acc, item) => acc + item.amount, 0)
+  );
 
   const handleRemoveFromCart = () => {
     dispatch(deleteFromCart(product.sku));
@@ -110,6 +112,9 @@ function CartCard(props: Props) {
               </IconButton>
             </div>
             <div className="cartCard__row">
+              <div className="cartCard__inStock">
+                В наличие: {qtyInStock} шт.
+              </div>
               <div className="cartCard__sku">Код: {product.sku}</div>
             </div>
           </div>
