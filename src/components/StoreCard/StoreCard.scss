@@ -8,10 +8,13 @@
   justify-content: space-between;
   flex-direction: column;
 
-  &:hover {
-    transform: scale(1.05);
-    transition: all 0.3s ease-in-out;
+  @media (min-width: 1024px) {
+    &:hover {
+      transform: scale(1.05);
+      transition: all 0.3s ease-in-out;
+    }
   }
+
   @media (max-width: 1439px) {
     width: 32%;
   }
@@ -20,9 +23,6 @@
   }
   @media (max-width: 1023px) {
     width: 32%;
-    &:hover {
-      transform: none;
-    }
   }
   @media (max-width: 767px) {
     width: 48%;

@@ -48,7 +48,7 @@ function Categories() {
   if (data) {
     const categories = getUniqueCategories(data);
     return (
-      <Accordion elevation={3} defaultExpanded={true} className="categories">
+      <Accordion elevation={1} defaultExpanded={true} className="categories">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"

@@ -85,7 +85,7 @@ function CartCard(props: Props) {
   };
 
   return (
-    <Paper elevation={3} className="cartCard">
+    <Paper elevation={2} className="cartCard">
       <div className="cartCard__box">
         <Link href={`/store/${product.sku}`} className="cartCard__imgBox">
           <img

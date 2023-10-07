@@ -52,7 +52,7 @@ function FeedbackForm() {
   };
 
   return (
-    <Paper elevation={3} className="feedbackForm">
+    <Paper elevation={1} className="feedbackForm">
       <div className="feedbackForm__title">Форма связи</div>
       <form
         className="feedbackForm__form"

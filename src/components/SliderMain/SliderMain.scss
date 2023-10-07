@@ -47,10 +47,13 @@
     cursor: pointer;
     user-select: none;
 
-    &:hover {
-      outline: 1px solid var(--primary-color);
-      color: var(--primary-color);
+    @media (min-width: 1024px) {
+      &:hover {
+        outline: 1px solid var(--primary-color);
+        color: var(--primary-color);
+      }
     }
+
     @media (max-width: 767px) {
       height: 400px;
     }

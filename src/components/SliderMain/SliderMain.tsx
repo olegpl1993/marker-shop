@@ -88,7 +88,7 @@ function SliderMain() {
           {uniqueProducts.map((product) => (
             <SwiperSlide key={product.sku}>
               <Paper
-                elevation={3}
+                elevation={1}
                 className="sliderMain__slide"
                 onClick={() => handleRedirectToStore(product.category)}
               >

@@ -3,7 +3,7 @@ import "./RecommendedProducts.scss";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
 import { Product } from "@/types";
 import StoreCard from "../StoreCard/StoreCard";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Spinner from "../Spinner/Spinner";
 
 const getRandomProducts = (products: Product[], numberOfProducts: number) => {
@@ -19,6 +19,7 @@ function RecommendedProducts() {
   const { data } = useGetProductsQuery(null);
   const [renderProducts, setRenderProducts] = useState([] as Product[]);
   const [isLoading, setIsLoading] = useState(false);
+  const loaderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!data) return;
@@ -27,15 +28,14 @@ function RecommendedProducts() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const windowHeight = window.innerHeight;
-      const scrollTop = document.documentElement.scrollTop;
-      const totalHeight = document.documentElement.offsetHeight;
-      const currentScrollHeight = totalHeight - scrollTop;
-      const hightToLoad = windowHeight + 30;
-      if (currentScrollHeight <= hightToLoad) {
+      if (!loaderRef.current) return;
+      const loaderRect = loaderRef.current.getBoundingClientRect();
+      const isLoaderVisible = loaderRect.top <= window.innerHeight;
+      if (isLoaderVisible) {
         setIsLoading(true);
       }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -52,10 +52,14 @@ function RecommendedProducts() {
   if (data) {
     return (
       <div className="recommendedProducts">
-        {renderProducts.map((product, index) => (
-          <StoreCard key={index} product={product} />
-        ))}
-        {isLoading && <Spinner />}
+        <div className="recommendedProducts__products">
+          {renderProducts.map((product, index) => (
+            <StoreCard key={index} product={product} />
+          ))}
+        </div>
+        <div className="recommendedProducts__loader" ref={loaderRef}>
+          {isLoading && <Spinner />}
+        </div>
       </div>
     );
   }
