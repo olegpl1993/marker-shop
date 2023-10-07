@@ -40,7 +40,7 @@ function StoreCard(props: Props) {
   };
 
   return (
-    <Paper elevation={3} className="storeCard">
+    <Paper elevation={2} className="storeCard">
       <Link href={`/store/${product.sku}`} className="storeCard__imgBox">
         <img
           className="storeCard__img"

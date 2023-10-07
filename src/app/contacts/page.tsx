@@ -10,7 +10,7 @@ function Contacts() {
   return (
     <div className="contacts">
       <div className="contacts__wrapper">
-        <Paper elevation={3} className="contacts__box">
+        <Paper elevation={1} className="contacts__box">
           <div className="contacts__title">Контакты</div>
 
           <div className="contacts__info-container">

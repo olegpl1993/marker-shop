@@ -7,6 +7,12 @@
   padding: 10px;
   gap: 5px;
 
+  @media (min-width: 1024px) {
+    &:hover {
+      outline: 1px solid var(--primary-color);
+    }
+  }
+
   &__box {
     width: 100%;
     display: flex;
