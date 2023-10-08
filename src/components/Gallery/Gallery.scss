@@ -1,5 +1,4 @@
 .gallery {
-  padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,6 +43,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+
     @media (max-width: 1279px) {
       width: 630px;
     }
@@ -52,6 +52,7 @@
     }
     @media (max-width: 960px) {
       width: 92vw;
+      padding: 5px;
     }
   }
 
