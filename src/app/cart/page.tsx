@@ -1,7 +1,7 @@
 "use client";
 import "./cart.scss";
 import CartCard from "@/components/CartCard/CartCard";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
 import { CartProduct } from "@/types";
 import { Button } from "@mui/material";
@@ -11,6 +11,7 @@ import Modal from "@/components/Modal/Modal";
 import Checkout from "@/components/Checkout/Checkout";
 import CubeSpinner from "@/components/CubeSpinner/CubeSpinner";
 import Delivery from "@/components/Delivery/Delivery";
+import { clearCart } from "@/redux/slices/cartSlice";
 
 const alegreya = Alegreya({
   weight: ["400", "500"],
@@ -19,6 +20,7 @@ const alegreya = Alegreya({
 
 function Cart() {
   const { data } = useGetProductsQuery(null);
+  const dispatch = useAppDispatch();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,6 +37,10 @@ function Cart() {
     (acc, item) => acc + item.qty * item.product.price,
     0
   );
+
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
 
   if (!data) {
     return (
@@ -57,6 +63,14 @@ function Cart() {
       <div className="cart">
         <div className="cart__titleRow">
           <h1 className="cart__title">Корзина</h1>
+          <Button
+            variant="outlined"
+            className="cart__buttonClearCart"
+            size="medium"
+            onClick={handleClearCart}
+          >
+            очистить корзину
+          </Button>
         </div>
 
         <Modal isOpen={isOpen} setIsOpen={() => setIsOpen(false)}>

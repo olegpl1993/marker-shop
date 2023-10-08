@@ -88,7 +88,7 @@ function Gallery(props: Props) {
 
         {gallery.map((productImg) => (
           <SwiperSlide key={productImg} className="gallery__slide">
-            <Paper elevation={3} className="gallery__paper">
+            <Paper elevation={2} className="gallery__paper">
               <img src={productImg} alt={productImg} className="gallery__img" />
             </Paper>
           </SwiperSlide>

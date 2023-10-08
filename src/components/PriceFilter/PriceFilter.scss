@@ -26,7 +26,10 @@
   }
 
   &__button {
-    width: 15px;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    font-size: 10px;
+    padding: 8px;
   }
 
   &__box {
