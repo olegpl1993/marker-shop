@@ -41,18 +41,17 @@
     justify-content: flex-start;
     flex-direction: column;
     overflow-y: scroll;
-    gap: 10px;
 
     @media (max-width: 1279px) {
       width: 60vw;
     }
 
     @media (max-width: 1023px) {
-      width: 70vw;
+      width: 80vw;
     }
 
     @media (max-width: 767px) {
-      width: 80vw;
+      width: 90vw;
     }
 
     @media (max-width: 413px) {
