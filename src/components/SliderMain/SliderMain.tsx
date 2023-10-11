@@ -92,12 +92,13 @@ function SliderMain() {
                 className="sliderMain__slide"
                 onClick={() => handleRedirectToStore(product.category)}
               >
-                <div />
-                <img
-                  src={product.gallery[0]}
-                  alt={product.name}
-                  className="sliderMain__img"
-                />
+                <div className="sliderMain__imgBox">
+                  <img
+                    src={product.gallery[0]}
+                    alt={product.name}
+                    className="sliderMain__img"
+                  />
+                </div>
                 <p className="sliderMain__category">{product.category}</p>
               </Paper>
             </SwiperSlide>

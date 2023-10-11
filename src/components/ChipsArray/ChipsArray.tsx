@@ -5,7 +5,6 @@ import Chip from "@mui/material/Chip";
 import { changeSelectedCategories } from "@/redux/slices/selectedCategoriesSlice";
 import { changeCurrentPage } from "@/redux/slices/storePaginationSlice";
 import { Button } from "@mui/material";
-import { initializePriceFilter } from "@/redux/slices/priceFilterSlice";
 
 function ChipsArray() {
   const dispatch = useAppDispatch();
