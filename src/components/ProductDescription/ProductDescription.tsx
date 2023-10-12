@@ -4,7 +4,7 @@ import { Product } from "@/types";
 import { Alegreya } from "next/font/google";
 import { Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart } from "@/redux/slices/cartSlice";
 import { useRouter } from "next/navigation";
 
@@ -23,10 +23,38 @@ function ProductDescription(props: Props) {
   const router = useRouter();
 
   const available = !!productData.sizes.length;
+  const cart = useAppSelector((state) => state.cartReducer.cart);
+  const isProductInCart = cart.find((item) => item.id === productData.sku)!!;
 
   const handleBuyProduct = () => {
     dispatch(addToCart(productData.sku));
     router.push("/cart");
+  };
+
+  const BuyButtonField = () => {
+    if (available && !isProductInCart) {
+      return (
+        <Button
+          variant="contained"
+          className="productDescription__button"
+          size="large"
+          onClick={handleBuyProduct}
+        >
+          <ShoppingCartIcon className="productDescription__shoppingCartIcon" />
+          КУПИТЬ
+        </Button>
+      );
+    } else if (available && isProductInCart) {
+      return (
+        <div className="productDescription__notAvailable">
+          Товар уже в корзине
+        </div>
+      );
+    } else {
+      return (
+        <div className="productDescription__notAvailable">Нет в наличии</div>
+      );
+    }
   };
 
   return (
@@ -49,19 +77,7 @@ function ProductDescription(props: Props) {
             ₴
           </p>
         </div>
-        {available ? (
-          <Button
-            variant="contained"
-            className="productDescription__button"
-            size="large"
-            onClick={handleBuyProduct}
-          >
-            <ShoppingCartIcon className="productDescription__shoppingCartIcon" />
-            КУПИТЬ
-          </Button>
-        ): (
-          <div className="productDescription__notAvailable">Нет в наличии</div>
-        )}
+        <BuyButtonField />
       </div>
 
       {productData.sizes && (
