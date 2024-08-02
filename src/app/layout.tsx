@@ -1,8 +1,9 @@
-import "./global.scss";
-import Header from "@/components/Header/Header";
-import type { Metadata } from "next";
 import { Providers } from "@/redux/provider";
+import "@/shared/variables.scss";
+import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import Header from "./components/Header/Header";
+import "./global.scss";
 import MuiCustomStylesProvider from "./MuiCustomStylesProvider";
 
 const roboto = Roboto({

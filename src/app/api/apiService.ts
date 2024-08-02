@@ -1,4 +1,4 @@
-import { Product } from "@/types";
+import { Product } from "@/shared/types";
 
 class ApiService {
   private static url = "https://msdrop.com.ua/export/4Oyz/json";

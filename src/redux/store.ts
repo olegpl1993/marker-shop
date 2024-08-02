@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { productsApi } from "./services/productsApi";
-import storePaginationReducer from "./slices/storePaginationSlice";
-import sortReducer from "./slices/sortSlice";
-import searchReducer from "./slices/searchSlice";
-import productsReducer from "./slices/productsSlice";
-import selectedCategoriesReducer from "./slices/selectedCategoriesSlice";
-import priceFilterReducer from "./slices/priceFilterSlice";
 import cartReducer from "./slices/cartSlice";
+import priceFilterReducer from "./slices/priceFilterSlice";
+import productsReducer from "./slices/productsSlice";
+import searchReducer from "./slices/searchSlice";
+import selectedCategoriesReducer from "./slices/selectedCategoriesSlice";
+import sortReducer from "./slices/sortSlice";
+import storePaginationReducer from "./slices/storePaginationSlice";
 
 const store = configureStore({
   reducer: {

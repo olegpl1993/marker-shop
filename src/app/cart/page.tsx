@@ -1,17 +1,17 @@
 "use client";
-import "./cart.scss";
-import CartCard from "@/components/CartCard/CartCard";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
-import { CartProduct } from "@/types";
+import { clearCart } from "@/redux/slices/cartSlice";
+import CubeSpinner from "@/shared/components/CubeSpinner/CubeSpinner";
+import Modal from "@/shared/components/Modal/Modal";
+import { CartProduct } from "@/shared/types";
 import { Button } from "@mui/material";
 import { Alegreya } from "next/font/google";
 import { useState } from "react";
-import Modal from "@/components/Modal/Modal";
-import Checkout from "@/components/Checkout/Checkout";
-import CubeSpinner from "@/components/CubeSpinner/CubeSpinner";
-import Delivery from "@/components/Delivery/Delivery";
-import { clearCart } from "@/redux/slices/cartSlice";
+import "./cart.scss";
+import CartCard from "./components/CartCard/CartCard";
+import Checkout from "./components/Checkout/Checkout";
+import Delivery from "./components/Delivery/Delivery";
 
 const alegreya = Alegreya({
   weight: ["400", "500"],

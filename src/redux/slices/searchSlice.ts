@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { setDataUrl, getDataUrl } from "../dataUrl";
+import { getDataUrl, setDataUrl } from "../dataUrl";
 
 const searchSlice = createSlice({
   name: "search",
