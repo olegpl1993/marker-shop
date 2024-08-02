@@ -1,0 +1,27 @@
+.spinner {
+  height: 70px;
+  margin: auto;
+  margin-top: 16px;
+  width: 70px;
+
+  &:after {
+    animation: rotation 0.2s linear 0s infinite;
+    border: 4px solid transparent;
+    border-radius: 100%;
+    border-top: 4px solid rgba(0, 144, 184, 0.7);
+    content: "";
+    display: inline-block;
+    height: 70px;
+    vertical-align: middle;
+    width: 70px;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

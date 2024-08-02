@@ -1,9 +1,9 @@
-import "./contacts.scss";
+import CubeSpinner from "@/shared/components/CubeSpinner/CubeSpinner";
 import { Suspense, lazy } from "react";
-import CubeSpinner from "@/components/CubeSpinner/CubeSpinner";
+import "./contacts.scss";
 
 const RenderContacts = lazy(
-  () => import("@/components/RenderContacts/RenderContacts")
+  () => import("@/app/contacts/components/RenderContacts/RenderContacts")
 );
 
 function Contacts() {

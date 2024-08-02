@@ -1,14 +1,14 @@
 "use client";
-import "./store.scss";
-import RenderStore from "@/components/RenderStore/RenderStore";
-import Settings from "@/components/Settings/Settings";
+import Settings from "@/app/store/components/Settings/Settings";
 import { useAppDispatch } from "@/redux/hooks";
-import { useEffect } from "react";
+import { initializePriceFilter } from "@/redux/slices/priceFilterSlice";
 import { initializeSelectedSearch } from "@/redux/slices/searchSlice";
 import { initializeSelectedCategories } from "@/redux/slices/selectedCategoriesSlice";
-import { initializeStorePagination } from "@/redux/slices/storePaginationSlice";
 import { initializeSort } from "@/redux/slices/sortSlice";
-import { initializePriceFilter } from "@/redux/slices/priceFilterSlice";
+import { initializeStorePagination } from "@/redux/slices/storePaginationSlice";
+import { useEffect } from "react";
+import RenderStore from "./components/RenderStore/RenderStore";
+import "./store.scss";
 
 function Store() {
   const dispatch = useAppDispatch();

@@ -1,12 +1,11 @@
 "use client";
-import "./home.scss";
-import "./global.scss";
-import SliderMain from "@/components/SliderMain/SliderMain";
-import RecommendedProducts from "@/components/RecommendedProducts/RecommendedProducts";
-import ScrollToTopButton from "@/components/ScrollToTopButton/ScrollToTopButton";
 import { useGetProductsQuery } from "@/redux/services/productsApi";
-import CubeSpinner from "@/components/CubeSpinner/CubeSpinner";
-import Principles from "@/components/Principles/Principles";
+import CubeSpinner from "@/shared/components/CubeSpinner/CubeSpinner";
+import ScrollToTopButton from "@/shared/components/ScrollToTopButton/ScrollToTopButton";
+import Principles from "./components/Principles/Principles";
+import RecommendedProducts from "./components/RecommendedProducts/RecommendedProducts";
+import SliderMain from "./components/SliderMain/SliderMain";
+import "./home.scss";
 
 function Home() {
   const { data } = useGetProductsQuery(null);

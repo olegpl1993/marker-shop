@@ -1,6 +1,6 @@
-import "./product.scss";
 import ApiService from "@/app/api/apiService";
-import RenderProduct from "@/components/RenderProduct/RenderProduct";
+import RenderProduct from "@/app/store/[id]/components/RenderProduct/RenderProduct";
+import "./product.scss";
 
 interface Props {
   params: {

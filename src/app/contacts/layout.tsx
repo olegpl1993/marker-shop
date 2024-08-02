@@ -1,5 +1,4 @@
-import "../global.scss";
-import Footer from "@/components/Footer/Footer";
+import Footer from "@/shared/components/Footer/Footer";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
