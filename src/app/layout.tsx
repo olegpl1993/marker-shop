@@ -2,9 +2,9 @@ import { Providers } from "@/redux/provider";
 import "@/shared/variables.scss";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import Header from "./components/Header/Header";
+import Header from "./(home)/components/Header/Header";
 import "./global.scss";
-import MuiCustomStylesProvider from "./MuiCustomStylesProvider";
+import MuiCustomStylesProvider from "./_providers/MuiCustomStylesProvider";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
